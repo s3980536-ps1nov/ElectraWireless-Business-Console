@@ -41,3 +41,49 @@ def project_forward(
         )
 
     return results
+
+def calculate_summary(forecast: list[dict]) -> dict:
+    if not forecast:
+        return {"total_revenue": 0.0, 
+                "total_expenses": 0.0, 
+                "total_profit": 0.0,
+                "average_monthly_profit": 0.0,
+                "best_month_profit": 0.0,
+                "worst_month_profit": 0.0,
+                "break_even_month": None,
+                "final_month_revenue": 0.0,
+                "final_month_profit": 0.0,
+                "final_month_profit_margin": 0.0,
+                }
+    
+    total_revenue = sum(item["revenue"] for item in forecast)
+    total_expenses = sum(item["expenses"] for item in forecast)
+    total_profit = sum(item["profit"] for item in forecast)
+    average_monthly_profit = total_profit / len(forecast)
+
+    best_month_profit = max(item["profit"] for item in forecast)
+    worst_month_profit = min(item["profit"] for item in forecast)
+
+    break_even_month = None
+    for item in forecast:
+        if item["profit"] >= 0:
+            break_even_month = item["month"]
+            break
+
+    final_month = forecast[-1]
+    final_month_revenue = final_month["revenue"]
+    final_month_profit = final_month["profit"]
+    final_month_profit_margin = (final_month_profit / final_month_revenue) * 100 if final_month_revenue > 0 else 0.0
+
+    return {
+        "total_revenue": round(total_revenue, 2),
+        "total_expenses": round(total_expenses, 2),
+        "total_profit": round(total_profit, 2),
+        "average_monthly_profit": round(average_monthly_profit, 2),
+        "best_month_profit": round(best_month_profit, 2),
+        "worst_month_profit": round(worst_month_profit, 2),
+        "break_even_month": break_even_month,
+        "final_month_revenue": round(final_month_revenue, 2),
+        "final_month_profit": round(final_month_profit, 2),
+        "final_month_profit_margin": round(final_month_profit_margin, 2),
+    }
