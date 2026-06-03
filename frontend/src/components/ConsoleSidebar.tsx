@@ -1,7 +1,7 @@
-import { Home, BarChart2, Wallet, TrendingUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { Home, BarChart2, Wallet, TrendingUp, ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type ConsoleTool = "home" | "projection" | "personal";
+export type ConsoleTool = "home" | "projection" | "personal" | "investment";
 
 interface NavItem {
   tool: ConsoleTool;
@@ -29,6 +29,12 @@ const TOOL_ITEMS: NavItem[] = [
     label: "Personal",
     sublabel: "Finance",
     icon: <Wallet size={18} />,
+  },
+  {
+    tool: "investment",
+    label: "Investment",
+    sublabel: "Intelligence",
+    icon: <TrendingUp size={18} />,
   },
 ];
 
@@ -83,9 +89,10 @@ interface ConsoleSidebarProps {
   onSelect: (tool: ConsoleTool) => void;
   expanded: boolean;
   onToggle: () => void;
+  onResetInvestment?: () => void;
 }
 
-export function ConsoleSidebar({ activeTool, onSelect, expanded, onToggle }: ConsoleSidebarProps) {
+export function ConsoleSidebar({ activeTool, onSelect, expanded, onToggle, onResetInvestment }: ConsoleSidebarProps) {
   return (
     <div
       className={cn(
@@ -131,29 +138,34 @@ export function ConsoleSidebar({ activeTool, onSelect, expanded, onToggle }: Con
           />
         ))}
 
-        {/* Investment Intelligence — coming soon */}
-        <button
-          disabled
-          title={!expanded ? "Investment Intelligence (Coming Soon)" : undefined}
-          className={cn(
-            "flex items-center rounded-[9px] border-none cursor-not-allowed w-full bg-transparent text-[hsl(247_10%_68%)] opacity-60 overflow-hidden whitespace-nowrap",
-            expanded ? "gap-2.5 justify-start py-[9px] px-2.5" : "gap-0 justify-center py-[11px] px-0"
-          )}
-        >
-          {expanded && <div className="w-[3px] h-7 rounded-sm flex-shrink-0" />}
-          <TrendingUp size={18} className="flex-shrink-0" />
-          {expanded && (
-            <div className="leading-[1.25] min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[11.5px] font-medium tracking-[0.01em]">Investment</span>
-                <span className="text-[8px] font-bold tracking-[0.06em] uppercase bg-primary/10 text-[hsl(247_30%_55%)] px-[5px] py-px rounded">
-                  Soon
-                </span>
+        {activeTool === "investment" && onResetInvestment && (
+          <div className={expanded ? "mt-2 px-0" : "mt-2"}>
+            {expanded && (
+              <div className="text-[9.5px] font-bold tracking-[0.10em] uppercase text-[hsl(247_20%_62%)] px-2.5 mb-1.5 whitespace-nowrap">
+                Danger Zone
               </div>
-              <div className="text-[10.5px] font-normal opacity-[0.72] mt-px">Intelligence</div>
-            </div>
-          )}
-        </button>
+            )}
+            <button
+              onClick={onResetInvestment}
+              title="Reset all investment data"
+              className={cn(
+                "flex items-center border-none rounded-[9px] cursor-pointer w-full text-left transition-all duration-150 whitespace-nowrap overflow-hidden outline outline-[1.5px]",
+                "bg-transparent text-red-400 outline-transparent hover:bg-red-50 hover:text-red-600",
+                expanded ? "gap-2.5 justify-start py-[9px] px-2.5" : "gap-0 justify-center py-[11px] px-0"
+              )}
+            >
+              {expanded && <div className="w-[3px] h-7 rounded-sm flex-shrink-0 bg-transparent" />}
+              <span className="flex flex-shrink-0"><Trash2 size={18} /></span>
+              {expanded && (
+                <div className="leading-[1.25] min-w-0 overflow-hidden">
+                  <div className="text-[11.5px] tracking-[0.01em] font-medium">Reset All</div>
+                  <div className="text-[10.5px] font-normal opacity-[0.72] mt-px">Investment Data</div>
+                </div>
+              )}
+            </button>
+          </div>
+        )}
+
       </nav>
 
       {/* Footer */}

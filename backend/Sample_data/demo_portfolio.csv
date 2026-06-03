@@ -1,0 +1,9 @@
+symbol,asset_type,quantity,buy_price,purchase_date
+NVDA,stock,50,220.50,2024-01-15
+AAPL,stock,30,178.20,2023-11-10
+TSLA,stock,20,242.80,2024-03-05
+META,stock,12,390.00,2024-04-01
+VOO,etf,15,410.00,2023-06-20
+QQQ,etf,10,380.50,2023-09-01
+BTC,crypto,0.5,42000.00,2024-02-14
+ETH,crypto,3.0,2800.00,2024-01-20

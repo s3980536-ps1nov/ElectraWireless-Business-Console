@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
 } from "recharts";
-import { usePersonalFinanceStore } from "@/store/personalFinanceStore";
+import { usePersonalFinanceStore, useFilteredTransactions } from "@/store/personalFinanceStore";
 import { fetchSummary } from "@/services/personalFinanceApi";
+import { NetWorthPanel } from "@/components/pf/NetWorthPanel";
 import type { FinancialSummary } from "@/services/personalFinanceApi";
 import { getCategoryColor } from "@/lib/categories";
 import { C_PRIMARY, C_BORDER, C_SUCCESS, C_ERROR, C_WARNING } from "@/lib/colors";
@@ -332,14 +333,14 @@ function BudgetNudge({ onGoToBudgets }: { onGoToBudgets: () => void }) {
 }
 
 export function OverviewTab() {
-  const transactions = usePersonalFinanceStore((s) => s.transactions);
+  const transactions = useFilteredTransactions();
   const budgets      = usePersonalFinanceStore((s) => s.budgets);
   const setActiveTab = usePersonalFinanceStore((s) => s.setActiveTab);
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
 
   useEffect(() => {
-    if (transactions.length === 0) return;
-    fetchSummary(transactions).then(setSummary);
+    if (transactions.length === 0) { setSummary(null); return; }
+    fetchSummary(transactions).then(setSummary).catch(() => setSummary(null));
   }, [transactions]);
 
   if (!summary) {
@@ -396,6 +397,9 @@ export function OverviewTab() {
 
       {/* Income sources */}
       <IncomeSources sources={summary.incomeSources} />
+
+      {/* Net worth */}
+      <NetWorthPanel />
     </div>
   );
 }

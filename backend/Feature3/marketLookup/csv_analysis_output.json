@@ -1,0 +1,18 @@
+[
+  {
+    "ticker": "AMD",
+    "start_price": 206.0200042724609,
+    "end_price": 414.0499877929688,
+    "change_abs": 208.0299835205079,
+    "change_pct": 100.975623340629,
+    "data_points": 123
+  },
+  {
+    "ticker": "NVDA",
+    "start_price": 180.6201629638672,
+    "end_price": 220.6100006103516,
+    "change_abs": 39.9898376464844,
+    "change_pct": 22.1402954079298,
+    "data_points": 123
+  }
+]

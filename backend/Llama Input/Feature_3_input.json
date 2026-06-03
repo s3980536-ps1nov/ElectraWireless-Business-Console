@@ -1,0 +1,207 @@
+{
+  "question": "If I invest in bhp group today, what does the AI predict its value could realistically become in 1 year, 3 years, and 5 years based on market trends, financials, and industry growth?",
+  "Goals": "Reach $20,000 portfolio value within 12 months\nKeep crypto exposure below 25%",
+  "period": "Last 6 months",
+  "summary": {
+    "totalValue": 12500.0,
+    "totalCost": 10000.0,
+    "profitLoss": 2500.0,
+    "returnPercentage": 25.0,
+    "dayChange": 145.2,
+    "dayChangePercentage": 1.18,
+    "cashBalance": 1500.0,
+    "diversificationScore": 62,
+    "riskGrade": "B",
+    "volatility": 18.4,
+    "asOf": "2026-05-08T00:00:00Z"
+  },
+  "holdings": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "asset_type": "stock",
+      "quantity": 10,
+      "buy_price": 150.0,
+      "purchase_date": "2025-01-01",
+      "current_price": 195.5,
+      "marketValue": 1955.0,
+      "costBasis": 1500.0,
+      "profitLoss": 455.0,
+      "returnPercentage": 30.33,
+      "weight": 15.64,
+      "dayChangePercentage": 0.85
+    },
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "asset_type": "crypto",
+      "quantity": 0.15,
+      "buy_price": 42000.0,
+      "purchase_date": "2024-11-15",
+      "current_price": 58000.0,
+      "marketValue": 8700.0,
+      "costBasis": 6300.0,
+      "profitLoss": 2400.0,
+      "returnPercentage": 38.1,
+      "weight": 69.6,
+      "dayChangePercentage": 2.4
+    },
+    {
+      "symbol": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "asset_type": "etf",
+      "quantity": 0.8,
+      "buy_price": 437.5,
+      "purchase_date": "2025-03-10",
+      "current_price": 423.5,
+      "marketValue": 338.8,
+      "costBasis": 350.0,
+      "profitLoss": -11.2,
+      "returnPercentage": -3.2,
+      "weight": 2.71,
+      "dayChangePercentage": -0.42
+    },
+    {
+      "symbol": "CASH",
+      "name": "Cash Holdings (USD)",
+      "asset_type": "cash",
+      "quantity": 1500,
+      "buy_price": 1.0,
+      "purchase_date": "2025-01-01",
+      "current_price": 1.0,
+      "marketValue": 1500.0,
+      "costBasis": 1500.0,
+      "profitLoss": 0.0,
+      "returnPercentage": 0.0,
+      "weight": 12.0,
+      "dayChangePercentage": 0.0
+    }
+  ],
+  "allocation": {
+    "byAssetType": {
+      "stock": 15.64,
+      "etf": 2.71,
+      "crypto": 69.6,
+      "cash": 12.0
+    },
+    "bySymbol": {
+      "AAPL": 15.64,
+      "BTC": 69.6,
+      "VOO": 2.71,
+      "CASH": 12.0
+    },
+    "topConcentration": {
+      "symbol": "BTC",
+      "weight": 69.6
+    }
+  },
+  "monthlySnapshots": [
+    {
+      "month": "2025-12",
+      "totalValue": 10800,
+      "totalCost": 9800,
+      "profitLoss": 1000,
+      "returnPercentage": 10.2
+    },
+    {
+      "month": "2026-01",
+      "totalValue": 11200,
+      "totalCost": 10000,
+      "profitLoss": 1200,
+      "returnPercentage": 12.0
+    },
+    {
+      "month": "2026-02",
+      "totalValue": 11900,
+      "totalCost": 10000,
+      "profitLoss": 1900,
+      "returnPercentage": 19.0
+    },
+    {
+      "month": "2026-03",
+      "totalValue": 12300,
+      "totalCost": 10000,
+      "profitLoss": 2300,
+      "returnPercentage": 23.0
+    },
+    {
+      "month": "2026-04",
+      "totalValue": 11800,
+      "totalCost": 10000,
+      "profitLoss": 1800,
+      "returnPercentage": 18.0
+    },
+    {
+      "month": "2026-05",
+      "totalValue": 12500,
+      "totalCost": 10000,
+      "profitLoss": 2500,
+      "returnPercentage": 25.0
+    }
+  ],
+  "topGainers": [
+    {
+      "symbol": "BTC",
+      "returnPercentage": 38.1,
+      "profitLoss": 2400.0
+    },
+    {
+      "symbol": "AAPL",
+      "returnPercentage": 30.33,
+      "profitLoss": 455.0
+    }
+  ],
+  "topLosers": [
+    {
+      "symbol": "VOO",
+      "returnPercentage": -3.2,
+      "profitLoss": -11.2
+    }
+  ],
+  "alerts": [
+    {
+      "type": "concentration",
+      "severity": "danger",
+      "title": "High crypto concentration",
+      "message": "70% of your portfolio is in BTC, well above the 25% concentration threshold."
+    },
+    {
+      "type": "diversification",
+      "severity": "warning",
+      "title": "Low diversification score",
+      "message": "Diversification score is 62/100. Consider adding 2-3 uncorrelated positions."
+    },
+    {
+      "type": "drop",
+      "severity": "warning",
+      "title": "Portfolio dipped in April",
+      "message": "Portfolio value fell 4.1% from March to April before recovering in May."
+    }
+  ],
+  "personal_finance_context": {
+    "available": true,
+    "savingsRate": 22,
+    "netCashFlow": 2800,
+    "healthGrade": "B",
+    "healthScore": 74,
+    "period": "Last 3 months"
+  },
+  "onboarding": {
+    "available": true,
+    "age": 30,
+    "experienceLevel": "beginner",
+    "investmentCapital": 50000,
+    "emergencyCash": 10000,
+    "communicationStyle": "simple",
+    "investmentStrategies": [
+      "buy_and_hold"
+    ],
+    "timeHorizon": "monthly",
+    "assetInterests": [
+      "stock",
+      "crypto",
+      "etf"
+    ],
+    "completedAt": "2026-05-30T04:18:07.420469+00:00"
+  }
+}

@@ -3,7 +3,7 @@ import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer, AreaChart, Area,
 } from "recharts";
-import { usePersonalFinanceStore } from "@/store/personalFinanceStore";
+import { useFilteredTransactions } from "@/store/personalFinanceStore";
 import type { Transaction } from "@/store/personalFinanceStore";
 import { fetchSummary } from "@/services/personalFinanceApi";
 import type { FinancialSummary } from "@/services/personalFinanceApi";
@@ -238,7 +238,7 @@ function SpendTrendChart({ transactions, months }: { transactions: Transaction[]
 // ── Main Cash Flow tab ────────────────────────────────────────────────────────
 
 export function CashFlowTab() {
-  const transactions = usePersonalFinanceStore((s) => s.transactions);
+  const transactions = useFilteredTransactions();
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
 
   useEffect(() => {

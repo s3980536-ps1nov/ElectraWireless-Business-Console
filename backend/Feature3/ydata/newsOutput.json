@@ -1,0 +1,156 @@
+{
+  "company": {
+    "AAPL": {
+      "country": "United States",
+      "articles": [
+        {
+          "headline": "Dell unveils $699 XPS 13 laptop in challenge to Apple's MacBook Neo",
+          "summary": "Dell on Sunday unveiled its most affordable laptop, XPS 13, as the PC maker aims to capture \u200cmarket share from Apple's MacBook Neo by attracting students and young professionals.  Starting \u200cat $699 an",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=739d726bf9349bcd0bd460ae8bb2a8ced635ea0df0c21d0198e49dafe5423b4b",
+          "datetime": 1780267986
+        },
+        {
+          "headline": "Why This Fund Sold $35 Million of Bristow Group Amid a 40% Stock Surge",
+          "summary": "Bristow Group delivers aviation and mission-critical transport services to offshore energy, government, and commercial clients worldwide.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=d4cb3ae9bd01f8028be769e0b4c0dce82935c72c8f8a3449e58c6e9a3a0b8ac9",
+          "datetime": 1780251612
+        },
+        {
+          "headline": "China Insight: Why Fashion Must Rethink Globalization",
+          "summary": "The answer increasingly lies not in export volume alone, but in supply chain integration, local collaboration, sustainability standards and long-term strategic value.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=e8d3b20f0c46142c7cb17c9f00e7ffa965a9f3612be354c75c884b8a2735ba6a",
+          "datetime": 1780249939
+        },
+        {
+          "headline": "How Overzealous Option Traders Are Making 3X Leveraged ETFs Look Like Saviors",
+          "summary": "Warning: A key part of the options market you may be relying on is no longer working.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=c5f1db7eb1b0e22f9eeee6ee21c0aea56bd9147edb427428259d6641e923b1d2",
+          "datetime": 1780237802
+        },
+        {
+          "headline": "How The Apple (AAPL) Narrative Is Shifting With AI Ambitions And Leadership Transition",
+          "summary": "Apple\u2019s modeled fair value has been updated from US$297.88 to US$310.51, a modest shift that signals a recalibration of expectations rather than a wholesale rewrite of the story. The move aligns with ",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=8226babf01e91aa8f8dce0cdd5d2126378500cef19bc0810b18672259fc32ec4",
+          "datetime": 1780232972
+        }
+      ]
+    },
+    "BHP": {
+      "country": "Australia",
+      "articles": [
+        {
+          "headline": "IperionX: Waiting For Proof",
+          "summary": "",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=e1497424dddcd0ef1fc86094a846be713bbdab095cdf3a121897ca362af05f4f",
+          "datetime": 1780199840
+        },
+        {
+          "headline": "Mogotes Metals: Possibly The Next Major Deposit In The Vicuna District",
+          "summary": "Mogotes Metals (MOG:CA) drill results hint at world-class Cu-Au-Ag-Mo.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=987538efdb8947221d0cc53f0cb40d57d57423c118d420155bd5c3197268905d",
+          "datetime": 1780063725
+        },
+        {
+          "headline": "Nickel Miners News For The Month Of May 2026",
+          "summary": "Nickel market shows softer spot prices, Indonesia policy shifts, sulfur supply risks & major producers\u00e2\u0080\u0099 output. Read more here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=e048ffb0bc528e45589876113a31e5ef0e06c407c5cc2455a2795441c87dce0d",
+          "datetime": 1780028726
+        }
+      ]
+    },
+    "VOO": {
+      "country": "US",
+      "articles": [
+        {
+          "headline": "International Countries Have Only Bought 10% Of Total New Debt Over 18 Months",
+          "summary": "As soon as the Fed ended quantitative tightening, they launched a new round of quantitative easing. The Fed added $43B in March and April and then $4B in May. Read more here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=d1d069fc3d0fa5975563dfe3c75191f095c951bc921d5f26d28b58606d897f7a",
+          "datetime": 1780243500
+        },
+        {
+          "headline": "Korea And Japan Worry Me More Than The Strait Of Hormuz",
+          "summary": "Rising Japan & Korea bond yields could drain global liquidity, fueling volatility.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=1fdf69f7360a6bd51661a05534b518124e665b50d4c30a1494f3096908e8ff21",
+          "datetime": 1780238636
+        },
+        {
+          "headline": "The Tech Tug-Of-War: U.S.-China Relations And The Race For Innovation",
+          "summary": "In this episode of the MoneyShow Money Masters Podcast, we explore the US-China tech rivalry with Rebecca Fannin, journalist, author and founder of Silicon Dragon Ventures.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=838de05c5e0acca5c4b2277053729caa92f62589b726a069abb2cf40d792315f",
+          "datetime": 1780236300
+        },
+        {
+          "headline": "The Stock Market May Be About To Break",
+          "summary": "The S&P 500 sees extreme dispersion from a semiconductor rally as single-stock implied volatility spikes. Read the full analysis here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=1fb581374d64f635c1ce0a011ccee40237501faebd98e308552b65c5ee162edc",
+          "datetime": 1780221300
+        },
+        {
+          "headline": "The 1-Minute Market Report, May 31, 2026",
+          "summary": "S&P 500 hits a record 9-week win streak. Explore stock market updates, sector value pockets & ETF flow trends in tech/renewables\u00e2\u0080\u0094read now.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=a1d3a8f9ca1bf4d823353b335b5069f8e78645c35561ab5dce0aeba8b918c132",
+          "datetime": 1780218000
+        }
+      ]
+    }
+  },
+  "market": [
+    {
+      "headline": "US says it struck Iranian military sites, Tehran responds with air base attack - Reuters",
+      "summary": "US says it struck Iranian military sites, Tehran responds with air base attack\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOYmZseGFNR05tMVJiV2tLRjdhdUFTUkwyT3pSdVFYdTJYWDdCZ0tRR2JNU002UEtMVHA1TXhabGhlUlMxUkIyOEh5dTNMR0dIQk1FQmxqUDRhcFZaREtrQkMyci1NS2lycENBOWtqbEpQVV9lX3FGOEJXU19ROEtaS0o0bTg0TGV5NGhtcGhORy12aUo4dzVxUlY2UElhZDFUalVqeWZmbUotQ21jQWxPeE5LZFM3WkNSZjE4bTR6MVhsTWFvRGpIMlpzeGpwTXZVby1Za2k5TQ?oc=5",
+      "datetime": 1780287420
+    },
+    {
+      "headline": "US says it struck Iranian drone command sites at the weekend - Reuters",
+      "summary": "US says it struck Iranian drone command sites at the weekend\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORFFBZmxTbHItblp0aHRFV3dLbHhHSUVDVnh5b2VPOVUzZEx4QmVPcHhpYUVGZlBhZVJKZGJQUnNFeDI0NVgtM2d0NWEyeUxqWkZrMUt4SGREVDZsY01MbnY5VlFncTl1eVl2Xzh5aTF3UTY3VFpVTWpuUWdwb0M4NW84RFpQSUpqT05seldFQUlka0hwbTdtWTlrSEFEeW01YVExWlY2UmptVXY4dm11WmwzRHdKVlcwNkE?oc=5",
+      "datetime": 1780284780
+    },
+    {
+      "headline": "Gold slips on stronger dollar, oil as markets await Trump decision on Iran proposal - Reuters",
+      "summary": "Gold slips on stronger dollar, oil as markets await Trump decision on Iran proposal\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQmkybDRsSTE5dExGbEF3WFo1bnk0d21mT2x2dzZ5QllRVklGUnpmWkNvVXpKTnhzNWs1OUstZnRYRHFUU1ZpOEJBZjdrZ29RZlFoUGU1c3N3b2x2ejBIOWp4X3lqamtIR09wanRjd1FRSThnMXpjSHE3WC1xR2xsalpqUEREbkczYlNRRDZlcXl1UW5ndGtBR0pBQ3hUNDJ1NDhhMC1BVDlxbTItRGJ2eDVn?oc=5",
+      "datetime": 1780279260
+    },
+    {
+      "headline": "Dollar steadies as markets await signals on Iran war, central banks - Reuters",
+      "summary": "Dollar steadies as markets await signals on Iran war, central banks\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNZDBZYzhnVW50SGxJS1NkTDVCeFdLNG9hS3dCOU5iYjVUZlJGUXJheGpRTHE1eWFuY0RVdnZkTE9kM0VrcGRoSkgzU3dDeTJkcFN4STVPNHpqalFWY0dQTGdrVzQ2Z0dCRXhGWmg4Qmg3Tzhqa2NrX2hvbzdOX2ZwUHNmZHJqVnV6bHlDbFEzdFpZVGo3NExaMDFLVUZwSmtydGpqb1ZYdnktT3VuYXVwV3c1TTdIZw?oc=5",
+      "datetime": 1780274400
+    },
+    {
+      "headline": "Oil rises as US and Iran trade strikes, Israel moves further into Lebanon - Reuters",
+      "summary": "Oil rises as US and Iran trade strikes, Israel moves further into Lebanon\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNVV2Sy0tWUhKZW9kSnhoNHNrc3lPOW5mRV9VMnplaDhRd0NJNURQUl9CX0w1d2c2dTR1TGd4VzB6MmVWb1VCd3V3N1BHblFJWFh5TGN6UC1yUGlnanlUSVotVWdIZklOZDV2WVUzT01wRHRkOHYyXzBCUnRuMkhYYnRJbzZwcWtxaWt6R3BqTm1nUjZaNHVFZWVPT2JlVVJtMU9xdmo0Skc5VEh1MDVmcWFIaw?oc=5",
+      "datetime": 1780266360
+    }
+  ],
+  "meta": {
+    "tickers_received": [
+      "AAPL",
+      "BHP",
+      "VOO"
+    ],
+    "countries_received": [],
+    "status": "active"
+  }
+}

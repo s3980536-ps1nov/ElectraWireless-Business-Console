@@ -92,6 +92,7 @@ def get_analysis(
     prophet_forecast=None,
     slider_forecast=None,
     current_params: dict | None = None,
+    market_context: dict | None = None,
 ):
     # Build a human-readable summary of current dashboard values if provided
     params_block = ""
@@ -109,9 +110,67 @@ def get_analysis(
     Forecast Horizon: {current_params.get('months', 'N/A')} months
 """
 
+    # Build market research block if ticker/news data was fetched
+    market_block = ""
+    if market_context:
+        lines = ["    =========================",
+                 "    LIVE MARKET DATA",
+                 "    ========================="]
+
+        for sym, td in (market_context.get("ticker_data") or {}).items():
+            lines.append(f"    {sym}:")
+            if td.get("current_price"):
+                lines.append(f"      Current price:  ${td['current_price']}")
+            if td.get("one_year_cagr") is not None:
+                lines.append(f"      1-year CAGR:    {td['one_year_cagr']}%")
+            if td.get("volatility_pct") is not None:
+                lines.append(f"      Annualised vol: {td['volatility_pct']}%")
+            if td.get("pe_ratio"):
+                lines.append(f"      P/E ratio:      {td['pe_ratio']}")
+            if td.get("sector"):
+                lines.append(f"      Sector:         {td['sector']}")
+            if td.get("fifty_two_week_high") and td.get("fifty_two_week_low"):
+                lines.append(f"      52-week range:  ${td['fifty_two_week_low']} – ${td['fifty_two_week_high']}")
+
+        proj = market_context.get("hypothetical_projection")
+        if proj:
+            lines += [
+                "    =========================",
+                "    HYPOTHETICAL PROJECTION",
+                "    =========================",
+                f"    If ${proj['invested']:,.2f} invested in {proj['symbol']} today:",
+                f"      Units: {proj['units_bought']} @ ${proj['current_price']}",
+                f"      Projected value after {proj['projected_years']} yrs: ${proj['projected_value']:,.2f}",
+                f"      Projected gain: ${proj['projected_gain']:,.2f} ({proj['projected_gain_pct']:+.2f}%)",
+                f"      Based on 1yr CAGR: {proj['based_on_cagr_pct']}%",
+            ]
+
+        news = market_context.get("news", {})
+        company_news = news.get("company", {})
+        market_news  = news.get("market", [])
+
+        if company_news:
+            lines += ["    =========================", "    RECENT COMPANY NEWS", "    ========================="]
+            for sym, articles in company_news.items():
+                lines.append(f"    {sym} recent headlines:")
+                for a in articles:
+                    lines.append(f"      - {a['headline']}")
+                    if a.get("summary"):
+                        lines.append(f"        {a['summary'][:200]}")
+
+        if market_news:
+            lines += ["    =========================", "    GENERAL MARKET NEWS", "    ========================="]
+            for a in market_news:
+                lines.append(f"      - {a['headline']}")
+                if a.get("summary"):
+                    lines.append(f"        {a['summary'][:200]}")
+
+        market_block = "\n".join(lines)
+
     prompt = f"""
-    You are a financial analysis assistant.
+    You are a financial analysis assistant with access to live market data and news.
 {params_block}
+{market_block}
     =========================
     CONTEXT (SYSTEM DATA)
     =========================
@@ -143,6 +202,9 @@ def get_analysis(
     3. Do NOT fabricate data or estimates beyond what can be derived from the provided context.
     4. Use clear, simple language (no jargon or acronyms).
     5. Do NOT ask for clarification.
+    6. When referencing news headlines, always clearly state which company the headline is actually about.
+       Do NOT attribute news about one company to another — e.g. if a headline mentions Company X in the
+       context of Company Y, make clear it is Company Y's news, not Company X's.
 
     Output structure:
 

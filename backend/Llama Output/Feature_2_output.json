@@ -1,0 +1,34 @@
+{
+  "summary": "The user's overall financial situation is characterized by a total income of $12,600 over the last three months, with total expenses amounting to $9,800. This results in a net cash flow of $2,800 and a savings rate of 22%. The health score indicates a financial health grade of \"B\", suggesting a good level of financial stability.",
+  "health_score": {
+    "score": 74,
+    "raw": "The user's financial health score is 74, indicating a \"B\" grade. A score above 70 typically suggests good financial management skills, but it also highlights areas where the individual can improve their savings rate and reduce debt if necessary."
+  },
+  "alerts": [
+    "\u2022 High Housing Costs: The user spends over 55% of their total expenses on housing, exceeding the recommended allocation.",
+    "\u2022 Net cash flow shrinking: Net cash flow has decreased by 27% in the last three months despite steady income, indicating potential overspending or lack of budgeting discipline.",
+    "\u2022 Recurring subscriptions stable: The active subscriptions remain at $180/month across six services, with no anomalies detected."
+  ],
+  "risks": [
+    "Continuous overspending in housing category may lead to financial strain.",
+    "Failure to address net cash flow decline could worsen the situation."
+  ],
+  "opportunities": [
+    "Adjusting the budget to allocate 35% of total spending towards housing costs",
+    "Implementing a more effective savings plan, considering increasing income or reducing unnecessary expenses"
+  ],
+  "recommended_actions": [
+    "Analyze and adjust monthly budgets for categories like housing, groceries, and dining out.",
+    "Evaluate recurring subscriptions and negotiate lower rates if possible.",
+    "Consider implementing a 50/30/20 budget rule to allocate income more efficiently."
+  ],
+  "spending_patterns": "The user's overall spending patterns show:\n- Housing expenses are 55% of total spending\n- Groceries and dining out account for a significant portion (around 20%) of their expenses\n- Utilities and healthcare costs remain relatively stable",
+  "goals": [
+    "To reduce total expenses by $500 within 12 months:",
+    "The user should aim for an average reduction of approximately $42/month from the current expenses ($9,800 / 12 = $816/month)",
+    "Aiming for a savings rate above 25% would be a reasonable target to achieve the expense reduction goal",
+    "Track and reduce unnecessary expenses over the next few months.",
+    "Regularly review and optimize the budget to ensure effective spending.",
+    "Consider implementing a side hustle or income boost to support the reduced expenses and increased savings targets."
+  ]
+}

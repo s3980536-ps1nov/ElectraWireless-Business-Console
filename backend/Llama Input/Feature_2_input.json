@@ -1,0 +1,53 @@
+
+{
+  "question": "How can I increase my savings rate to 50%",
+  "Goals": "Reduce total expenses by 500 within 12 months",
+  "period": "Last 3 months",
+  "summary": {
+    "totalIncome": 12600,
+    "totalExpenses": 9800,
+    "netCashFlow": 2800,
+    "savingsRate": 22,
+    "healthScore": 74,
+    "healthGrade": "B"
+  },
+  "breakdown": {
+    "categoryTotals": {
+      "Housing": 5400,
+      "Groceries": 900,
+      "Transport": 720,
+      "Dining": 540,
+      "Utilities": 420,
+      "Entertainment": 380,
+      "Subscriptions": 180,
+      "Healthcare": 260,
+      "Shopping": 700,
+      "Other": 300
+    },
+    "monthlyBreakdown": [
+      { "month": "2024-01", "income": 4200, "expenses": 3100, "netCashFlow": 1100 },
+      { "month": "2024-02", "income": 4200, "expenses": 3300, "netCashFlow":  900 },
+      { "month": "2024-03", "income": 4200, "expenses": 3400, "netCashFlow":  800 }
+    ]
+  },
+  "alerts": [
+    {
+      "type": "overspending",
+      "severity": "danger",
+      "title": "High Housing Costs",
+      "message": "Housing expenses are 55% of total spending, well above the recommended 30-35% allocation."
+    },
+    {
+      "type": "trend",
+      "severity": "warning",
+      "title": "Net cash flow shrinking",
+      "message": "Net cash flow has fallen 27% over the last three months while income held flat."
+    },
+    {
+      "type": "subscription",
+      "severity": "info",
+      "title": "Recurring subscriptions stable",
+      "message": "Active subscriptions remain at $180/month across 6 services - no anomalies detected."
+    }
+  ]
+}

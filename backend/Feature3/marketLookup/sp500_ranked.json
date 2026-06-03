@@ -1,0 +1,4026 @@
+[
+  {
+    "symbol": "SNDK",
+    "company_name": "Sandisk Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 681.1,
+    "rank": 1
+  },
+  {
+    "symbol": "MU",
+    "company_name": "Micron Technology, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 284.38,
+    "rank": 2
+  },
+  {
+    "symbol": "STX",
+    "company_name": "Seagate Technology Holdings PLC",
+    "country": "Singapore",
+    "sector": "Technology",
+    "return_6m": 227.5,
+    "rank": 3
+  },
+  {
+    "symbol": "WDC",
+    "company_name": "Western Digital Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 225.22,
+    "rank": 4
+  },
+  {
+    "symbol": "INTC",
+    "company_name": "Intel Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 202.15,
+    "rank": 5
+  },
+  {
+    "symbol": "CIEN",
+    "company_name": "Ciena Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 183.78,
+    "rank": 6
+  },
+  {
+    "symbol": "LITE",
+    "company_name": "Lumentum Holdings Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 170.69,
+    "rank": 7
+  },
+  {
+    "symbol": "ON",
+    "company_name": "ON Semiconductor Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 145.43,
+    "rank": 8
+  },
+  {
+    "symbol": "DELL",
+    "company_name": "Dell Technologies Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 141.82,
+    "rank": 9
+  },
+  {
+    "symbol": "AMD",
+    "company_name": "Advanced Micro Devices, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 135.75,
+    "rank": 10
+  },
+  {
+    "symbol": "COHR",
+    "company_name": "Coherent Corp.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 130.55,
+    "rank": 11
+  },
+  {
+    "symbol": "GLW",
+    "company_name": "Corning Incorporated",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 121.12,
+    "rank": 12
+  },
+  {
+    "symbol": "TER",
+    "company_name": "Teradyne, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 113.19,
+    "rank": 13
+  },
+  {
+    "symbol": "LRCX",
+    "company_name": "Lam Research Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 106.02,
+    "rank": 14
+  },
+  {
+    "symbol": "MRNA",
+    "company_name": "Moderna, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 96.9,
+    "rank": 15
+  },
+  {
+    "symbol": "FIX",
+    "company_name": "Comfort Systems USA, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 93.18,
+    "rank": 16
+  },
+  {
+    "symbol": "TXN",
+    "company_name": "Texas Instruments Incorporated",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 90.07,
+    "rank": 17
+  },
+  {
+    "symbol": "GNRC",
+    "company_name": "Generac Holdlings Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 87.27,
+    "rank": 18
+  },
+  {
+    "symbol": "MCHP",
+    "company_name": "Microchip Technology Incorporat",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 81.72,
+    "rank": 19
+  },
+  {
+    "symbol": "SATS",
+    "company_name": "EchoStar Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 79.55,
+    "rank": 20
+  },
+  {
+    "symbol": "AMAT",
+    "company_name": "Applied Materials, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 76.96,
+    "rank": 21
+  },
+  {
+    "symbol": "MPWR",
+    "company_name": "Monolithic Power Systems, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 76.57,
+    "rank": 22
+  },
+  {
+    "symbol": "HPE",
+    "company_name": "Hewlett Packard Enterprise Comp",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 76.33,
+    "rank": 23
+  },
+  {
+    "symbol": "VRT",
+    "company_name": "Vertiv Holdings, LLC",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 75.35,
+    "rank": 24
+  },
+  {
+    "symbol": "JBL",
+    "company_name": "Jabil Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 73.27,
+    "rank": 25
+  },
+  {
+    "symbol": "GEV",
+    "company_name": "GE Vernova Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 72.88,
+    "rank": 26
+  },
+  {
+    "symbol": "KEYS",
+    "company_name": "Keysight Technologies Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 71.68,
+    "rank": 27
+  },
+  {
+    "symbol": "NXPI",
+    "company_name": "NXP Semiconductors N.V.",
+    "country": "Netherlands",
+    "sector": "Technology",
+    "return_6m": 67.16,
+    "rank": 28
+  },
+  {
+    "symbol": "KLAC",
+    "company_name": "KLA Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 67.01,
+    "rank": 29
+  },
+  {
+    "symbol": "DVA",
+    "company_name": "DaVita Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 65.3,
+    "rank": 30
+  },
+  {
+    "symbol": "AKAM",
+    "company_name": "Akamai Technologies, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 63.19,
+    "rank": 31
+  },
+  {
+    "symbol": "PWR",
+    "company_name": "Quanta Services, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 61.52,
+    "rank": 32
+  },
+  {
+    "symbol": "FFIV",
+    "company_name": "F5, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 60.72,
+    "rank": 33
+  },
+  {
+    "symbol": "ODFL",
+    "company_name": "Old Dominion Freight Line, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 58.66,
+    "rank": 34
+  },
+  {
+    "symbol": "FTNT",
+    "company_name": "Fortinet, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 58.52,
+    "rank": 35
+  },
+  {
+    "symbol": "ADI",
+    "company_name": "Analog Devices, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 58.27,
+    "rank": 36
+  },
+  {
+    "symbol": "CSCO",
+    "company_name": "Cisco Systems, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 57.71,
+    "rank": 37
+  },
+  {
+    "symbol": "CAT",
+    "company_name": "Caterpillar, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 56.93,
+    "rank": 38
+  },
+  {
+    "symbol": "STLD",
+    "company_name": "Steel Dynamics, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 56.5,
+    "rank": 39
+  },
+  {
+    "symbol": "NUE",
+    "company_name": "Nucor Corporation",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 56.19,
+    "rank": 40
+  },
+  {
+    "symbol": "IRM",
+    "company_name": "Iron Mountain Incorporated (Del",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 55.99,
+    "rank": 41
+  },
+  {
+    "symbol": "CNC",
+    "company_name": "Centene Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 55.48,
+    "rank": 42
+  },
+  {
+    "symbol": "FCX",
+    "company_name": "Freeport-McMoRan, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 53.66,
+    "rank": 43
+  },
+  {
+    "symbol": "VTRS",
+    "company_name": "Viatris Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 52.96,
+    "rank": 44
+  },
+  {
+    "symbol": "SLB",
+    "company_name": "SLB Limited",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 52.69,
+    "rank": 45
+  },
+  {
+    "symbol": "JBHT",
+    "company_name": "J.B. Hunt Transport Services, I",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 52.21,
+    "rank": 46
+  },
+  {
+    "symbol": "FDX",
+    "company_name": "FedEx Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 51.89,
+    "rank": 47
+  },
+  {
+    "symbol": "TRGP",
+    "company_name": "Targa Resources, Inc.",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 49.85,
+    "rank": 48
+  },
+  {
+    "symbol": "HAL",
+    "company_name": "Halliburton Company",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 49.35,
+    "rank": 49
+  },
+  {
+    "symbol": "CF",
+    "company_name": "CF Industries Holdings, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 47.37,
+    "rank": 50
+  },
+  {
+    "symbol": "EQIX",
+    "company_name": "Equinix, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 47.36,
+    "rank": 51
+  },
+  {
+    "symbol": "APA",
+    "company_name": "APA Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 46.85,
+    "rank": 52
+  },
+  {
+    "symbol": "QCOM",
+    "company_name": "QUALCOMM Incorporated",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 46.46,
+    "rank": 53
+  },
+  {
+    "symbol": "LYB",
+    "company_name": "LyondellBasell Industries NV",
+    "country": "United Kingdom",
+    "sector": "Basic Materials",
+    "return_6m": 44.37,
+    "rank": 54
+  },
+  {
+    "symbol": "TGT",
+    "company_name": "Target Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 43.59,
+    "rank": 55
+  },
+  {
+    "symbol": "DDOG",
+    "company_name": "Datadog, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 42.65,
+    "rank": 56
+  },
+  {
+    "symbol": "BEN",
+    "company_name": "Franklin Resources, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 42.42,
+    "rank": 57
+  },
+  {
+    "symbol": "TPL",
+    "company_name": "Texas Pacific Land Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 41.18,
+    "rank": 58
+  },
+  {
+    "symbol": "EME",
+    "company_name": "EMCOR Group, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 39.75,
+    "rank": 59
+  },
+  {
+    "symbol": "ALB",
+    "company_name": "Albemarle Corporation",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 38.15,
+    "rank": 60
+  },
+  {
+    "symbol": "CASY",
+    "company_name": "Caseys General Stores, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 37.45,
+    "rank": 61
+  },
+  {
+    "symbol": "PANW",
+    "company_name": "Palo Alto Networks, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 37.31,
+    "rank": 62
+  },
+  {
+    "symbol": "VLO",
+    "company_name": "Valero Energy Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 37.1,
+    "rank": 63
+  },
+  {
+    "symbol": "OXY",
+    "company_name": "Occidental Petroleum Corporatio",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 36.81,
+    "rank": 64
+  },
+  {
+    "symbol": "HST",
+    "company_name": "Host Hotels & Resorts, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 36.68,
+    "rank": 65
+  },
+  {
+    "symbol": "CMI",
+    "company_name": "Cummins Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 35.65,
+    "rank": 66
+  },
+  {
+    "symbol": "STT",
+    "company_name": "State Street Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 35.2,
+    "rank": 67
+  },
+  {
+    "symbol": "CBOE",
+    "company_name": "Cboe Global Markets, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 35.18,
+    "rank": 68
+  },
+  {
+    "symbol": "ADM",
+    "company_name": "Archer-Daniels-Midland Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 34.13,
+    "rank": 69
+  },
+  {
+    "symbol": "CRWD",
+    "company_name": "CrowdStrike Holdings, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 33.1,
+    "rank": 70
+  },
+  {
+    "symbol": "GWW",
+    "company_name": "W.W. Grainger, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 32.54,
+    "rank": 71
+  },
+  {
+    "symbol": "IBKR",
+    "company_name": "Interactive Brokers Group, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 30.94,
+    "rank": 72
+  },
+  {
+    "symbol": "HWM",
+    "company_name": "Howmet Aerospace Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 30.9,
+    "rank": 73
+  },
+  {
+    "symbol": "TPR",
+    "company_name": "Tapestry, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 30.5,
+    "rank": 74
+  },
+  {
+    "symbol": "NTRS",
+    "company_name": "Northern Trust Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 30.03,
+    "rank": 75
+  },
+  {
+    "symbol": "BKR",
+    "company_name": "Baker Hughes Company",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 29.93,
+    "rank": 76
+  },
+  {
+    "symbol": "BG",
+    "company_name": "Bunge Limited",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 29.81,
+    "rank": 77
+  },
+  {
+    "symbol": "F",
+    "company_name": "Ford Motor Company",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 29.5,
+    "rank": 78
+  },
+  {
+    "symbol": "COP",
+    "company_name": "ConocoPhillips",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 29.34,
+    "rank": 79
+  },
+  {
+    "symbol": "DAL",
+    "company_name": "Delta Air Lines, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 29.28,
+    "rank": 80
+  },
+  {
+    "symbol": "MPC",
+    "company_name": "Marathon Petroleum Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 29.27,
+    "rank": 81
+  },
+  {
+    "symbol": "TDY",
+    "company_name": "Teledyne Technologies Incorpora",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 28.73,
+    "rank": 82
+  },
+  {
+    "symbol": "ROST",
+    "company_name": "Ross Stores, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 28.56,
+    "rank": 83
+  },
+  {
+    "symbol": "HUM",
+    "company_name": "Humana Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 28.53,
+    "rank": 84
+  },
+  {
+    "symbol": "PSX",
+    "company_name": "Phillips 66",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 28.4,
+    "rank": 85
+  },
+  {
+    "symbol": "NTAP",
+    "company_name": "NetApp, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 28.11,
+    "rank": 86
+  },
+  {
+    "symbol": "XOM",
+    "company_name": "Exxon Mobil Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 27.71,
+    "rank": 87
+  },
+  {
+    "symbol": "MAR",
+    "company_name": "Marriott International",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 27.63,
+    "rank": 88
+  },
+  {
+    "symbol": "LYV",
+    "company_name": "Live Nation Entertainment, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 27.41,
+    "rank": 89
+  },
+  {
+    "symbol": "BNY",
+    "company_name": "The Bank of New York Mellon Cor",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 26.77,
+    "rank": 90
+  },
+  {
+    "symbol": "SWKS",
+    "company_name": "Skyworks Solutions, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 26.24,
+    "rank": 91
+  },
+  {
+    "symbol": "MO",
+    "company_name": "Altria Group, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 26.0,
+    "rank": 92
+  },
+  {
+    "symbol": "FRT",
+    "company_name": "Federal Realty Investment Trust",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 25.82,
+    "rank": 93
+  },
+  {
+    "symbol": "FANG",
+    "company_name": "Diamondback Energy, Inc.",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 25.75,
+    "rank": 94
+  },
+  {
+    "symbol": "LUV",
+    "company_name": "Southwest Airlines Company",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 25.64,
+    "rank": 95
+  },
+  {
+    "symbol": "GS",
+    "company_name": "Goldman Sachs Group, Inc. (The)",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 25.63,
+    "rank": 96
+  },
+  {
+    "symbol": "WAB",
+    "company_name": "Westinghouse Air Brake Technolo",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 25.49,
+    "rank": 97
+  },
+  {
+    "symbol": "EOG",
+    "company_name": "EOG Resources, Inc.",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 24.8,
+    "rank": 98
+  },
+  {
+    "symbol": "PFG",
+    "company_name": "Principal Financial Group Inc",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 24.61,
+    "rank": 99
+  },
+  {
+    "symbol": "DLR",
+    "company_name": "Digital Realty Trust, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 24.23,
+    "rank": 100
+  },
+  {
+    "symbol": "DECK",
+    "company_name": "Deckers Outdoor Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 24.22,
+    "rank": 101
+  },
+  {
+    "symbol": "LIN",
+    "company_name": "Linde plc",
+    "country": "United Kingdom",
+    "sector": "Basic Materials",
+    "return_6m": 24.16,
+    "rank": 102
+  },
+  {
+    "symbol": "EIX",
+    "company_name": "Edison International",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 24.16,
+    "rank": 103
+  },
+  {
+    "symbol": "GOOGL",
+    "company_name": "Alphabet Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 24.06,
+    "rank": 104
+  },
+  {
+    "symbol": "HON",
+    "company_name": "Honeywell International Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 23.77,
+    "rank": 105
+  },
+  {
+    "symbol": "SMCI",
+    "company_name": "Super Micro Computer, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 23.62,
+    "rank": 106
+  },
+  {
+    "symbol": "NDSN",
+    "company_name": "Nordson Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 23.39,
+    "rank": 107
+  },
+  {
+    "symbol": "URI",
+    "company_name": "United Rentals, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 23.28,
+    "rank": 108
+  },
+  {
+    "symbol": "LMT",
+    "company_name": "Lockheed Martin Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 22.96,
+    "rank": 109
+  },
+  {
+    "symbol": "GOOG",
+    "company_name": "Alphabet Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 22.7,
+    "rank": 110
+  },
+  {
+    "symbol": "BA",
+    "company_name": "Boeing Company (The)",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 22.7,
+    "rank": 111
+  },
+  {
+    "symbol": "C",
+    "company_name": "Citigroup, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 22.64,
+    "rank": 112
+  },
+  {
+    "symbol": "MS",
+    "company_name": "Morgan Stanley",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 22.29,
+    "rank": 113
+  },
+  {
+    "symbol": "CVX",
+    "company_name": "Chevron Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 22.27,
+    "rank": 114
+  },
+  {
+    "symbol": "VZ",
+    "company_name": "Verizon Communications Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 21.69,
+    "rank": 115
+  },
+  {
+    "symbol": "CTVA",
+    "company_name": "Corteva, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 21.4,
+    "rank": 116
+  },
+  {
+    "symbol": "ANET",
+    "company_name": "Arista Networks, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 21.2,
+    "rank": 117
+  },
+  {
+    "symbol": "OKE",
+    "company_name": "ONEOK, Inc.",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 21.16,
+    "rank": 118
+  },
+  {
+    "symbol": "IEX",
+    "company_name": "IDEX Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 21.13,
+    "rank": 119
+  },
+  {
+    "symbol": "MGM",
+    "company_name": "MGM Resorts International",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 21.13,
+    "rank": 120
+  },
+  {
+    "symbol": "GRMN",
+    "company_name": "Garmin Ltd.",
+    "country": "Switzerland",
+    "sector": "Technology",
+    "return_6m": 21.02,
+    "rank": 121
+  },
+  {
+    "symbol": "WMB",
+    "company_name": "Williams Companies, Inc. (The)",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 20.87,
+    "rank": 122
+  },
+  {
+    "symbol": "KIM",
+    "company_name": "Kimco Realty Corporation (HC)",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 20.82,
+    "rank": 123
+  },
+  {
+    "symbol": "CDNS",
+    "company_name": "Cadence Design Systems, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 20.74,
+    "rank": 124
+  },
+  {
+    "symbol": "ELV",
+    "company_name": "Elevance Health, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 20.48,
+    "rank": 125
+  },
+  {
+    "symbol": "SBUX",
+    "company_name": "Starbucks Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 20.12,
+    "rank": 126
+  },
+  {
+    "symbol": "UNH",
+    "company_name": "UnitedHealth Group Incorporated",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 20.08,
+    "rank": 127
+  },
+  {
+    "symbol": "MRK",
+    "company_name": "Merck & Company, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 19.62,
+    "rank": 128
+  },
+  {
+    "symbol": "CVS",
+    "company_name": "CVS Health Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 19.54,
+    "rank": 129
+  },
+  {
+    "symbol": "HLT",
+    "company_name": "Hilton Worldwide Holdings Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 19.37,
+    "rank": 130
+  },
+  {
+    "symbol": "DRI",
+    "company_name": "Darden Restaurants, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 19.34,
+    "rank": 131
+  },
+  {
+    "symbol": "KMI",
+    "company_name": "Kinder Morgan, Inc.",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 19.16,
+    "rank": 132
+  },
+  {
+    "symbol": "NVDA",
+    "company_name": "NVIDIA Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 19.09,
+    "rank": 133
+  },
+  {
+    "symbol": "ETN",
+    "company_name": "Eaton Corporation, PLC",
+    "country": "Ireland",
+    "sector": "Industrials",
+    "return_6m": 19.02,
+    "rank": 134
+  },
+  {
+    "symbol": "CPAY",
+    "company_name": "Corpay, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 18.94,
+    "rank": 135
+  },
+  {
+    "symbol": "JCI",
+    "company_name": "Johnson Controls International ",
+    "country": "Ireland",
+    "sector": "Industrials",
+    "return_6m": 18.82,
+    "rank": 136
+  },
+  {
+    "symbol": "VRSN",
+    "company_name": "VeriSign, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 18.73,
+    "rank": 137
+  },
+  {
+    "symbol": "CARR",
+    "company_name": "Carrier Global Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 18.55,
+    "rank": 138
+  },
+  {
+    "symbol": "NEM",
+    "company_name": "Newmont Corporation",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 18.37,
+    "rank": 139
+  },
+  {
+    "symbol": "BMY",
+    "company_name": "Bristol-Myers Squibb Company",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 18.29,
+    "rank": 140
+  },
+  {
+    "symbol": "ALGN",
+    "company_name": "Align Technology, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 18.08,
+    "rank": 141
+  },
+  {
+    "symbol": "DVN",
+    "company_name": "Devon Energy Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": 17.87,
+    "rank": 142
+  },
+  {
+    "symbol": "WST",
+    "company_name": "West Pharmaceutical Services, I",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 17.58,
+    "rank": 143
+  },
+  {
+    "symbol": "SW",
+    "company_name": "Smurfit WestRock plc",
+    "country": "Ireland",
+    "sector": "Consumer Cyclical",
+    "return_6m": 17.41,
+    "rank": 144
+  },
+  {
+    "symbol": "ROK",
+    "company_name": "Rockwell Automation, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 17.39,
+    "rank": 145
+  },
+  {
+    "symbol": "ETR",
+    "company_name": "Entergy Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 17.29,
+    "rank": 146
+  },
+  {
+    "symbol": "AMZN",
+    "company_name": "Amazon.com, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 17.15,
+    "rank": 147
+  },
+  {
+    "symbol": "KEY",
+    "company_name": "KeyCorp",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 17.03,
+    "rank": 148
+  },
+  {
+    "symbol": "UNP",
+    "company_name": "Union Pacific Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 16.69,
+    "rank": 149
+  },
+  {
+    "symbol": "GL",
+    "company_name": "Globe Life Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 16.54,
+    "rank": 150
+  },
+  {
+    "symbol": "PSA",
+    "company_name": "Public Storage",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 16.48,
+    "rank": 151
+  },
+  {
+    "symbol": "PM",
+    "company_name": "Philip Morris International Inc",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 16.43,
+    "rank": 152
+  },
+  {
+    "symbol": "CHD",
+    "company_name": "Church & Dwight Company, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 16.16,
+    "rank": 153
+  },
+  {
+    "symbol": "GM",
+    "company_name": "General Motors Company",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 16.13,
+    "rank": 154
+  },
+  {
+    "symbol": "CL",
+    "company_name": "Colgate-Palmolive Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 16.08,
+    "rank": 155
+  },
+  {
+    "symbol": "LHX",
+    "company_name": "L3Harris Technologies, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 15.99,
+    "rank": 156
+  },
+  {
+    "symbol": "PNC",
+    "company_name": "PNC Financial Services Group, I",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 15.99,
+    "rank": 157
+  },
+  {
+    "symbol": "CFG",
+    "company_name": "Citizens Financial Group, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 15.98,
+    "rank": 158
+  },
+  {
+    "symbol": "FITB",
+    "company_name": "Fifth Third Bancorp",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 15.96,
+    "rank": 159
+  },
+  {
+    "symbol": "DE",
+    "company_name": "Deere & Company",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 15.88,
+    "rank": 160
+  },
+  {
+    "symbol": "MNST",
+    "company_name": "Monster Beverage Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 15.85,
+    "rank": 161
+  },
+  {
+    "symbol": "AME",
+    "company_name": "AMETEK, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 15.62,
+    "rank": 162
+  },
+  {
+    "symbol": "IVZ",
+    "company_name": "Invesco Ltd",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 15.6,
+    "rank": 163
+  },
+  {
+    "symbol": "XYZ",
+    "company_name": "Block, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 15.54,
+    "rank": 164
+  },
+  {
+    "symbol": "UPS",
+    "company_name": "United Parcel Service, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 15.5,
+    "rank": 165
+  },
+  {
+    "symbol": "FSLR",
+    "company_name": "First Solar, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 15.12,
+    "rank": 166
+  },
+  {
+    "symbol": "BALL",
+    "company_name": "Ball Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 15.05,
+    "rank": 167
+  },
+  {
+    "symbol": "PNW",
+    "company_name": "Pinnacle West Capital Corporati",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 15.03,
+    "rank": 168
+  },
+  {
+    "symbol": "PLD",
+    "company_name": "Prologis, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 14.76,
+    "rank": 169
+  },
+  {
+    "symbol": "PPG",
+    "company_name": "PPG Industries, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 14.41,
+    "rank": 170
+  },
+  {
+    "symbol": "SPG",
+    "company_name": "Simon Property Group, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 14.36,
+    "rank": 171
+  },
+  {
+    "symbol": "IFF",
+    "company_name": "International Flavors & Fragran",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 14.01,
+    "rank": 172
+  },
+  {
+    "symbol": "DXCM",
+    "company_name": "DexCom, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 13.89,
+    "rank": 173
+  },
+  {
+    "symbol": "UAL",
+    "company_name": "United Airlines Holdings, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 13.79,
+    "rank": 174
+  },
+  {
+    "symbol": "JNJ",
+    "company_name": "Johnson & Johnson",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 13.65,
+    "rank": 175
+  },
+  {
+    "symbol": "SWK",
+    "company_name": "Stanley Black & Decker, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 13.59,
+    "rank": 176
+  },
+  {
+    "symbol": "WSM",
+    "company_name": "Williams-Sonoma, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 13.5,
+    "rank": 177
+  },
+  {
+    "symbol": "MTB",
+    "company_name": "M&T Bank Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 13.45,
+    "rank": 178
+  },
+  {
+    "symbol": "WBD",
+    "company_name": "Warner Bros. Discovery, Inc. - ",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 13.28,
+    "rank": 179
+  },
+  {
+    "symbol": "D",
+    "company_name": "Dominion Energy, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 13.27,
+    "rank": 180
+  },
+  {
+    "symbol": "ABNB",
+    "company_name": "Airbnb, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 13.22,
+    "rank": 181
+  },
+  {
+    "symbol": "REG",
+    "company_name": "Regency Centers Corporation",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 13.18,
+    "rank": 182
+  },
+  {
+    "symbol": "EXR",
+    "company_name": "Extra Space Storage Inc",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 13.16,
+    "rank": 183
+  },
+  {
+    "symbol": "MSCI",
+    "company_name": "MSCI Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 12.79,
+    "rank": 184
+  },
+  {
+    "symbol": "FAST",
+    "company_name": "Fastenal Company",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 12.7,
+    "rank": 185
+  },
+  {
+    "symbol": "MDLZ",
+    "company_name": "Mondelez International, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 12.61,
+    "rank": 186
+  },
+  {
+    "symbol": "KO",
+    "company_name": "Coca-Cola Company (The)",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 12.53,
+    "rank": 187
+  },
+  {
+    "symbol": "USB",
+    "company_name": "U.S. Bancorp",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 12.41,
+    "rank": 188
+  },
+  {
+    "symbol": "TXT",
+    "company_name": "Textron Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 12.15,
+    "rank": 189
+  },
+  {
+    "symbol": "SNA",
+    "company_name": "Snap-On Incorporated",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 12.1,
+    "rank": 190
+  },
+  {
+    "symbol": "EVRG",
+    "company_name": "Evergy, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 11.56,
+    "rank": 191
+  },
+  {
+    "symbol": "GE",
+    "company_name": "GE Aerospace",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 11.51,
+    "rank": 192
+  },
+  {
+    "symbol": "DOC",
+    "company_name": "Healthpeak Properties, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 11.13,
+    "rank": 193
+  },
+  {
+    "symbol": "AVGO",
+    "company_name": "Broadcom Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 10.93,
+    "rank": 194
+  },
+  {
+    "symbol": "RF",
+    "company_name": "Regions Financial Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 10.93,
+    "rank": 195
+  },
+  {
+    "symbol": "GILD",
+    "company_name": "Gilead Sciences, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 10.91,
+    "rank": 196
+  },
+  {
+    "symbol": "MSI",
+    "company_name": "Motorola Solutions, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 10.89,
+    "rank": 197
+  },
+  {
+    "symbol": "AAPL",
+    "company_name": "Apple Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 10.59,
+    "rank": 198
+  },
+  {
+    "symbol": "TT",
+    "company_name": "Trane Technologies plc",
+    "country": "Ireland",
+    "sector": "Industrials",
+    "return_6m": 10.53,
+    "rank": 199
+  },
+  {
+    "symbol": "BIIB",
+    "company_name": "Biogen Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 10.47,
+    "rank": 200
+  },
+  {
+    "symbol": "ED",
+    "company_name": "Consolidated Edison, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 10.37,
+    "rank": 201
+  },
+  {
+    "symbol": "EQR",
+    "company_name": "Equity Residential",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 10.36,
+    "rank": 202
+  },
+  {
+    "symbol": "CHRW",
+    "company_name": "C.H. Robinson Worldwide, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 10.23,
+    "rank": 203
+  },
+  {
+    "symbol": "APD",
+    "company_name": "Air Products and Chemicals, Inc",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": 10.22,
+    "rank": 204
+  },
+  {
+    "symbol": "NI",
+    "company_name": "NiSource Inc",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 10.2,
+    "rank": 205
+  },
+  {
+    "symbol": "AIZ",
+    "company_name": "Assurant, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 10.19,
+    "rank": 206
+  },
+  {
+    "symbol": "MAS",
+    "company_name": "Masco Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 10.13,
+    "rank": 207
+  },
+  {
+    "symbol": "PCAR",
+    "company_name": "PACCAR Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 9.93,
+    "rank": 208
+  },
+  {
+    "symbol": "SBAC",
+    "company_name": "SBA Communications Corporation",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 9.91,
+    "rank": 209
+  },
+  {
+    "symbol": "SNPS",
+    "company_name": "Synopsys, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 9.66,
+    "rank": 210
+  },
+  {
+    "symbol": "COST",
+    "company_name": "Costco Wholesale Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 9.44,
+    "rank": 211
+  },
+  {
+    "symbol": "DTE",
+    "company_name": "DTE Energy Company",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 9.41,
+    "rank": 212
+  },
+  {
+    "symbol": "CNP",
+    "company_name": "CenterPoint Energy, Inc (Holdin",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 9.09,
+    "rank": 213
+  },
+  {
+    "symbol": "MET",
+    "company_name": "MetLife, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 9.0,
+    "rank": 214
+  },
+  {
+    "symbol": "CCL",
+    "company_name": "Carnival Corporation Ltd.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 8.91,
+    "rank": 215
+  },
+  {
+    "symbol": "PKG",
+    "company_name": "Packaging Corporation of Americ",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 8.62,
+    "rank": 216
+  },
+  {
+    "symbol": "EXPD",
+    "company_name": "Expeditors International of Was",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 8.54,
+    "rank": 217
+  },
+  {
+    "symbol": "KDP",
+    "company_name": "Keurig Dr Pepper Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 8.47,
+    "rank": 218
+  },
+  {
+    "symbol": "ESS",
+    "company_name": "Essex Property Trust, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 8.44,
+    "rank": 219
+  },
+  {
+    "symbol": "LNT",
+    "company_name": "Alliant Energy Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 8.43,
+    "rank": 220
+  },
+  {
+    "symbol": "EMR",
+    "company_name": "Emerson Electric Company",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 8.31,
+    "rank": 221
+  },
+  {
+    "symbol": "INVH",
+    "company_name": "Invitation Homes Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 8.2,
+    "rank": 222
+  },
+  {
+    "symbol": "VTR",
+    "company_name": "Ventas, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 8.06,
+    "rank": 223
+  },
+  {
+    "symbol": "AMT",
+    "company_name": "American Tower Corporation (REI",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 8.0,
+    "rank": 224
+  },
+  {
+    "symbol": "HSY",
+    "company_name": "The Hershey Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 7.98,
+    "rank": 225
+  },
+  {
+    "symbol": "CB",
+    "company_name": "Chubb Limited",
+    "country": "Switzerland",
+    "sector": "Financial Services",
+    "return_6m": 7.92,
+    "rank": 226
+  },
+  {
+    "symbol": "DGX",
+    "company_name": "Quest Diagnostics Incorporated",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 7.72,
+    "rank": 227
+  },
+  {
+    "symbol": "AEP",
+    "company_name": "American Electric Power Company",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 7.63,
+    "rank": 228
+  },
+  {
+    "symbol": "AES",
+    "company_name": "The AES Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 7.56,
+    "rank": 229
+  },
+  {
+    "symbol": "UDR",
+    "company_name": "UDR, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 7.53,
+    "rank": 230
+  },
+  {
+    "symbol": "EG",
+    "company_name": "Everest Group, Ltd.",
+    "country": "Bermuda",
+    "sector": "Financial Services",
+    "return_6m": 7.44,
+    "rank": 231
+  },
+  {
+    "symbol": "ES",
+    "company_name": "Eversource Energy (D/B/A)",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 7.35,
+    "rank": 232
+  },
+  {
+    "symbol": "RTX",
+    "company_name": "RTX Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 7.31,
+    "rank": 233
+  },
+  {
+    "symbol": "WMT",
+    "company_name": "Walmart Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 7.25,
+    "rank": 234
+  },
+  {
+    "symbol": "AEE",
+    "company_name": "Ameren Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 7.24,
+    "rank": 235
+  },
+  {
+    "symbol": "TSN",
+    "company_name": "Tyson Foods, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 7.21,
+    "rank": 236
+  },
+  {
+    "symbol": "NSC",
+    "company_name": "Norfolk Southern Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 7.16,
+    "rank": 237
+  },
+  {
+    "symbol": "PFE",
+    "company_name": "Pfizer, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 6.91,
+    "rank": 238
+  },
+  {
+    "symbol": "LLY",
+    "company_name": "Eli Lilly and Company",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 6.88,
+    "rank": 239
+  },
+  {
+    "symbol": "APH",
+    "company_name": "Amphenol Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 6.49,
+    "rank": 240
+  },
+  {
+    "symbol": "RCL",
+    "company_name": "Royal Caribbean Cruises Ltd.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 6.43,
+    "rank": 241
+  },
+  {
+    "symbol": "GD",
+    "company_name": "General Dynamics Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 5.91,
+    "rank": 242
+  },
+  {
+    "symbol": "SO",
+    "company_name": "Southern Company (The)",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 5.63,
+    "rank": 243
+  },
+  {
+    "symbol": "HPQ",
+    "company_name": "HP Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 5.45,
+    "rank": 244
+  },
+  {
+    "symbol": "CCI",
+    "company_name": "Crown Castle Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 5.45,
+    "rank": 245
+  },
+  {
+    "symbol": "VRTX",
+    "company_name": "Vertex Pharmaceuticals Incorpor",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 5.26,
+    "rank": 246
+  },
+  {
+    "symbol": "HAS",
+    "company_name": "Hasbro, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 5.18,
+    "rank": 247
+  },
+  {
+    "symbol": "CI",
+    "company_name": "The Cigna Group",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 5.09,
+    "rank": 248
+  },
+  {
+    "symbol": "NWS",
+    "company_name": "News Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 5.08,
+    "rank": 249
+  },
+  {
+    "symbol": "AVB",
+    "company_name": "AvalonBay Communities, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 5.02,
+    "rank": 250
+  },
+  {
+    "symbol": "OMC",
+    "company_name": "Omnicom Group Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 4.94,
+    "rank": 251
+  },
+  {
+    "symbol": "KVUE",
+    "company_name": "Kenvue Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 4.86,
+    "rank": 252
+  },
+  {
+    "symbol": "TFC",
+    "company_name": "Truist Financial Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 4.77,
+    "rank": 253
+  },
+  {
+    "symbol": "TROW",
+    "company_name": "T. Rowe Price Group, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 4.72,
+    "rank": 254
+  },
+  {
+    "symbol": "STZ",
+    "company_name": "Constellation Brands, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 4.45,
+    "rank": 255
+  },
+  {
+    "symbol": "HSIC",
+    "company_name": "Henry Schein, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 4.39,
+    "rank": 256
+  },
+  {
+    "symbol": "NWSA",
+    "company_name": "News Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 4.35,
+    "rank": 257
+  },
+  {
+    "symbol": "DUK",
+    "company_name": "Duke Energy Corporation (Holdin",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 4.26,
+    "rank": 258
+  },
+  {
+    "symbol": "TKO",
+    "company_name": "TKO Group Holdings, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 4.19,
+    "rank": 259
+  },
+  {
+    "symbol": "HRL",
+    "company_name": "Hormel Foods Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 4.0,
+    "rank": 260
+  },
+  {
+    "symbol": "CPT",
+    "company_name": "Camden Property Trust",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 4.0,
+    "rank": 261
+  },
+  {
+    "symbol": "AFL",
+    "company_name": "AFLAC Incorporated",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 3.89,
+    "rank": 262
+  },
+  {
+    "symbol": "WEC",
+    "company_name": "WEC Energy Group, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 3.87,
+    "rank": 263
+  },
+  {
+    "symbol": "WELL",
+    "company_name": "Welltower Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 3.85,
+    "rank": 264
+  },
+  {
+    "symbol": "NEE",
+    "company_name": "NextEra Energy, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 3.77,
+    "rank": 265
+  },
+  {
+    "symbol": "PCG",
+    "company_name": "Pacific Gas & Electric Co.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 3.46,
+    "rank": 266
+  },
+  {
+    "symbol": "CMCSA",
+    "company_name": "Comcast Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 3.37,
+    "rank": 267
+  },
+  {
+    "symbol": "SJM",
+    "company_name": "The J.M. Smucker Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 3.3,
+    "rank": 268
+  },
+  {
+    "symbol": "TJX",
+    "company_name": "TJX Companies, Inc. (The)",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 3.11,
+    "rank": 269
+  },
+  {
+    "symbol": "CRL",
+    "company_name": "Charles River Laboratories Inte",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 2.98,
+    "rank": 270
+  },
+  {
+    "symbol": "NOC",
+    "company_name": "Northrop Grumman Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 2.85,
+    "rank": 271
+  },
+  {
+    "symbol": "DLTR",
+    "company_name": "Dollar Tree, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 2.83,
+    "rank": 272
+  },
+  {
+    "symbol": "TSLA",
+    "company_name": "Tesla, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 2.78,
+    "rank": 273
+  },
+  {
+    "symbol": "NDAQ",
+    "company_name": "Nasdaq, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 2.46,
+    "rank": 274
+  },
+  {
+    "symbol": "VICI",
+    "company_name": "VICI Properties Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": 2.33,
+    "rank": 275
+  },
+  {
+    "symbol": "CME",
+    "company_name": "CME Group Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 2.28,
+    "rank": 276
+  },
+  {
+    "symbol": "ITW",
+    "company_name": "Illinois Tool Works Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 2.16,
+    "rank": 277
+  },
+  {
+    "symbol": "LII",
+    "company_name": "Lennox International, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 2.11,
+    "rank": 278
+  },
+  {
+    "symbol": "TRV",
+    "company_name": "The Travelers Companies, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 2.08,
+    "rank": 279
+  },
+  {
+    "symbol": "ORCL",
+    "company_name": "Oracle Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": 2.0,
+    "rank": 280
+  },
+  {
+    "symbol": "ATO",
+    "company_name": "Atmos Energy Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 1.9,
+    "rank": 281
+  },
+  {
+    "symbol": "RL",
+    "company_name": "Ralph Lauren Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 1.87,
+    "rank": 282
+  },
+  {
+    "symbol": "BLK",
+    "company_name": "BlackRock, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": 1.68,
+    "rank": 283
+  },
+  {
+    "symbol": "CMS",
+    "company_name": "CMS Energy Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 1.54,
+    "rank": 284
+  },
+  {
+    "symbol": "SYY",
+    "company_name": "Sysco Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 1.51,
+    "rank": 285
+  },
+  {
+    "symbol": "FE",
+    "company_name": "FirstEnergy Corp.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 1.47,
+    "rank": 286
+  },
+  {
+    "symbol": "DG",
+    "company_name": "Dollar General Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 1.42,
+    "rank": 287
+  },
+  {
+    "symbol": "AMGN",
+    "company_name": "Amgen Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 1.15,
+    "rank": 288
+  },
+  {
+    "symbol": "YUM",
+    "company_name": "Yum! Brands, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": 1.02,
+    "rank": 289
+  },
+  {
+    "symbol": "XEL",
+    "company_name": "Xcel Energy Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 0.92,
+    "rank": 290
+  },
+  {
+    "symbol": "EW",
+    "company_name": "Edwards Lifesciences Corporatio",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": 0.81,
+    "rank": 291
+  },
+  {
+    "symbol": "EXC",
+    "company_name": "Exelon Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 0.61,
+    "rank": 292
+  },
+  {
+    "symbol": "PG",
+    "company_name": "Procter & Gamble Company (The)",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": 0.42,
+    "rank": 293
+  },
+  {
+    "symbol": "FOX",
+    "company_name": "Fox Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": 0.35,
+    "rank": 294
+  },
+  {
+    "symbol": "PPL",
+    "company_name": "PPL Corporation",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": 0.24,
+    "rank": 295
+  },
+  {
+    "symbol": "WM",
+    "company_name": "Waste Management, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 0.07,
+    "rank": 296
+  },
+  {
+    "symbol": "PH",
+    "company_name": "Parker-Hannifin Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": 0.02,
+    "rank": 297
+  },
+  {
+    "symbol": "SRE",
+    "company_name": "DBA Sempra",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -0.2,
+    "rank": 298
+  },
+  {
+    "symbol": "PEP",
+    "company_name": "Pepsico, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -0.31,
+    "rank": 299
+  },
+  {
+    "symbol": "FOXA",
+    "company_name": "Fox Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -0.36,
+    "rank": 300
+  },
+  {
+    "symbol": "BDX",
+    "company_name": "Becton, Dickinson and Company",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -0.42,
+    "rank": 301
+  },
+  {
+    "symbol": "EA",
+    "company_name": "Electronic Arts Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -0.44,
+    "rank": 302
+  },
+  {
+    "symbol": "BBY",
+    "company_name": "Best Buy Co., Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -0.47,
+    "rank": 303
+  },
+  {
+    "symbol": "HBAN",
+    "company_name": "Huntington Bancshares Incorpora",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -0.68,
+    "rank": 304
+  },
+  {
+    "symbol": "META",
+    "company_name": "Meta Platforms, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -0.7,
+    "rank": 305
+  },
+  {
+    "symbol": "ALL",
+    "company_name": "Allstate Corporation (The)",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -0.8,
+    "rank": 306
+  },
+  {
+    "symbol": "MOS",
+    "company_name": "Mosaic Company (The)",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": -0.9,
+    "rank": 307
+  },
+  {
+    "symbol": "RVTY",
+    "company_name": "Revvity, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -1.04,
+    "rank": 308
+  },
+  {
+    "symbol": "MAA",
+    "company_name": "Mid-America Apartment Communiti",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": -1.07,
+    "rank": 309
+  },
+  {
+    "symbol": "V",
+    "company_name": "Visa Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -1.24,
+    "rank": 310
+  },
+  {
+    "symbol": "ABBV",
+    "company_name": "AbbVie Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -1.28,
+    "rank": 311
+  },
+  {
+    "symbol": "ZBRA",
+    "company_name": "Zebra Technologies Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -1.35,
+    "rank": 312
+  },
+  {
+    "symbol": "L",
+    "company_name": "Loews Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -1.37,
+    "rank": 313
+  },
+  {
+    "symbol": "T",
+    "company_name": "AT&T Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -1.38,
+    "rank": 314
+  },
+  {
+    "symbol": "PEG",
+    "company_name": "Public Service Enterprise Group",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -1.4,
+    "rank": 315
+  },
+  {
+    "symbol": "NCLH",
+    "company_name": "Norwegian Cruise Line Holdings ",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -1.56,
+    "rank": 316
+  },
+  {
+    "symbol": "LH",
+    "company_name": "Labcorp Holdings Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -1.61,
+    "rank": 317
+  },
+  {
+    "symbol": "AIG",
+    "company_name": "American International Group, I",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -1.8,
+    "rank": 318
+  },
+  {
+    "symbol": "CVNA",
+    "company_name": "Carvana Co.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -2.08,
+    "rank": 319
+  },
+  {
+    "symbol": "APO",
+    "company_name": "Apollo Global Management, Inc. ",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -2.15,
+    "rank": 320
+  },
+  {
+    "symbol": "DIS",
+    "company_name": "Walt Disney Company (The)",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -2.19,
+    "rank": 321
+  },
+  {
+    "symbol": "GPN",
+    "company_name": "Global Payments Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -2.39,
+    "rank": 322
+  },
+  {
+    "symbol": "CINF",
+    "company_name": "Cincinnati Financial Corporatio",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -2.56,
+    "rank": 323
+  },
+  {
+    "symbol": "AMP",
+    "company_name": "Ameriprise Financial, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -2.67,
+    "rank": 324
+  },
+  {
+    "symbol": "ACGL",
+    "company_name": "Arch Capital Group Ltd.",
+    "country": "Bermuda",
+    "sector": "Financial Services",
+    "return_6m": -2.67,
+    "rank": 325
+  },
+  {
+    "symbol": "ARE",
+    "company_name": "Alexandria Real Estate Equities",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": -2.82,
+    "rank": 326
+  },
+  {
+    "symbol": "JPM",
+    "company_name": "JP Morgan Chase & Co.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -3.02,
+    "rank": 327
+  },
+  {
+    "symbol": "CAH",
+    "company_name": "Cardinal Health, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -3.45,
+    "rank": 328
+  },
+  {
+    "symbol": "BAC",
+    "company_name": "Bank of America Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -3.6,
+    "rank": 329
+  },
+  {
+    "symbol": "APP",
+    "company_name": "Applovin Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -3.8,
+    "rank": 330
+  },
+  {
+    "symbol": "ECL",
+    "company_name": "Ecolab Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": -4.1,
+    "rank": 331
+  },
+  {
+    "symbol": "RSG",
+    "company_name": "Republic Services, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -4.3,
+    "rank": 332
+  },
+  {
+    "symbol": "HIG",
+    "company_name": "The Hartford Insurance Group, I",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -4.41,
+    "rank": 333
+  },
+  {
+    "symbol": "INCY",
+    "company_name": "Incyte Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -4.45,
+    "rank": 334
+  },
+  {
+    "symbol": "PRU",
+    "company_name": "Prudential Financial, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -4.49,
+    "rank": 335
+  },
+  {
+    "symbol": "KR",
+    "company_name": "Kroger Company (The)",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -4.79,
+    "rank": 336
+  },
+  {
+    "symbol": "VMC",
+    "company_name": "Vulcan Materials Company (Holdi",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": -4.81,
+    "rank": 337
+  },
+  {
+    "symbol": "ICE",
+    "company_name": "Intercontinental Exchange Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -4.92,
+    "rank": 338
+  },
+  {
+    "symbol": "ULTA",
+    "company_name": "Ulta Beauty, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -5.02,
+    "rank": 339
+  },
+  {
+    "symbol": "AWK",
+    "company_name": "American Water Works Company, I",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -5.3,
+    "rank": 340
+  },
+  {
+    "symbol": "CMG",
+    "company_name": "Chipotle Mexican Grill, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -5.32,
+    "rank": 341
+  },
+  {
+    "symbol": "AMCR",
+    "company_name": "Amcor plc",
+    "country": "Switzerland",
+    "sector": "Consumer Cyclical",
+    "return_6m": -5.32,
+    "rank": 342
+  },
+  {
+    "symbol": "KMB",
+    "company_name": "Kimberly-Clark Corporation",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -5.46,
+    "rank": 343
+  },
+  {
+    "symbol": "GEN",
+    "company_name": "Gen Digital Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -5.58,
+    "rank": 344
+  },
+  {
+    "symbol": "AVY",
+    "company_name": "Avery Dennison Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -5.6,
+    "rank": 345
+  },
+  {
+    "symbol": "DHI",
+    "company_name": "D.R. Horton, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -6.09,
+    "rank": 346
+  },
+  {
+    "symbol": "BRK-B",
+    "company_name": "Berkshire Hathaway Inc. New",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -6.12,
+    "rank": 347
+  },
+  {
+    "symbol": "TEL",
+    "company_name": "TE Connectivity plc",
+    "country": "Ireland",
+    "sector": "Technology",
+    "return_6m": -6.18,
+    "rank": 348
+  },
+  {
+    "symbol": "CTAS",
+    "company_name": "Cintas Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -6.2,
+    "rank": 349
+  },
+  {
+    "symbol": "MLM",
+    "company_name": "Martin Marietta Materials, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": -6.4,
+    "rank": 350
+  },
+  {
+    "symbol": "TDG",
+    "company_name": "Transdigm Group Incorporated",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -6.63,
+    "rank": 351
+  },
+  {
+    "symbol": "PHM",
+    "company_name": "PulteGroup, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -6.82,
+    "rank": 352
+  },
+  {
+    "symbol": "MCO",
+    "company_name": "Moody's Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -7.13,
+    "rank": 353
+  },
+  {
+    "symbol": "SCHW",
+    "company_name": "Charles Schwab Corporation (The",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -7.28,
+    "rank": 354
+  },
+  {
+    "symbol": "VST",
+    "company_name": "Vistra Corp.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -7.44,
+    "rank": 355
+  },
+  {
+    "symbol": "CLX",
+    "company_name": "Clorox Company (The)",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -7.44,
+    "rank": 356
+  },
+  {
+    "symbol": "SYF",
+    "company_name": "Synchrony Financial",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -7.68,
+    "rank": 357
+  },
+  {
+    "symbol": "WAT",
+    "company_name": "Waters Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -7.82,
+    "rank": 358
+  },
+  {
+    "symbol": "MCD",
+    "company_name": "McDonald's Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -7.92,
+    "rank": 359
+  },
+  {
+    "symbol": "EQT",
+    "company_name": "EQT Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": -8.03,
+    "rank": 360
+  },
+  {
+    "symbol": "TMUS",
+    "company_name": "T-Mobile US, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -8.09,
+    "rank": 361
+  },
+  {
+    "symbol": "RJF",
+    "company_name": "Raymond James Financial, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -8.23,
+    "rank": 362
+  },
+  {
+    "symbol": "HD",
+    "company_name": "Home Depot, Inc. (The)",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -8.92,
+    "rank": 363
+  },
+  {
+    "symbol": "MA",
+    "company_name": "Mastercard Incorporated",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -8.94,
+    "rank": 364
+  },
+  {
+    "symbol": "AON",
+    "company_name": "Aon plc",
+    "country": "Ireland",
+    "sector": "Financial Services",
+    "return_6m": -9.12,
+    "rank": 365
+  },
+  {
+    "symbol": "PGR",
+    "company_name": "Progressive Corporation (The)",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -9.15,
+    "rank": 366
+  },
+  {
+    "symbol": "WFC",
+    "company_name": "Wells Fargo & Company",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -9.29,
+    "rank": 367
+  },
+  {
+    "symbol": "A",
+    "company_name": "Agilent Technologies, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -9.44,
+    "rank": 368
+  },
+  {
+    "symbol": "MMM",
+    "company_name": "3M Company",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -9.47,
+    "rank": 369
+  },
+  {
+    "symbol": "J",
+    "company_name": "Jacobs Solutions Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -9.71,
+    "rank": 370
+  },
+  {
+    "symbol": "CRH",
+    "company_name": "CRH PLC",
+    "country": "Ireland",
+    "sector": "Basic Materials",
+    "return_6m": -10.16,
+    "rank": 371
+  },
+  {
+    "symbol": "SHW",
+    "company_name": "Sherwin-Williams Company (The)",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": -10.21,
+    "rank": 372
+  },
+  {
+    "symbol": "IR",
+    "company_name": "Ingersoll Rand Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -10.31,
+    "rank": 373
+  },
+  {
+    "symbol": "WRB",
+    "company_name": "W.R. Berkley Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -10.37,
+    "rank": 374
+  },
+  {
+    "symbol": "LOW",
+    "company_name": "Lowe's Companies, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -10.73,
+    "rank": 375
+  },
+  {
+    "symbol": "FISV",
+    "company_name": "Fiserv, Inc.",
+    "country": "US",
+    "sector": "Unknown",
+    "return_6m": -10.94,
+    "rank": 376
+  },
+  {
+    "symbol": "BF-B",
+    "company_name": "Brown Forman Inc",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -11.15,
+    "rank": 377
+  },
+  {
+    "symbol": "SOLV",
+    "company_name": "Solventum Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -11.24,
+    "rank": 378
+  },
+  {
+    "symbol": "PAYX",
+    "company_name": "Paychex, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -11.58,
+    "rank": 379
+  },
+  {
+    "symbol": "MCK",
+    "company_name": "McKesson Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -11.59,
+    "rank": 380
+  },
+  {
+    "symbol": "TAP",
+    "company_name": "Molson Coors Beverage Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -11.71,
+    "rank": 381
+  },
+  {
+    "symbol": "EXPE",
+    "company_name": "Expedia Group, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -11.75,
+    "rank": 382
+  },
+  {
+    "symbol": "AOS",
+    "company_name": "A.O. Smith Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -11.79,
+    "rank": 383
+  },
+  {
+    "symbol": "ORLY",
+    "company_name": "O'Reilly Automotive, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -11.86,
+    "rank": 384
+  },
+  {
+    "symbol": "MSFT",
+    "company_name": "Microsoft Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -11.88,
+    "rank": 385
+  },
+  {
+    "symbol": "AXP",
+    "company_name": "American Express Company",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -12.07,
+    "rank": 386
+  },
+  {
+    "symbol": "ZBH",
+    "company_name": "Zimmer Biomet Holdings, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -12.13,
+    "rank": 387
+  },
+  {
+    "symbol": "MRSH",
+    "company_name": "Marsh",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -12.41,
+    "rank": 388
+  },
+  {
+    "symbol": "IBM",
+    "company_name": "International Business Machines",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -12.43,
+    "rank": 389
+  },
+  {
+    "symbol": "TTWO",
+    "company_name": "Take-Two Interactive Software, ",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -12.62,
+    "rank": 390
+  },
+  {
+    "symbol": "ADP",
+    "company_name": "Automatic Data Processing, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -12.79,
+    "rank": 391
+  },
+  {
+    "symbol": "BKNG",
+    "company_name": "Booking Holdings Inc. Common St",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -12.85,
+    "rank": 392
+  },
+  {
+    "symbol": "IP",
+    "company_name": "International Paper Company",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -12.85,
+    "rank": 393
+  },
+  {
+    "symbol": "BXP",
+    "company_name": "BXP, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": -13.73,
+    "rank": 394
+  },
+  {
+    "symbol": "PLTR",
+    "company_name": "Palantir Technologies Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -14.42,
+    "rank": 395
+  },
+  {
+    "symbol": "COF",
+    "company_name": "Capital One Financial Corporati",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -14.44,
+    "rank": 396
+  },
+  {
+    "symbol": "CPRT",
+    "company_name": "Copart, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -14.99,
+    "rank": 397
+  },
+  {
+    "symbol": "SPGI",
+    "company_name": "S&P Global Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -15.47,
+    "rank": 398
+  },
+  {
+    "symbol": "NRG",
+    "company_name": "NRG Energy, Inc.",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -16.48,
+    "rank": 399
+  },
+  {
+    "symbol": "TMO",
+    "company_name": "Thermo Fisher Scientific Inc",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -16.59,
+    "rank": 400
+  },
+  {
+    "symbol": "REGN",
+    "company_name": "Regeneron Pharmaceuticals, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -16.92,
+    "rank": 401
+  },
+  {
+    "symbol": "SYK",
+    "company_name": "Stryker Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -16.94,
+    "rank": 402
+  },
+  {
+    "symbol": "VLTO",
+    "company_name": "Veralto Corp",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -17.09,
+    "rank": 403
+  },
+  {
+    "symbol": "AJG",
+    "company_name": "Arthur J. Gallagher & Co.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -17.18,
+    "rank": 404
+  },
+  {
+    "symbol": "APTV",
+    "company_name": "Aptiv PLC",
+    "country": "Switzerland",
+    "sector": "Consumer Cyclical",
+    "return_6m": -17.25,
+    "rank": 405
+  },
+  {
+    "symbol": "AXON",
+    "company_name": "Axon Enterprise, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -17.61,
+    "rank": 406
+  },
+  {
+    "symbol": "RMD",
+    "company_name": "ResMed Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -17.67,
+    "rank": 407
+  },
+  {
+    "symbol": "STE",
+    "company_name": "STERIS plc (Ireland)",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -17.86,
+    "rank": 408
+  },
+  {
+    "symbol": "CDW",
+    "company_name": "CDW Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -17.89,
+    "rank": 409
+  },
+  {
+    "symbol": "NVR",
+    "company_name": "NVR, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -18.05,
+    "rank": 410
+  },
+  {
+    "symbol": "UBER",
+    "company_name": "Uber Technologies, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -18.08,
+    "rank": 411
+  },
+  {
+    "symbol": "OTIS",
+    "company_name": "Otis Worldwide Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -18.35,
+    "rank": 412
+  },
+  {
+    "symbol": "ROL",
+    "company_name": "Rollins, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -18.7,
+    "rank": 413
+  },
+  {
+    "symbol": "BX",
+    "company_name": "Blackstone Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -18.98,
+    "rank": 414
+  },
+  {
+    "symbol": "DHR",
+    "company_name": "Danaher Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -19.13,
+    "rank": 415
+  },
+  {
+    "symbol": "ARES",
+    "company_name": "Ares Management Corporation",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -19.41,
+    "rank": 416
+  },
+  {
+    "symbol": "TECH",
+    "company_name": "Bio-Techne Corp",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -20.01,
+    "rank": 417
+  },
+  {
+    "symbol": "CEG",
+    "company_name": "Constellation Energy Corporatio",
+    "country": "United States",
+    "sector": "Utilities",
+    "return_6m": -20.03,
+    "rank": 418
+  },
+  {
+    "symbol": "ALLE",
+    "company_name": "Allegion plc",
+    "country": "Ireland",
+    "sector": "Industrials",
+    "return_6m": -20.16,
+    "rank": 419
+  },
+  {
+    "symbol": "GEHC",
+    "company_name": "GE HealthCare Technologies Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -20.6,
+    "rank": 420
+  },
+  {
+    "symbol": "PTC",
+    "company_name": "PTC Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -20.64,
+    "rank": 421
+  },
+  {
+    "symbol": "CBRE",
+    "company_name": "CBRE Group Inc",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": -20.66,
+    "rank": 422
+  },
+  {
+    "symbol": "IQV",
+    "company_name": "IQVIA Holdings, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -20.74,
+    "rank": 423
+  },
+  {
+    "symbol": "MTD",
+    "company_name": "Mettler-Toledo International, I",
+    "country": "Switzerland",
+    "sector": "Healthcare",
+    "return_6m": -20.75,
+    "rank": 424
+  },
+  {
+    "symbol": "CAG",
+    "company_name": "ConAgra Brands, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -20.84,
+    "rank": 425
+  },
+  {
+    "symbol": "NFLX",
+    "company_name": "Netflix, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -20.87,
+    "rank": 426
+  },
+  {
+    "symbol": "WTW",
+    "company_name": "Willis Towers Watson Public Lim",
+    "country": "United Kingdom",
+    "sector": "Financial Services",
+    "return_6m": -20.96,
+    "rank": 427
+  },
+  {
+    "symbol": "ADSK",
+    "company_name": "Autodesk, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -21.03,
+    "rank": 428
+  },
+  {
+    "symbol": "XYL",
+    "company_name": "Xylem Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -21.06,
+    "rank": 429
+  },
+  {
+    "symbol": "EFX",
+    "company_name": "Equifax, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -21.1,
+    "rank": 430
+  },
+  {
+    "symbol": "COO",
+    "company_name": "The Cooper Companies, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -21.15,
+    "rank": 431
+  },
+  {
+    "symbol": "JKHY",
+    "company_name": "Jack Henry & Associates, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -21.26,
+    "rank": 432
+  },
+  {
+    "symbol": "IDXX",
+    "company_name": "IDEXX Laboratories, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -22.08,
+    "rank": 433
+  },
+  {
+    "symbol": "EXE",
+    "company_name": "Expand Energy Corporation",
+    "country": "United States",
+    "sector": "Energy",
+    "return_6m": -22.13,
+    "rank": 434
+  },
+  {
+    "symbol": "GPC",
+    "company_name": "Genuine Parts Company",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -22.3,
+    "rank": 435
+  },
+  {
+    "symbol": "VRSK",
+    "company_name": "Verisk Analytics, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -22.5,
+    "rank": 436
+  },
+  {
+    "symbol": "KKR",
+    "company_name": "KKR & Co. Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -22.75,
+    "rank": 437
+  },
+  {
+    "symbol": "POOL",
+    "company_name": "Pool Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -23.08,
+    "rank": 438
+  },
+  {
+    "symbol": "WYNN",
+    "company_name": "Wynn Resorts, Limited",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -23.15,
+    "rank": 439
+  },
+  {
+    "symbol": "HCA",
+    "company_name": "HCA Healthcare, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -23.35,
+    "rank": 440
+  },
+  {
+    "symbol": "DASH",
+    "company_name": "DoorDash, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -23.78,
+    "rank": 441
+  },
+  {
+    "symbol": "AZO",
+    "company_name": "AutoZone, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -23.81,
+    "rank": 442
+  },
+  {
+    "symbol": "CRM",
+    "company_name": "Salesforce, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -24.02,
+    "rank": 443
+  },
+  {
+    "symbol": "ERIE",
+    "company_name": "Erie Indemnity Company",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -24.91,
+    "rank": 444
+  },
+  {
+    "symbol": "ADBE",
+    "company_name": "Adobe Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -25.22,
+    "rank": 445
+  },
+  {
+    "symbol": "CHTR",
+    "company_name": "Charter Communications, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -25.23,
+    "rank": 446
+  },
+  {
+    "symbol": "ISRG",
+    "company_name": "Intuitive Surgical, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -25.33,
+    "rank": 447
+  },
+  {
+    "symbol": "COR",
+    "company_name": "Cencora, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -25.36,
+    "rank": 448
+  },
+  {
+    "symbol": "LVS",
+    "company_name": "Las Vegas Sands Corp.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -25.64,
+    "rank": 449
+  },
+  {
+    "symbol": "MDT",
+    "company_name": "Medtronic plc.",
+    "country": "Ireland",
+    "sector": "Healthcare",
+    "return_6m": -25.73,
+    "rank": 450
+  },
+  {
+    "symbol": "GIS",
+    "company_name": "General Mills, Inc.",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -25.75,
+    "rank": 451
+  },
+  {
+    "symbol": "DPZ",
+    "company_name": "Domino's Pizza Inc",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -26.11,
+    "rank": 452
+  },
+  {
+    "symbol": "FICO",
+    "company_name": "Fair Isaac Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -26.7,
+    "rank": 453
+  },
+  {
+    "symbol": "NKE",
+    "company_name": "Nike, Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -27.08,
+    "rank": 454
+  },
+  {
+    "symbol": "ROP",
+    "company_name": "Roper Technologies, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -27.58,
+    "rank": 455
+  },
+  {
+    "symbol": "LULU",
+    "company_name": "lululemon athletica inc.",
+    "country": "Canada",
+    "sector": "Consumer Cyclical",
+    "return_6m": -28.0,
+    "rank": 456
+  },
+  {
+    "symbol": "MKC",
+    "company_name": "McCormick & Company, Incorporat",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -28.35,
+    "rank": 457
+  },
+  {
+    "symbol": "PYPL",
+    "company_name": "PayPal Holdings, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -28.74,
+    "rank": 458
+  },
+  {
+    "symbol": "CTSH",
+    "company_name": "Cognizant Technology Solutions ",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -29.61,
+    "rank": 459
+  },
+  {
+    "symbol": "BRO",
+    "company_name": "Brown & Brown, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -29.62,
+    "rank": 460
+  },
+  {
+    "symbol": "CPB",
+    "company_name": "The Campbell's Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": -29.75,
+    "rank": 461
+  },
+  {
+    "symbol": "LDOS",
+    "company_name": "Leidos Holdings, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -29.83,
+    "rank": 462
+  },
+  {
+    "symbol": "COIN",
+    "company_name": "Coinbase Global, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -29.86,
+    "rank": 463
+  },
+  {
+    "symbol": "ACN",
+    "company_name": "Accenture plc",
+    "country": "Ireland",
+    "sector": "Technology",
+    "return_6m": -30.11,
+    "rank": 464
+  },
+  {
+    "symbol": "IT",
+    "company_name": "Gartner, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -30.16,
+    "rank": 465
+  },
+  {
+    "symbol": "LEN",
+    "company_name": "Lennar Corporation",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -30.41,
+    "rank": 466
+  },
+  {
+    "symbol": "PSKY",
+    "company_name": "Paramount Skydance Corporation",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -30.57,
+    "rank": 467
+  },
+  {
+    "symbol": "HOOD",
+    "company_name": "Robinhood Markets, Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": -31.16,
+    "rank": 468
+  },
+  {
+    "symbol": "VEEV",
+    "company_name": "Veeva Systems Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -31.63,
+    "rank": 469
+  },
+  {
+    "symbol": "PNR",
+    "company_name": "Pentair plc.",
+    "country": "United Kingdom",
+    "sector": "Industrials",
+    "return_6m": -31.73,
+    "rank": 470
+  },
+  {
+    "symbol": "ABT",
+    "company_name": "Abbott Laboratories",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -31.82,
+    "rank": 471
+  },
+  {
+    "symbol": "BLDR",
+    "company_name": "Builders FirstSource, Inc.",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": -32.21,
+    "rank": 472
+  },
+  {
+    "symbol": "TRMB",
+    "company_name": "Trimble Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -32.75,
+    "rank": 473
+  },
+  {
+    "symbol": "GDDY",
+    "company_name": "GoDaddy Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -32.86,
+    "rank": 474
+  },
+  {
+    "symbol": "BR",
+    "company_name": "Broadridge Financial Solutions,",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -33.27,
+    "rank": 475
+  },
+  {
+    "symbol": "NOW",
+    "company_name": "ServiceNow, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -33.87,
+    "rank": 476
+  },
+  {
+    "symbol": "TYL",
+    "company_name": "Tyler Technologies, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -34.26,
+    "rank": 477
+  },
+  {
+    "symbol": "FIS",
+    "company_name": "Fidelity National Information S",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -35.28,
+    "rank": 478
+  },
+  {
+    "symbol": "UHS",
+    "company_name": "Universal Health Services, Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -37.24,
+    "rank": 479
+  },
+  {
+    "symbol": "ZTS",
+    "company_name": "Zoetis Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -37.96,
+    "rank": 480
+  },
+  {
+    "symbol": "WDAY",
+    "company_name": "Workday, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -39.06,
+    "rank": 481
+  },
+  {
+    "symbol": "TSCO",
+    "company_name": "Tractor Supply Company",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": -40.8,
+    "rank": 482
+  },
+  {
+    "symbol": "TTD",
+    "company_name": "The Trade Desk, Inc.",
+    "country": "United States",
+    "sector": "Communication Services",
+    "return_6m": -46.56,
+    "rank": 483
+  },
+  {
+    "symbol": "EPAM",
+    "company_name": "EPAM Systems, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -46.73,
+    "rank": 484
+  },
+  {
+    "symbol": "INTU",
+    "company_name": "Intuit Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": -50.2,
+    "rank": 485
+  },
+  {
+    "symbol": "BSX",
+    "company_name": "Boston Scientific Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -51.38,
+    "rank": 486
+  },
+  {
+    "symbol": "CSGP",
+    "company_name": "CoStar Group, Inc.",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": -52.51,
+    "rank": 487
+  },
+  {
+    "symbol": "PODD",
+    "company_name": "Insulet Corporation",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": -54.11,
+    "rank": 488
+  },
+  {
+    "symbol": "BAX",
+    "company_name": "Baxter International Inc.",
+    "country": "United States",
+    "sector": "Healthcare",
+    "return_6m": "Unknown",
+    "rank": 489
+  },
+  {
+    "symbol": "CSX",
+    "company_name": "CSX Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": "Unknown",
+    "rank": 490
+  },
+  {
+    "symbol": "DD",
+    "company_name": "DuPont de Nemours, Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": "Unknown",
+    "rank": 491
+  },
+  {
+    "symbol": "DOV",
+    "company_name": "Dover Corporation",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": "Unknown",
+    "rank": 492
+  },
+  {
+    "symbol": "DOW",
+    "company_name": "Dow Inc.",
+    "country": "United States",
+    "sector": "Basic Materials",
+    "return_6m": "Unknown",
+    "rank": 493
+  },
+  {
+    "symbol": "EBAY",
+    "company_name": "eBay Inc.",
+    "country": "United States",
+    "sector": "Consumer Cyclical",
+    "return_6m": "Unknown",
+    "rank": 494
+  },
+  {
+    "symbol": "EL",
+    "company_name": "Estee Lauder Companies, Inc. (T",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": "Unknown",
+    "rank": 495
+  },
+  {
+    "symbol": "FDS",
+    "company_name": "FactSet Research Systems Inc.",
+    "country": "United States",
+    "sector": "Financial Services",
+    "return_6m": "Unknown",
+    "rank": 496
+  },
+  {
+    "symbol": "FTV",
+    "company_name": "Fortive Corporation",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": "Unknown",
+    "rank": 497
+  },
+  {
+    "symbol": "HII",
+    "company_name": "Huntington Ingalls Industries, ",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": "Unknown",
+    "rank": 498
+  },
+  {
+    "symbol": "HUBB",
+    "company_name": "Hubbell Inc",
+    "country": "United States",
+    "sector": "Industrials",
+    "return_6m": "Unknown",
+    "rank": 499
+  },
+  {
+    "symbol": "KHC",
+    "company_name": "The Kraft Heinz Company",
+    "country": "United States",
+    "sector": "Consumer Defensive",
+    "return_6m": "Unknown",
+    "rank": 500
+  },
+  {
+    "symbol": "O",
+    "company_name": "Realty Income Corporation",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": "Unknown",
+    "rank": 501
+  },
+  {
+    "symbol": "Q",
+    "company_name": "Qnity Electronics, Inc.",
+    "country": "United States",
+    "sector": "Technology",
+    "return_6m": "Unknown",
+    "rank": 502
+  },
+  {
+    "symbol": "WY",
+    "company_name": "Weyerhaeuser Company",
+    "country": "United States",
+    "sector": "Real Estate",
+    "return_6m": "Unknown",
+    "rank": 503
+  }
+]

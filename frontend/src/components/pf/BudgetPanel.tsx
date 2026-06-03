@@ -1,19 +1,21 @@
-import { useState } from "react";
-import { usePersonalFinanceStore } from "@/store/personalFinanceStore";
+import { useState, useMemo } from "react";
+import { usePersonalFinanceStore, useFilteredTransactions } from "@/store/personalFinanceStore";
 import { CATEGORIES, getCategoryColor } from "@/lib/categories";
 import { C_PRIMARY, C_BORDER, C_SUCCESS, C_ERROR, C_WARNING } from "@/lib/colors";
+import { getPeriodMonths, getPeriodLabel } from "@/lib/periodFilter";
 
-// Current month spend per category from confirmed transactions
-function useCurrentMonthSpend(): Record<string, number> {
-  const transactions = usePersonalFinanceStore((s) => s.transactions);
-  const latestMonth = [...new Set(transactions.map((t) => t.date.slice(0, 7)))].sort().at(-1) ?? "";
-  const result: Record<string, number> = {};
-  for (const tx of transactions) {
-    if (tx.date.startsWith(latestMonth) && tx.amount < 0) {
-      result[tx.category] = (result[tx.category] ?? 0) + Math.abs(tx.amount);
+// Expense spend per category across the active period
+function usePeriodSpend(): Record<string, number> {
+  const filteredTxs = useFilteredTransactions();
+  return useMemo(() => {
+    const result: Record<string, number> = {};
+    for (const tx of filteredTxs) {
+      if (tx.amount < 0) {
+        result[tx.category] = (result[tx.category] ?? 0) + Math.abs(tx.amount);
+      }
     }
-  }
-  return result;
+    return result;
+  }, [filteredTxs]);
 }
 
 function progressColor(pct: number): string {
@@ -24,12 +26,25 @@ function progressColor(pct: number): string {
 
 // ── Budget Card ───────────────────────────────────────────────────────────────
 
-function BudgetCard({ category, limit, spent }: { category: string; limit: number; spent: number }) {
+function BudgetCard({
+  category,
+  limit,
+  spent,
+  periodMonths,
+  periodLabel,
+}: {
+  category: string;
+  limit: number;
+  spent: number;
+  periodMonths: number;
+  periodLabel: string;
+}) {
   const setBudget = usePersonalFinanceStore((s) => s.setBudget);
   const [editing, setEditing]   = useState(false);
   const [draft,   setDraft]     = useState(String(limit || ""));
 
-  const pct = limit > 0 ? Math.round((spent / limit) * 100) : 0;
+  const periodBudget = limit * periodMonths;
+  const pct = periodBudget > 0 ? Math.round((spent / periodBudget) * 100) : 0;
   const color = getCategoryColor(category);
   const barColor = progressColor(pct);
 
@@ -108,7 +123,10 @@ function BudgetCard({ category, limit, spent }: { category: string; limit: numbe
               {pct >= 80 && pct < 100 && " — approaching limit"}
             </span>
             <span style={{ color: "hsl(245 16% 55%)" }}>
-              ${spent.toFixed(0)} / ${limit.toFixed(0)}
+              ${spent.toFixed(0)} / ${periodBudget.toFixed(0)}
+              {periodMonths > 1 && (
+                <span style={{ marginLeft: 3, opacity: 0.65 }}>({periodLabel})</span>
+              )}
             </span>
           </div>
         </>
@@ -127,8 +145,11 @@ function BudgetCard({ category, limit, spent }: { category: string; limit: numbe
 // ── Budget Overview Panel ─────────────────────────────────────────────────────
 
 export function BudgetPanel() {
-  const budgets   = usePersonalFinanceStore((s) => s.budgets);
-  const spendMap  = useCurrentMonthSpend();
+  const budgets        = usePersonalFinanceStore((s) => s.budgets);
+  const activePeriod   = usePersonalFinanceStore((s) => s.activePeriod);
+  const spendMap       = usePeriodSpend();
+  const periodMonths   = getPeriodMonths(activePeriod);
+  const periodLabel    = getPeriodLabel(activePeriod);
 
   // Categories with any spend or any budget set, plus all default ones
   const activeCategories = CATEGORIES.filter(
@@ -138,9 +159,10 @@ export function BudgetPanel() {
     (c) => c !== "Income" && !activeCategories.includes(c)
   );
 
-  const hasAnyBudget = Object.keys(budgets).length > 0;
-  const totalBudget  = Object.values(budgets).reduce((a, b) => a + b, 0);
-  const totalSpent   = Object.values(spendMap).reduce((a, b) => a + b, 0);
+  const hasAnyBudget    = Object.keys(budgets).length > 0;
+  const totalMonthly    = Object.values(budgets).reduce((a, b) => a + b, 0);
+  const totalBudget     = totalMonthly * periodMonths;
+  const totalSpent      = Object.values(spendMap).reduce((a, b) => a + b, 0);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -185,7 +207,7 @@ export function BudgetPanel() {
         >
           <div>
             <div style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "hsl(245 16% 55%)", marginBottom: "4px" }}>
-              Total Budget
+              Budget ({periodLabel})
             </div>
             <div style={{ fontSize: "20px", fontWeight: 700, color: "hsl(242 44% 30%)" }}>
               ${totalBudget.toLocaleString()}
@@ -231,6 +253,8 @@ export function BudgetPanel() {
                 category={cat}
                 limit={budgets[cat] ?? 0}
                 spent={spendMap[cat] ?? 0}
+                periodMonths={periodMonths}
+                periodLabel={periodLabel}
               />
             ))}
           </div>
@@ -249,6 +273,8 @@ export function BudgetPanel() {
               category={cat}
               limit={budgets[cat] ?? 0}
               spent={spendMap[cat] ?? 0}
+              periodMonths={periodMonths}
+              periodLabel={periodLabel}
             />
           ))}
         </div>

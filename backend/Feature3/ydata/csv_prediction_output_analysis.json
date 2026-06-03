@@ -1,0 +1,38 @@
+[
+  {
+    "symbol": "BHP",
+    "invested": 1000,
+    "units_bought": 11.2473,
+    "current_price": 88.91,
+    "projected_price": 150.49,
+    "projected_years": 1.0,
+    "projected_value": 1692.66,
+    "projected_gain": 692.66,
+    "projected_gain_pct": 69.27,
+    "model": "prophet"
+  },
+  {
+    "symbol": "BHP",
+    "invested": 1000,
+    "units_bought": 11.2473,
+    "current_price": 88.91,
+    "projected_price": 279.67,
+    "projected_years": 3.0,
+    "projected_value": 3145.58,
+    "projected_gain": 2145.58,
+    "projected_gain_pct": 214.56,
+    "model": "prophet"
+  },
+  {
+    "symbol": "BHP",
+    "invested": 1000,
+    "units_bought": 11.2473,
+    "current_price": 88.91,
+    "projected_price": 408.23,
+    "projected_years": 5.0,
+    "projected_value": 4591.49,
+    "projected_gain": 3591.49,
+    "projected_gain_pct": 359.15,
+    "model": "prophet"
+  }
+]

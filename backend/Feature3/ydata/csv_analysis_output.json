@@ -1,0 +1,20 @@
+[
+  {
+    "ticker": "BHP",
+    "start_price": 54.1,
+    "end_price": 88.91,
+    "change_abs": 34.81,
+    "change_pct": 64.33,
+    "data_points": 124,
+    "volatility_pct": 35.28,
+    "fifty_two_week_high": 90.80999755859375,
+    "fifty_two_week_low": 54.10454559326172,
+    "market_cap": 225862090752,
+    "pe_ratio": 22.062035,
+    "sector": "Basic Materials",
+    "industry": "Other Industrial Metals & Mining",
+    "exchange": "NYQ",
+    "country": "Australia",
+    "current_price": 88.91
+  }
+]

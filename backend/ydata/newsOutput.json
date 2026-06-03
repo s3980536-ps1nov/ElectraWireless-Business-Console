@@ -1,0 +1,16 @@
+{
+  "company": {},
+  "market": [],
+  "meta": {
+    "tickers_received": [
+      "TSLA",
+      "TESLA",
+      "AAPL",
+      "NVDA",
+      "VOO",
+      "META"
+    ],
+    "countries_received": [],
+    "status": "active"
+  }
+}

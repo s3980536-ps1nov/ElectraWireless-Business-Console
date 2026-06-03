@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { usePersonalFinanceStore } from "@/store/personalFinanceStore";
+import { usePersonalFinanceStore, useFilteredTransactions } from "@/store/personalFinanceStore";
 import { fetchInsights } from "@/services/personalFinanceApi";
 import type { PFInsight } from "@/services/personalFinanceApi";
 import { C_ERROR, C_WARNING, C_PRIMARY } from "@/lib/colors";
@@ -23,7 +23,7 @@ function typeLabel(t: PFInsight["type"]) {
 }
 
 export function PFInsightsPanel() {
-  const transactions = usePersonalFinanceStore((s) => s.transactions);
+  const transactions = useFilteredTransactions();
   const budgets      = usePersonalFinanceStore((s) => s.budgets);
 
   const [insights,  setInsights]  = useState<PFInsight[]>([]);

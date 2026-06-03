@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { usePersonalFinanceStore } from "@/store/personalFinanceStore";
+import { usePersonalFinanceStore, useFilteredTransactions } from "@/store/personalFinanceStore";
 import { TransactionFormModal } from "@/components/pf/TransactionFormModal";
 import type { Transaction } from "@/store/personalFinanceStore";
 import { CATEGORIES, getCategoryColor } from "@/lib/categories";
@@ -270,7 +270,7 @@ function SortTh({
 // ── Main TransactionsTab ──────────────────────────────────────────────────────
 
 export function TransactionsTab() {
-  const transactions   = usePersonalFinanceStore((s) => s.transactions);
+  const transactions      = useFilteredTransactions();
   const deleteTransaction = usePersonalFinanceStore((s) => s.deleteTransaction);
 
   const [filters, setFilters] = useState<Filters>({ search: "", category: "", type: "all" });

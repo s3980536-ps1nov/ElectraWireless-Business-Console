@@ -1,0 +1,20 @@
+[
+  {
+    "ticker": "TSLA",
+    "start_price": 430.14,
+    "end_price": 435.79,
+    "change_abs": 5.65,
+    "change_pct": 1.31,
+    "data_points": 124,
+    "volatility_pct": 38.43,
+    "fifty_two_week_high": 489.8800048828125,
+    "fifty_two_week_low": 343.25,
+    "market_cap": 1636706942976,
+    "pe_ratio": 396.17273,
+    "sector": "Consumer Cyclical",
+    "industry": "Auto Manufacturers",
+    "exchange": "NMS",
+    "country": "United States",
+    "current_price": 435.79
+  }
+]

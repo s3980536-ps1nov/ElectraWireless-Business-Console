@@ -11,42 +11,52 @@ import type { Transaction } from "@/store/personalFinanceStore";
 import { autoCategory, inferType } from "@/lib/categories";
 import type { ParsedData } from "@/lib/importUtils";
 
-const BASE_URL = (import.meta as Record<string, unknown> & { env: Record<string, string> }).env.VITE_API_URL ?? "http://localhost:8000";
+const BASE_URL = ((import.meta as unknown) as { env: Record<string, string> }).env.VITE_API_URL ?? "http://localhost:8000";
 
 export const pfApi = axios.create({ baseURL: BASE_URL });
 
 // ── Mock data ─────────────────────────────────────────────────────────────────
 
+// Generates a date string N months and D days before today
+function md(monthsAgo: number, day: number): string {
+  const d = new Date();
+  d.setDate(1);
+  d.setMonth(d.getMonth() - monthsAgo);
+  const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  d.setDate(Math.min(day, lastDay));
+  return d.toISOString().slice(0, 10);
+}
+
 export const MOCK_TRANSACTIONS: Transaction[] = [
-  // January 2024
-  { id: "m1",  date: "2024-01-05", description: "Woolworths",         amount: -145.50, type: "expense", category: "Groceries",     source: "csv" },
-  { id: "m2",  date: "2024-01-08", description: "Shell Petrol",       amount: -82.00,  type: "expense", category: "Transport",     source: "csv" },
-  { id: "m3",  date: "2024-01-10", description: "Netflix",            amount: -22.99,  type: "expense", category: "Subscriptions", source: "csv" },
-  { id: "m4",  date: "2024-01-15", description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
-  { id: "m5",  date: "2024-01-18", description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
-  { id: "m6",  date: "2024-01-20", description: "Uber Eats",          amount: -38.50,  type: "expense", category: "Dining",        source: "csv" },
-  { id: "m7",  date: "2024-01-22", description: "Electricity Bill",   amount: -180.00, type: "expense", category: "Utilities",     source: "csv" },
-  { id: "m8",  date: "2024-01-25", description: "Spotify",            amount: -12.99,  type: "expense", category: "Subscriptions", source: "csv" },
-  { id: "m9",  date: "2024-01-28", description: "Chemist Warehouse",  amount: -45.00,  type: "expense", category: "Health",        source: "csv" },
-  // February 2024
-  { id: "m10", date: "2024-02-02", description: "Coles",              amount: -162.30, type: "expense", category: "Groceries",     source: "csv" },
-  { id: "m11", date: "2024-02-05", description: "Uber",               amount: -24.00,  type: "expense", category: "Transport",     source: "csv" },
-  { id: "m12", date: "2024-02-10", description: "Amazon Prime",       amount: -9.99,   type: "expense", category: "Subscriptions", source: "csv" },
-  { id: "m13", date: "2024-02-15", description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
-  { id: "m14", date: "2024-02-18", description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
-  { id: "m15", date: "2024-02-20", description: "McDonald's",         amount: -18.50,  type: "expense", category: "Dining",        source: "csv" },
-  { id: "m16", date: "2024-02-22", description: "Internet Bill",      amount: -89.00,  type: "expense", category: "Utilities",     source: "csv" },
-  { id: "m17", date: "2024-02-28", description: "JB Hi-Fi",           amount: -349.00, type: "expense", category: "Shopping",      source: "csv" },
-  // March 2024
-  { id: "m18", date: "2024-03-01", description: "Woolworths",         amount: -138.20, type: "expense", category: "Groceries",     source: "csv" },
-  { id: "m19", date: "2024-03-05", description: "Shell Petrol",       amount: -90.00,  type: "expense", category: "Transport",     source: "csv" },
-  { id: "m20", date: "2024-03-10", description: "Netflix",            amount: -22.99,  type: "expense", category: "Subscriptions", source: "csv" },
-  { id: "m21", date: "2024-03-15", description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
-  { id: "m22", date: "2024-03-18", description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
-  { id: "m23", date: "2024-03-20", description: "Cafe Dining",        amount: -55.00,  type: "expense", category: "Dining",        source: "csv" },
-  { id: "m24", date: "2024-03-22", description: "AGL Electricity",    amount: -195.00, type: "expense", category: "Utilities",     source: "csv" },
-  { id: "m25", date: "2024-03-25", description: "David Jones",        amount: -280.00, type: "expense", category: "Shopping",      source: "csv" },
-  { id: "m26", date: "2024-03-28", description: "Event Cinema",       amount: -42.00,  type: "expense", category: "Entertainment", source: "csv" },
+  // 3 months ago
+  { id: "m1",  date: md(3,  5), description: "Woolworths",         amount: -145.50, type: "expense", category: "Groceries",     source: "csv" },
+  { id: "m2",  date: md(3,  8), description: "Shell Petrol",       amount: -82.00,  type: "expense", category: "Transport",     source: "csv" },
+  { id: "m3",  date: md(3, 10), description: "Netflix",            amount: -22.99,  type: "expense", category: "Subscriptions", source: "csv" },
+  { id: "m4",  date: md(3, 15), description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
+  { id: "m5",  date: md(3, 18), description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
+  { id: "m6",  date: md(3, 20), description: "Uber Eats",          amount: -38.50,  type: "expense", category: "Dining",        source: "csv" },
+  { id: "m7",  date: md(3, 22), description: "Electricity Bill",   amount: -180.00, type: "expense", category: "Utilities",     source: "csv" },
+  { id: "m8",  date: md(3, 25), description: "Spotify",            amount: -12.99,  type: "expense", category: "Subscriptions", source: "csv" },
+  { id: "m9",  date: md(3, 28), description: "Chemist Warehouse",  amount: -45.00,  type: "expense", category: "Health",        source: "csv" },
+  // 2 months ago
+  { id: "m10", date: md(2,  2), description: "Coles",              amount: -162.30, type: "expense", category: "Groceries",     source: "csv" },
+  { id: "m11", date: md(2,  5), description: "Uber",               amount: -24.00,  type: "expense", category: "Transport",     source: "csv" },
+  { id: "m12", date: md(2, 10), description: "Amazon Prime",       amount: -9.99,   type: "expense", category: "Subscriptions", source: "csv" },
+  { id: "m13", date: md(2, 15), description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
+  { id: "m14", date: md(2, 18), description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
+  { id: "m15", date: md(2, 20), description: "McDonald's",         amount: -18.50,  type: "expense", category: "Dining",        source: "csv" },
+  { id: "m16", date: md(2, 22), description: "Internet Bill",      amount: -89.00,  type: "expense", category: "Utilities",     source: "csv" },
+  { id: "m17", date: md(2, 28), description: "JB Hi-Fi",           amount: -349.00, type: "expense", category: "Shopping",      source: "csv" },
+  // 1 month ago
+  { id: "m18", date: md(1,  1), description: "Woolworths",         amount: -138.20, type: "expense", category: "Groceries",     source: "csv" },
+  { id: "m19", date: md(1,  5), description: "Shell Petrol",       amount: -90.00,  type: "expense", category: "Transport",     source: "csv" },
+  { id: "m20", date: md(1, 10), description: "Netflix",            amount: -22.99,  type: "expense", category: "Subscriptions", source: "csv" },
+  { id: "m21", date: md(1, 15), description: "Salary Direct Dep",  amount: 4200.00, type: "income",  category: "Income",        source: "csv" },
+  { id: "m22", date: md(1, 18), description: "Rent Payment",       amount: -1800.00,type: "expense", category: "Housing",       source: "csv" },
+  { id: "m23", date: md(1, 20), description: "Cafe Dining",        amount: -55.00,  type: "expense", category: "Dining",        source: "csv" },
+  { id: "m24", date: md(1, 22), description: "AGL Electricity",    amount: -195.00, type: "expense", category: "Utilities",     source: "csv" },
+  { id: "m25", date: md(1, 25), description: "David Jones",        amount: -280.00, type: "expense", category: "Shopping",      source: "csv" },
+  { id: "m26", date: md(1, 28), description: "Event Cinema",       amount: -42.00,  type: "expense", category: "Entertainment", source: "csv" },
 ];
 
 // ── CSV parsing ───────────────────────────────────────────────────────────────
@@ -179,7 +189,7 @@ export async function fetchSummary(transactions: Transaction[]): Promise<Financi
   const totalExpenses = transactions.filter((t) => t.amount < 0).reduce((s, t) => s + Math.abs(t.amount), 0);
   const netCashFlow   = totalIncome - totalExpenses;
   const savingsRate   = totalIncome > 0 ? Math.round(((totalIncome - totalExpenses) / totalIncome) * 100) : 0;
-  const healthScore   = computeHealthScore(savingsRate, totalExpenses, totalIncome);
+  const healthScore   = computeHealthScore({ savingsRate, totalIncome, totalExpenses, netCashFlow, catTotals, byMonth });
   const healthGrade   = scoreToGrade(healthScore);
 
   let runningBalance = 0;
@@ -280,6 +290,92 @@ export async function fetchInsights(
   return insights.sort((a, b) => (a.severity === "danger" ? -1 : b.severity === "danger" ? 1 : 0));
 }
 
+// ── AI Insights (Ask Elly on PF dashboard) ────────────────────────────────────
+
+export interface PFAIRequest {
+  question: string;
+  period: string;
+  summary: {
+    totalIncome: number;
+    totalExpenses: number;
+    netCashFlow: number;
+    savingsRate: number;
+    healthScore: number;
+    healthGrade: string;
+  };
+  breakdown: {
+    categoryTotals: Record<string, number>;
+    monthlyBreakdown: Array<{
+      month: string;
+      income: number;
+      expenses: number;
+      netCashFlow: number;
+    }>;
+  };
+  alerts: Array<{
+    type: string;
+    severity: string;
+    title: string;
+    message: string;
+  }>;
+}
+
+export interface PFAIResponse {
+  // Q&A mode
+  answer?: string;
+  supporting_insights?: string[];
+  // Report mode
+  summary?: string;
+  healthScore?: { score: number; interpretation: string; trend: string };
+  alerts?: Array<{ alert: string; meaning: string; urgency: string }>;
+  spendingPatterns?: { overview: string; keyCategories: string[]; anomalies: string };
+  risks?: string[];
+  opportunities?: string[];
+  recommendedActions?: string[];
+}
+
+/** Build the payload the backend team requested from already-computed PF data. */
+export function buildPFAIPayload(
+  question: string,
+  period: string,
+  summary: FinancialSummary,
+  insights: PFInsight[],
+): PFAIRequest {
+  return {
+    question,
+    period,
+    summary: {
+      totalIncome:   summary.totalIncome,
+      totalExpenses: summary.totalExpenses,
+      netCashFlow:   summary.netCashFlow,
+      savingsRate:   summary.savingsRate,
+      healthScore:   summary.healthScore,
+      healthGrade:   summary.healthGrade,
+    },
+    breakdown: {
+      categoryTotals: summary.categoryTotals,
+      monthlyBreakdown: summary.monthlyBreakdown.map((m) => ({
+        month:       m.month,
+        income:      m.income,
+        expenses:    m.expenses,
+        netCashFlow: m.net,
+      })),
+    },
+    alerts: insights.map((i) => ({
+      type:     i.type,
+      severity: i.severity,
+      title:    i.title,
+      message:  i.message,
+    })),
+  };
+}
+
+/** POST PF context + question to the Ollama-backed insights endpoint. */
+export async function fetchPFAIInsights(payload: PFAIRequest): Promise<PFAIResponse> {
+  const res = await pfApi.post<PFAIResponse>("/pf/ai-insights", payload);
+  return res.data;
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function groupByMonthCat(transactions: Transaction[], month: string): Record<string, number> {
@@ -292,13 +388,46 @@ function groupByMonthCat(transactions: Transaction[], month: string): Record<str
   return result;
 }
 
-function computeHealthScore(savingsRate: number, expenses: number, income: number): number {
-  const savingsScore  = Math.min(30, (savingsRate / 20) * 30);
-  const spendingRatio = income > 0 ? expenses / income : 1;
-  const spendingScore = Math.max(0, 30 - (spendingRatio - 0.7) / 0.25 * 30);
-  const stabilityScore = 20; // static for now without enough months
-  const total = Math.round(savingsScore + spendingScore + stabilityScore);
-  return Math.max(0, Math.min(100, total));
+function computeHealthScore(p: {
+  savingsRate: number;
+  totalIncome: number;
+  totalExpenses: number;
+  netCashFlow: number;
+  catTotals: Record<string, number>;
+  byMonth: Record<string, { income: number; expenses: number }>;
+}): number {
+  // 1. Savings rate — 25 pts, target ≥ 20%
+  const savingsScore = Math.min(25, Math.max(0, (p.savingsRate / 20) * 25));
+
+  // 2. Expense behavior — 25 pts, full at ≤50% expense ratio, 0 at 100%
+  const expenseRatio = p.totalIncome > 0 ? p.totalExpenses / p.totalIncome : 1;
+  const expenseScore = Math.max(0, Math.min(25, ((1 - expenseRatio) / 0.5) * 25));
+
+  // 3. Income consistency — 20 pts, low coefficient of variation = better
+  const monthlyIncomes = Object.values(p.byMonth).map((m) => m.income);
+  let consistencyScore = 10;
+  if (monthlyIncomes.length >= 2) {
+    const mean = monthlyIncomes.reduce((s, v) => s + v, 0) / monthlyIncomes.length;
+    const variance = monthlyIncomes.reduce((s, v) => s + (v - mean) ** 2, 0) / monthlyIncomes.length;
+    const cv = mean > 0 ? Math.sqrt(variance) / mean : 1;
+    consistencyScore = Math.max(0, Math.min(20, (1 - cv) * 20));
+  }
+
+  // 4. Risk level — 15 pts, penalises high concentration in discretionary spend
+  const HIGH_RISK = new Set(["Dining", "Entertainment", "Shopping", "Subscriptions", "Gambling"]);
+  const highRiskSpend = Object.entries(p.catTotals)
+    .filter(([cat]) => HIGH_RISK.has(cat))
+    .reduce((s, [, v]) => s + v, 0);
+  const riskRatio = p.totalExpenses > 0 ? highRiskSpend / p.totalExpenses : 0;
+  const riskScore = Math.max(0, Math.min(15, (1 - riskRatio / 0.5) * 15));
+
+  // 5. Liquidity — 15 pts, full score at ≥ 3 months of expenses covered by net balance
+  const numMonths = Math.max(1, Object.keys(p.byMonth).length);
+  const avgMonthlyExpenses = p.totalExpenses / numMonths;
+  const liquidityMonths = avgMonthlyExpenses > 0 ? Math.max(0, p.netCashFlow / avgMonthlyExpenses) : 0;
+  const liquidityScore = Math.min(15, (liquidityMonths / 3) * 15);
+
+  return Math.max(0, Math.min(100, Math.round(savingsScore + expenseScore + consistencyScore + riskScore + liquidityScore)));
 }
 
 function scoreToGrade(score: number): string {

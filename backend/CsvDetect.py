@@ -1,252 +1,187 @@
-"""
-CsvDetect — anomaly detection for uploaded spreadsheet data.
-
-Original implementation by Quinn (csvdetect branch).
-Adapted to accept a cell map from the frontend instead of a hardcoded CSV,
-and to return flagged cell IDs instead of raw row indices.
-"""
-
 import pandas as pd
-from collections import deque
-from sklearn.ensemble import IsolationForest, RandomForestRegressor
+import numpy as np
+import time
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from sklearn.preprocessing import MinMaxScaler
 
+# LSTM Model
+class LSTMPredictor(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.lstm = nn.LSTM(input_size=1, hidden_size=32, batch_first=True)
+        self.fc = nn.Linear(32, 1)  # ✅ removed sigmoid
 
-# ── Cell ID helpers ───────────────────────────────────────────────────────────
+    def forward(self, x):
+        out, _ = self.lstm(x)
+        out = self.fc(out[:, -1, :])
+        return out
 
-def col_index_to_letter(index: int) -> str:
-    result = ""
-    n = index + 1
-    while n > 0:
-        result = chr(65 + (n - 1) % 26) + result
-        n = (n - 1) // 26
-    return result
+# Create sequences
+def create_sequences(data, seq_len):
+    X, y = [], []
+    for i in range(len(data) - seq_len):
+        X.append(data[i:i+seq_len])
+        y.append(data[i+seq_len])
+    return np.array(X), np.array(y)
 
+# Load CSV
+input_file = "Sample - Superstore.csv"
+df = pd.read_csv(input_file, encoding="latin1")
 
-def to_cell_id(sheet_index: int, row_index: int, col_index: int) -> str:
-    """Mirrors the frontend toCellId — e.g. (0, 2, 1) → 'S1_B3'"""
-    return f"S{sheet_index + 1}_{col_index_to_letter(col_index)}{row_index + 1}"
+numeric_cols = df.select_dtypes(include=['number']).columns.tolist()
+exclude_cols = ["Row ID", "Postal Code"]
+numeric_cols = [col for col in numeric_cols if col not in exclude_cols]
 
+results = []
 
-# ── Grid construction ─────────────────────────────────────────────────────────
+SEQ_LEN = 10
+EPOCHS = 20
 
-def _build_grid(cell_map: dict, sheet_index: int) -> list:
-    """Build a 2-D grid from cell_map for a single sheet."""
-    sheet_cells = {k: v for k, v in cell_map.items() if v.get("sheetIndex") == sheet_index}
-    if not sheet_cells:
-        return []
+total_cols = len(numeric_cols)
+start_total = time.time()
 
-    max_row = max(v["rowIndex"] for v in sheet_cells.values())
-    max_col = max(v["colIndex"] for v in sheet_cells.values())
+print(f"\nStarting LSTM anomaly detection + prediction on {total_cols} columns...\n")
 
-    grid = [[None] * (max_col + 1) for _ in range(max_row + 1)]
-    for entry in sheet_cells.values():
-        grid[entry["rowIndex"]][entry["colIndex"]] = entry["value"]
+# Process each column
+for col_idx, target_col in enumerate(numeric_cols, 1):
 
-    return grid
+    col_start = time.time()
+    print(f"[{col_idx}/{total_cols}] Processing: {target_col}")
 
+    col_data = df[[target_col]].dropna()
 
-# ── Region detection ──────────────────────────────────────────────────────────
+    if len(col_data) < SEQ_LEN + 5:
+        print("   Skipped (not enough data)\n")
+        continue
 
-def _find_data_regions(grid: list) -> list:
-    """
-    BFS flood-fill over non-empty cells to find contiguous data regions.
-    Returns list of (min_row, max_row, min_col, max_col) bounding boxes.
-    Empty cells between or below tables are outside every bounding box and
-    will never be flagged as missing values.
-    """
-    rows = len(grid)
-    cols = len(grid[0]) if rows > 0 else 0
-    visited = [[False] * cols for _ in range(rows)]
-    regions = []
+    # Scale data
+    scaler = MinMaxScaler()
+    scaled_data = scaler.fit_transform(col_data.values)
 
-    for start_r in range(rows):
-        for start_c in range(cols):
-            if grid[start_r][start_c] is not None and not visited[start_r][start_c]:
-                queue = deque([(start_r, start_c)])
-                visited[start_r][start_c] = True
-                min_r = max_r = start_r
-                min_c = max_c = start_c
+    # Pre-filter anomalies BEFORE training
+    q_low = np.percentile(scaled_data, 5)
+    q_high = np.percentile(scaled_data, 95)
 
-                while queue:
-                    r, c = queue.popleft()
-                    min_r, max_r = min(min_r, r), max(max_r, r)
-                    min_c, max_c = min(min_c, c), max(max_c, c)
-                    for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-                        nr, nc = r + dr, c + dc
-                        if (0 <= nr < rows and 0 <= nc < cols
-                                and not visited[nr][nc]
-                                and grid[nr][nc] is not None):
-                            visited[nr][nc] = True
-                            queue.append((nr, nc))
+    filtered_data = scaled_data[
+        (scaled_data >= q_low) & (scaled_data <= q_high)
+    ].reshape(-1, 1)
 
-                regions.append((min_r, max_r, min_c, max_c))
+    if len(filtered_data) < SEQ_LEN + 5:
+        print("   Skipped (not enough filtered data)\n")
+        continue
 
-    return regions
+    # Create sequences
+    X_seq, y_seq = create_sequences(filtered_data, SEQ_LEN)
 
+    X = torch.tensor(X_seq, dtype=torch.float32)
+    y = torch.tensor(y_seq, dtype=torch.float32)
 
-# ── DataFrame reconstruction ──────────────────────────────────────────────────
+    # Train LSTM
+    model = LSTMPredictor()
+    criterion = nn.MSELoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.01)
 
-def _region_to_dataframe(grid: list, min_row: int, max_row: int, min_col: int, max_col: int):
-    """
-    Extract a sub-DataFrame from grid[min_row:max_row+1][min_col:max_col+1].
-    The first row of the region is treated as the header.
-    Returns (df, data_start_row) where data_start_row is the sheet row index
-    of the first data row (i.e. min_row + 1).
-    """
-    sub = [row[min_col:max_col + 1] for row in grid[min_row:max_row + 1]]
-    if not sub or len(sub) < 2:
-        return None, min_row + 1
+    print("   Training LSTM...")
+    for epoch in range(EPOCHS):
+        model.train()
+        optimizer.zero_grad()
 
-    raw_headers = sub[0]
-    headers = [str(h) if h is not None else f"Col{min_col + i}" for i, h in enumerate(raw_headers)]
-    data_rows = sub[1:]
+        outputs = model(X)
+        loss = criterion(outputs, y)
 
-    df = pd.DataFrame(data_rows, columns=headers)
-    for col in df.columns:
-        df[col] = pd.to_numeric(df[col], errors="coerce")
+        loss.backward()
+        optimizer.step()
 
-    return df, min_row + 1  # data starts one row below the header in sheet coordinates
+        if (epoch + 1) % 5 == 0:
+            print(f"      Epoch {epoch+1}/{EPOCHS} - loss: {loss.item():.6f}")
 
+    # Predict on FULL dataset
+    X_full, y_full = create_sequences(scaled_data, SEQ_LEN)
 
-def cell_map_to_dataframe(cell_map: dict, sheet_index: int):
-    """
-    Reconstruct a pandas DataFrame from the frontend cell map for one sheet.
-    Row 0 of the sheet is treated as the header row.
-    Returns (df, header_row_offset) where header_row_offset=1 means data starts at rowIndex 1.
-    """
-    grid = _build_grid(cell_map, sheet_index)
-    if not grid:
-        return None, 1
+    X_full_t = torch.tensor(X_full, dtype=torch.float32)
 
-    raw_headers = grid[0]
-    headers = [str(h) if h is not None else f"Col{i}" for i, h in enumerate(raw_headers)]
-    data_rows = grid[1:]
+    model.eval()
+    with torch.no_grad():
+        predictions = model(X_full_t).numpy()
 
-    df = pd.DataFrame(data_rows, columns=headers)
-    for col in df.columns:
-        df[col] = pd.to_numeric(df[col], errors="coerce")
+    errors = np.abs(predictions.flatten() - y_full.flatten())
 
-    return df, 1
+    threshold = np.percentile(errors, 95)
+    anomaly_mask = errors > threshold
 
+    anomaly_indices = col_data.index[SEQ_LEN:][anomaly_mask]
 
-# ── Anomaly detection ─────────────────────────────────────────────────────────
+    print(f"   Found {len(anomaly_indices)} anomalies")
 
-def detect_anomalies(cell_map: dict, sheet_index: int = 0) -> dict:
-    """
-    Run IsolationForest anomaly detection + RandomForestRegressor prediction
-    on numeric columns of the specified sheet.
+    if len(anomaly_indices) == 0:
+        print("   No anomalies\n")
+        continue
 
-    Contiguous region detection ensures that empty cells between separate tables
-    or below the data area are never flagged as missing values — only empty cells
-    that fall within the bounding box of an identified data region are checked.
+    # Convert back to original scale
+    pred_rescaled = scaler.inverse_transform(predictions)
+    actual_rescaled = scaler.inverse_transform(y_full)
 
-    Returns a dict with:
-      - anomalies: list of flagged cells with cell IDs and predicted values
-      - totalAnomalies: int
-      - columnsAnalyzed: list of column names that were processed
-    """
-    grid = _build_grid(cell_map, sheet_index)
-    if not grid:
-        return {"anomalies": [], "totalAnomalies": 0, "columnsAnalyzed": []}
+    # Define NORMAL range
+    normal_values = actual_rescaled[~anomaly_mask]
 
-    regions = _find_data_regions(grid)
-    if not regions:
-        return {"anomalies": [], "totalAnomalies": 0, "columnsAnalyzed": []}
+    lower_bound = np.percentile(normal_values, 5)
+    upper_bound = np.percentile(normal_values, 95)
+    median_value = np.median(normal_values)
 
-    all_results = []
-    columns_analyzed = set()
-    exclude = {"row id", "postal code", "id"}
+    # Store results
+    for i_idx, idx in enumerate(col_data.index[SEQ_LEN:]):
 
-    for min_row, max_row, min_col, max_col in regions:
-        df, data_start_row = _region_to_dataframe(grid, min_row, max_row, min_col, max_col)
-
-        if df is None or df.empty:
+        if not anomaly_mask[i_idx]:
             continue
 
-        numeric_cols = [
-            col for col in df.select_dtypes(include=["number"]).columns
-            if col.lower() not in exclude
-        ]
+        predicted_value = float(pred_rescaled[i_idx][0])
+        original_value = float(actual_rescaled[i_idx][0])
 
-        for target_col in numeric_cols:
-            # Map region-local column position back to sheet column index
-            region_col_pos = df.columns.get_loc(target_col)
-            sheet_col_idx = min_col + region_col_pos
+        # 🔒 Clamp prediction to normal range
+        predicted_value = max(lower_bound, min(upper_bound, predicted_value))
 
-            # ── Flag blank cells within this region's bounding box only ───────
-            blank_mask = df[target_col].isnull()
-            for df_row_idx in df.index[blank_mask]:
-                sheet_row_index = int(df_row_idx) + data_start_row
-                all_results.append({
-                    "cellId":         to_cell_id(sheet_index, sheet_row_index, sheet_col_idx),
-                    "column":         target_col,
-                    "rowIndex":       sheet_row_index,
-                    "colIndex":       sheet_col_idx,
-                    "originalValue":  None,
-                    "predictedValue": None,
-                    "difference":     None,
-                    "severity":       "high",
-                    "reason":         "missing",
-                })
+        # 🔒 Validate prediction (fallback if still bad)
+        if predicted_value < lower_bound or predicted_value > upper_bound:
+            predicted_value = median_value
 
-            col_data = df[[target_col]].dropna()
-            if len(col_data) < 5:
-                continue
+        predicted_value = round(predicted_value, 2)
+        original_value = round(original_value, 2)
 
-            columns_analyzed.add(target_col)
+        if original_value == 0:
+            percent_diff = 0.0
+        else:
+            percent_diff = round(
+                abs(original_value - predicted_value) / abs(original_value) * 100,
+                2
+            )
 
-            # Detect anomalies with IsolationForest (Quinn's approach)
-            iso = IsolationForest(contamination=0.1, random_state=1)
-            preds = iso.fit_predict(col_data)
-            anomaly_idx = col_data.index[preds == -1]
-            normal_idx  = col_data.index[preds == 1]
+        results.append({
+            "Row": idx,
+            "Column": target_col,
+            "Original Value": original_value,
+            "Predicted Value": predicted_value,
+            "Difference": round(abs(original_value - predicted_value), 2),
+            "Percent Difference (%)": percent_diff
+        })
 
-            if len(anomaly_idx) == 0:
-                continue
+    col_time = time.time() - col_start
+    print(f"   Done in {col_time:.2f}s\n")
 
-            feature_cols = [c for c in numeric_cols if c != target_col]
+# Save results
+results_df = pd.DataFrame(results)
 
-            for df_row_idx in anomaly_idx:
-                original = float(df.at[df_row_idx, target_col])
+output_file = "anomaly_predictions_LSTM_improved.csv"
+results_df.to_csv(output_file, index=False)
 
-                if feature_cols:
-                    train_df = df.loc[normal_idx, feature_cols + [target_col]].dropna()
-                    if len(train_df) >= 5:
-                        rf = RandomForestRegressor(n_estimators=100, random_state=1)
-                        rf.fit(train_df[feature_cols], train_df[target_col])
-                        row_features = df.loc[df_row_idx, feature_cols]
-                        if row_features.isnull().any():
-                            predicted = round(float(df.loc[normal_idx, target_col].mean()), 2)
-                        else:
-                            predicted = round(float(rf.predict(row_features.to_frame().T)[0]), 2)
-                    else:
-                        predicted = round(float(df.loc[normal_idx, target_col].mean()), 2)
-                else:
-                    predicted = round(float(df.loc[normal_idx, target_col].mean()), 2)
+total_time = time.time() - start_total
 
-                diff = round(abs(original - predicted), 2)
-                pct = (diff / abs(predicted) * 100) if predicted != 0 else 100
-                severity = "high" if pct > 50 else "medium" if pct > 20 else "low"
+print("====================================")
+print(f"Done! Saved to {output_file}")
+print(f"Total anomalies: {len(results_df)}")
+print(f"Total runtime: {total_time:.2f}s")
+print("====================================")
 
-                sheet_row_index = int(df_row_idx) + data_start_row
-
-                all_results.append({
-                    "cellId":         to_cell_id(sheet_index, sheet_row_index, sheet_col_idx),
-                    "column":         target_col,
-                    "rowIndex":       sheet_row_index,
-                    "colIndex":       sheet_col_idx,
-                    "originalValue":  original,
-                    "predictedValue": predicted,
-                    "difference":     diff,
-                    "severity":       severity,
-                    "reason":         "outlier",
-                })
-
-    severity_order = {"high": 0, "medium": 1, "low": 2}
-    all_results.sort(key=lambda x: (severity_order[x["severity"]], -(x["difference"] or 0)))
-
-    return {
-        "anomalies":       all_results,
-        "totalAnomalies":  len(all_results),
-        "columnsAnalyzed": list(columns_analyzed),
-    }
+if results_df.empty:
+    print("No anomalies detected — try increasing epochs or lowering threshold.")
