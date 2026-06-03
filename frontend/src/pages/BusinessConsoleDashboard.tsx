@@ -68,6 +68,7 @@ export function BusinessConsoleDashboard() {
         <ConsoleHome
           onOpenProjection={handleOpenProjection}
           onOpenPersonal={() => setActiveTool("personal")}
+          onOpenInvestment={() => setActiveTool("investment")}
         />
       );
     }
@@ -155,7 +156,7 @@ export function BusinessConsoleDashboard() {
           {renderMainContent()}
         </div>
 
-        <ConsoleAISidebar activeTool={activeTool} />
+        {activeTool !== "investment" && <ConsoleAISidebar activeTool={activeTool} />}
       </div>
     </div>
   );

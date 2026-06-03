@@ -15,6 +15,12 @@ const PERSONAL_FEATURES = [
   "Cash flow visualisation",
 ];
 
+const INVESTMENT_FEATURES = [
+  "AI portfolio analysis & insights",
+  "Live market data & price alerts",
+  "Risk, goals & scenario planning",
+];
+
 // ─── FeatureCard ──────────────────────────────────────────────────────────────
 
 interface FeatureCardProps {
@@ -73,9 +79,10 @@ function FeatureCard({
 interface ConsoleHomeProps {
   onOpenProjection: () => void;
   onOpenPersonal: () => void;
+  onOpenInvestment: () => void;
 }
 
-export function ConsoleHome({ onOpenProjection, onOpenPersonal }: ConsoleHomeProps) {
+export function ConsoleHome({ onOpenProjection, onOpenPersonal, onOpenInvestment }: ConsoleHomeProps) {
   return (
     <div className="h-full flex flex-col items-center justify-center py-10 px-6 font-sans">
       <img
@@ -90,7 +97,7 @@ export function ConsoleHome({ onOpenProjection, onOpenPersonal }: ConsoleHomePro
         Select a feature below to get started.
       </p>
 
-      <div className="grid grid-cols-2 gap-5 w-full max-w-[680px]">
+      <div className="grid grid-cols-3 gap-5 w-full max-w-[1020px]">
         <FeatureCard
           icon={<BarChart2 size={22} />}
           title="Financial Projection Engine"
@@ -108,11 +115,15 @@ export function ConsoleHome({ onOpenProjection, onOpenPersonal }: ConsoleHomePro
           buttonVariant="secondary"
           onClick={onOpenPersonal}
         />
-      </div>
-
-      <div className="flex items-center gap-2 mt-8 text-xs text-muted-foreground">
-        <TrendingUp size={13} className="opacity-50" />
-        <span>Investment Intelligence — Coming Soon</span>
+        <FeatureCard
+          icon={<TrendingUp size={22} />}
+          title="Investment Intelligence"
+          description="Track your portfolio, get AI-powered analysis, and make smarter investment decisions."
+          features={INVESTMENT_FEATURES}
+          buttonLabel="Open →"
+          buttonVariant="secondary"
+          onClick={onOpenInvestment}
+        />
       </div>
     </div>
   );

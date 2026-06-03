@@ -23,6 +23,7 @@ import type {
 import { InvestmentAIPanel } from "@/components/investment/InvestmentAIPanel";
 import { RiskTab } from "@/components/investment/RiskTab";
 import { InvestmentGoalsTab } from "@/components/investment/InvestmentGoalsTab";
+import { EllyChat } from "@/components/investment/EllyChat";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -33,6 +34,7 @@ const TABS = [
   { key: "risk",      label: "Risk & Protection" },
   { key: "goals",     label: "Goals" },
   { key: "ai",        label: "AI Scenarios" },
+  { key: "chat",      label: "Ask Elly" },
 ];
 
 const PIE_PALETTE = [
@@ -1128,7 +1130,7 @@ function AITab({ holdings, summary }: { holdings: InvestmentHolding[]; summary: 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <p style={{ fontSize: 12.5, color: "#666", margin: 0 }}>
-        Auto-generated portfolio health report — strengths, weaknesses, and next steps based on your holdings and onboarding profile. Use the Elly sidebar to ask specific questions or run scenarios.
+        Auto-generated portfolio health report — strengths, weaknesses, and next steps based on your holdings and onboarding profile. For a full conversation, switch to the Ask Elly tab.
       </p>
 
       <InvestmentAIPanel holdings={holdings} summary={summary} />
@@ -1209,6 +1211,7 @@ export function InvestmentPage() {
     risk:      <RiskTab holdings={holdings} summary={summary} snapshots={snapshots} />,
     goals:     <InvestmentGoalsTab holdings={holdings} summary={summary} />,
     ai:        <AITab holdings={holdings} summary={summary} />,
+    chat:      <EllyChat holdings={holdings} summary={summary} />,
   };
 
   return (

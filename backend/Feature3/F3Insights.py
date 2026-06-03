@@ -2,6 +2,7 @@ import json
 import re
 import os
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
 from groq import Groq
 
 try:
@@ -402,6 +403,21 @@ STRATEGY_WEIGHTS = {
 _ALLOCATION_TRIGGERS = (
     "allocat", "invest in", "what should", "split", "distribute",
     "put my", "divide", "recommend", "suggest", "where should",
+    "how should i", "how do i invest",
+)
+
+_PREDICTION_TRIGGERS = (
+    "predict", "forecast", "worth in", "value in", "price in",
+    "1 year", "3 year", "5 year", "next year", "what will", "future price",
+    "in a year", "in 5 year", "in 1 year", "in 3 year", "could be worth",
+    "price target", "by 2027", "by 2028", "by 2029", "by 2030", "by 2031",
+)
+
+_OPPORTUNITY_TRIGGERS = (
+    "top 5", "top five", "best investment", "opportunit",
+    "what to buy", "best stock", "where to invest",
+    "which stock", "what are the best", "buy right now", "buy now",
+    "right now", "current market",
 )
 
 
@@ -412,57 +428,194 @@ def _build_priority_block(user_question: str, onboarding: dict) -> str:
     block = f"""
 YOUR FIRST PRIORITY — ANSWER THIS QUESTION DIRECTLY:
 "{user_question}"
-Look at the portfolio data below and answer this specific question before doing anything else.
+Look at the portfolio data and all market data provided below. Answer this specific question before anything else.
 """
 
     onboarding = onboarding or {}
-    q_lower = user_question.lower()
-    if not any(w in q_lower for w in _ALLOCATION_TRIGGERS):
+    q_lower    = user_question.lower()
+    now        = datetime.now()
+
+    # ── PRICE PREDICTION QUESTION ──────────────────────────────────────────────
+    if any(t in q_lower for t in _PREDICTION_TRIGGERS):
+        year1 = now.year + 1
+        year3 = now.year + 3
+        year5 = now.year + 5
+        block += f"""
+PRICE PREDICTION FORMAT — produce your QUESTION_RESPONSE using EXACTLY this structure.
+Use ## and **bold** markdown formatting inside QUESTION_RESPONSE only.
+
+## [TICKER] — Price Prediction & Outlook
+
+**Current Position**
+- Current price: $[exact figure from MARKET ANALYSIS — do not approximate]
+- 52-week range: $[low] / $[high]
+- Market cap: $[X]B | P/E: [X]x | Forward P/E: [X]x
+
+**1-Year Outlook (by {year1})**
+- Base case: $[price] ([+/-X]% return) — [1-sentence reasoning grounded in current data or news]
+- Bull case: $[price] ([+X]% return) — [specific catalyst: product launch, earnings beat, macro tailwind]
+- Bear case: $[price] ([-X]% return) — [specific risk trigger: regulation, competition, macro headwind]
+
+**3-Year Outlook (by {year3})**
+- Base case: $[price] ([+/-X]% total return) | Bull: $[price] | Bear: $[price]
+- Primary driver: [key factor with a specific metric or growth rate]
+
+**5-Year Outlook (by {year5})**
+- Base case: $[price] ([+/-X]% total, ~X% annualised CAGR) | Bull: $[price] | Bear: $[price]
+- Long-term thesis: [fundamental structural reason with market size or penetration rate]
+
+**Key Growth Drivers**
+- [driver 1 — include TAM size, revenue growth %, or unit volume data]
+- [driver 2 — cite specific metric from market data or news]
+- [driver 3 — product cycle, geography, or competitive moat with evidence]
+
+**Risks & Uncertainties**
+- [risk 1 with specific scenario] — Impact: High
+- [risk 2 with specific scenario] — Impact: Medium
+- [risk 3 with specific scenario] — Impact: Medium
+
+**Industry Outlook**
+[2-3 sentences: sector TAM projection, competitive dynamics, regulatory environment — all with specific figures and timeframes]
+
+**Confidence Level**: [High / Medium / Low]
+**Reasoning**: [1-2 sentences explaining confidence rating based on data quality, market predictability, and how far out the horizon is]
+
+If Prophet MARKET PREDICTIONS are provided above, incorporate those exact projected prices and timeframes.
+If live MARKET ANALYSIS data is present, use those exact current prices and fundamentals.
+
+CRITICAL — output ALL six sections in this exact order. The full prediction analysis above goes inside [SECTION: QUESTION_RESPONSE]:
+[SECTION: SUMMARY] → 2-3 sentences on the stock and its current portfolio context
+[SECTION: PROS] → 2-4 bullets (strengths / bull case evidence)
+[SECTION: CONS] → 2-4 bullets (risks / bear case evidence)
+[SECTION: NEXT_STEPS] → 2-3 actionable bullets
+[SECTION: QUESTION_RESPONSE] → paste the FULL formatted prediction analysis here
+[SECTION: SOURCES] → list data sources (yfinance, news, prophet, portfolio, onboarding)
+"""
         return block
 
-    capital         = onboarding.get("investmentCapital") or onboarding.get("investment_capital")
-    asset_interests = onboarding.get("assetInterests") or onboarding.get("asset_interests") or []
-    strategies      = onboarding.get("investmentStrategies") or onboarding.get("investment_strategies") or []
-    experience      = onboarding.get("experienceLevel") or onboarding.get("experience_level", "beginner")
-    time_horizon    = onboarding.get("timeHorizon") or onboarding.get("time_horizon", "monthly")
-    age             = onboarding.get("age", 30)
+    # ── TOP OPPORTUNITIES QUESTION ─────────────────────────────────────────────
+    if any(t in q_lower for t in _OPPORTUNITY_TRIGGERS):
+        strategies      = onboarding.get("investmentStrategies") or onboarding.get("investment_strategies") or []
+        asset_interests = onboarding.get("assetInterests") or onboarding.get("asset_interests") or ["stock", "etf"]
+        experience      = onboarding.get("experienceLevel") or onboarding.get("experience_level", "intermediate")
+        _raw_cap_opp    = onboarding.get("investmentCapital") or onboarding.get("investment_capital") or 0
+        capital         = float(_raw_cap_opp) if _raw_cap_opp not in (None, "") else 0
 
-    primary_strategy = strategies[0] if strategies else "buy_and_hold"
-    weights = STRATEGY_WEIGHTS.get(primary_strategy, STRATEGY_WEIGHTS["buy_and_hold"])
-    tickers = STRATEGY_TICKERS.get(primary_strategy, STRATEGY_TICKERS["buy_and_hold"])
+        block += f"""
+TOP OPPORTUNITIES FORMAT — produce your QUESTION_RESPONSE using EXACTLY this structure.
+Use ## and **bold** markdown formatting inside QUESTION_RESPONSE only.
+Limit to asset classes in: {', '.join(asset_interests)}.
+Align picks with strategy: {', '.join(strategies) if strategies else 'buy and hold'}.
 
-    if not (capital and asset_interests):
+## Top 5 Investment Opportunities — {now.strftime('%B %Y')}
+
+**Selection Criteria**: Ranked by a combination of valuation attractiveness, earnings momentum, sector tailwinds, news sentiment, and risk-adjusted upside potential.
+
+**#1 [TICKER] — [Company Name]** | Confidence: [X]/10
+- Current price: $[X] | P/E: [X]x | Forward P/E: [X]x | Market cap: $[X]B
+- **Why selected**: [1-2 sentences — specific catalyst: earnings beat, product cycle, market position, valuation discount vs peers]
+- **Sector analysis**: [market share %, TAM size, sector CAGR — all with figures]
+- **Risk**: [Low / Medium / High] — [primary risk with specific detail]
+- **Growth potential**: +[X]–[X]% over [timeframe]
+- **Investment horizon**: [Short-term <1yr / Medium-term 1–3yr / Long-term 3yr+]
+
+[Repeat #2, #3, #4, #5 in identical format]
+
+**Portfolio fit for your profile**: [1 sentence on which picks best match the {', '.join(strategies) if strategies else 'buy and hold'} strategy and {experience} experience level{f', and fit within ${capital:,} capital' if capital else ''}]
+**Methodology**: Selections based on live market data, news sentiment analysis, earnings signals, sector rotation, and valuation vs. historical averages.
+
+Use MARKET ANALYSIS data for current prices. For any tickers not in the provided data, use your knowledge and mark figures as (est.).
+
+CRITICAL — output ALL six sections in this exact order. The full opportunities list above goes inside [SECTION: QUESTION_RESPONSE]:
+[SECTION: SUMMARY] → 2-3 sentences on current market conditions and theme
+[SECTION: PROS] → 2-4 bullets (general market tailwinds supporting these picks)
+[SECTION: CONS] → 2-4 bullets (market risks or headwinds to watch)
+[SECTION: NEXT_STEPS] → 2-3 actionable bullets (how to act on these opportunities)
+[SECTION: QUESTION_RESPONSE] → paste the FULL formatted top-5 list here
+[SECTION: SOURCES] → list data sources (market data, news, earnings, sector analysis)
+"""
         return block
 
-    n = len(asset_interests)
-    total_w = sum(weights.get(a, 1 / n) for a in asset_interests)
-    splits = []
-    for asset in asset_interests:
-        w = weights.get(asset, 1 / n) / total_w
-        dollar_amt = round(capital * w)
-        suggested = ", ".join(tickers.get(asset, [])[:3])
-        splits.append(f"{asset}: {round(w*100)}% = ${dollar_amt:,}  →  e.g. {suggested}")
+    # ── ALLOCATION QUESTION ────────────────────────────────────────────────────
+    if any(w in q_lower for w in _ALLOCATION_TRIGGERS):
+        _raw_cap        = onboarding.get("investmentCapital") or onboarding.get("investment_capital")
+        capital         = float(_raw_cap) if _raw_cap not in (None, "") else None
+        asset_interests = onboarding.get("assetInterests") or onboarding.get("asset_interests") or []
+        strategies      = onboarding.get("investmentStrategies") or onboarding.get("investment_strategies") or []
+        experience      = onboarding.get("experienceLevel") or onboarding.get("experience_level", "beginner")
+        time_horizon    = onboarding.get("timeHorizon") or onboarding.get("time_horizon", "monthly")
+        age             = int(float(onboarding.get("age") or 30))
+        _raw_ec         = onboarding.get("emergencyCash") or onboarding.get("emergency_cash") or 0
+        emergency_cash  = float(_raw_ec) if _raw_ec not in (None, "") else 0
 
-    block += f"""
-PERSONALISED RECOMMENDATION REQUIRED — answer using these exact figures:
+        primary_strategy = strategies[0] if strategies else "buy_and_hold"
+        weights          = STRATEGY_WEIGHTS.get(primary_strategy, STRATEGY_WEIGHTS["buy_and_hold"])
+        tickers          = STRATEGY_TICKERS.get(primary_strategy, STRATEGY_TICKERS["buy_and_hold"])
 
-User profile:
+        if not (capital and asset_interests):
+            return block
+
+        n       = len(asset_interests)
+        total_w = sum(weights.get(a, 1 / n) for a in asset_interests)
+        splits  = []
+        alloc_sections = []
+        for asset in asset_interests:
+            w          = weights.get(asset, 1 / n) / total_w
+            dollar_amt = round(capital * w)
+            pct        = round(w * 100)
+            suggested  = ", ".join(tickers.get(asset, [])[:4])
+            splits.append(f"{asset}: {pct}% = ${dollar_amt:,}  →  e.g. {suggested}")
+            alloc_sections.append(
+                f"### {asset.title()} ({pct}% = ${dollar_amt:,})\n"
+                f"Suggested tickers: {suggested}\n"
+                f"[Write 2-3 bullets explaining WHY each ticker fits the "
+                f"{primary_strategy.replace('_', ' ')} strategy — include specific rationale such as "
+                f"dividend yield, growth rate, liquidity, or sector exposure]"
+            )
+
+        target_year = now.year + 10
+
+        block += f"""
+ALLOCATION FORMAT — produce your QUESTION_RESPONSE using EXACTLY this structure.
+Use ## and **bold** markdown formatting inside QUESTION_RESPONSE only.
+Use these exact figures — do not change the dollar amounts or percentages:
+
+## Portfolio Allocation Plan — ${capital:,} Capital | {time_horizon.title()} Horizon
+
+**Your Investment Profile**
 - Capital available: ${capital:,}
-- Age: {age}
-- Strategy: {', '.join(strategies)}
-- Time horizon: {time_horizon}
-- Experience: {experience}
+- Primary strategy: {primary_strategy.replace('_', ' ').title()}
+- Time horizon: {time_horizon} | Age: {age} | Experience: {experience.title()}
 - Asset interests: {', '.join(asset_interests)}
 
-Suggested allocation (use these numbers exactly):
+**Recommended Allocation**
 {chr(10).join('- ' + s for s in splits)}
 
-In QUESTION_RESPONSE:
-1. Open with: "Based on your ${capital:,} capital, {time_horizon} horizon, and {primary_strategy.replace('_', ' ')} strategy, here's what I'd recommend:"
-2. For each asset class above, give the dollar amount AND 2-3 specific ticker examples from the list
-3. Add 1 sentence explaining why this suits their strategy and age
-4. Keep it under 150 words
+{chr(10).join(alloc_sections)}
+
+**Why This Allocation?**
+[2-3 sentences: explain the logic behind this specific mix given age {age}, strategy {primary_strategy.replace('_', ' ')}, and {time_horizon} horizon. Include the risk-return trade-off and why these weightings fit their profile.]
+
+**Risk Management**
+- Rebalancing: [recommend frequency appropriate to {time_horizon} horizon]
+- Position sizing: [max % per single holding recommendation]
+- Diversification note: [sector or geographic spread comment]
+{f'- Emergency reserve: Keep ${emergency_cash:,} in cash outside the market — do not invest this' if emergency_cash > 0 else ''}
+
+**10-Year Growth Projection**
+At a [X]% estimated average annual return (based on historical benchmarks for this strategy), ${capital:,} could grow to approximately $[capital × (1+r)^10 calculated] by {target_year}.
+If Prophet predictions are available for any suggested tickers, cite those figures.
+
+CRITICAL — output ALL six sections in this exact order. The full allocation plan above goes inside [SECTION: QUESTION_RESPONSE]:
+[SECTION: SUMMARY] → 2-3 sentences summarising the recommended allocation and rationale
+[SECTION: PROS] → 2-4 bullets (strengths of this allocation for this profile)
+[SECTION: CONS] → 2-4 bullets (risks or limitations of this plan)
+[SECTION: NEXT_STEPS] → 2-3 bullets (immediate actions: open accounts, first purchases, set alerts)
+[SECTION: QUESTION_RESPONSE] → paste the FULL formatted allocation plan here
+[SECTION: SOURCES] → list data sources (onboarding profile, portfolio data, market data)
 """
+        return block
+
     return block
 
 
@@ -503,8 +656,8 @@ RELEVANT PAST CONVERSATIONS:
 
 IMPORTANT RULES:
 - Use the portfolio JSON, live market data, and news provided below
-- Do NOT invent data or prices
-- Keep responses concise and use plain English
+- Do NOT invent data or prices — use MARKET ANALYSIS as the primary source for current prices and fundamentals
+- Be thorough and data-driven — every claim must include at least one specific metric (%, price, ratio, or dollar amount)
 - Do NOT include disclaimers
 - Bullet points must start with "-"
 - If market data or news is present, reference it directly in your answer
@@ -544,33 +697,32 @@ NEWS CONTEXT (sentiment / qualitative only — do not invent quotes):
 {news_block}
 
 STRICT OUTPUT FORMAT:
-- Section headers MUST match EXACTLY
+- You MUST output ALL six sections: SUMMARY, PROS, CONS, NEXT_STEPS, QUESTION_RESPONSE, SOURCES
+- Section headers MUST match EXACTLY — every response must contain all six [SECTION: ...] markers
 - No extra sections
-- No markdown headings
+- Markdown (##, ###, **bold**) is ONLY permitted inside QUESTION_RESPONSE — keep SUMMARY, PROS, CONS, and NEXT_STEPS as plain text with no headings
 
 [SECTION: SUMMARY]
-Write a short portfolio summary (2-3 sentences).
+Write a comprehensive portfolio summary (3-5 sentences) covering overall performance, allocation breakdown, geographic spread, and the primary risk or opportunity. Include specific return percentages and dollar values where available.
 
 [SECTION: PROS]
-- List portfolio strengths
-- Max 5 bullets
+- List portfolio strengths with specific metrics (e.g. return %, P/E ratio, diversification score, yield)
+- Up to 7 bullets — each must include at least one data point or figure
 
 [SECTION: CONS]
-- List portfolio weaknesses or risks
-- Max 5 bullets
+- List portfolio weaknesses or risks with specific data points
+- Up to 7 bullets — each must include at least one metric, percentage, or dollar figure
 
 [SECTION: NEXT_STEPS]
-- List practical recommendations based on portfolio and any market data provided
-- Max 5 bullets
+- List concrete, actionable recommendations with specific amounts, percentages, or timeframes
+- Up to 7 bullets — include dollar targets or percentage thresholds where relevant
 - Must always include at least 1 bullet
 
 [SECTION: QUESTION_RESPONSE]
-Answer the question "{user_question if user_question else ''}" directly using the portfolio data, MARKET ANALYSIS, MARKET PREDICTIONS, and NEWS CONTEXT above.
-Start with a direct conclusion grounded in the data, then expand with specific numbers (%, prices, ratios) from MARKET ANALYSIS.
-Use specific holding names. Keep under 240 words.
-If the question is about allocation or what to invest in, give concrete percentage splits AND dollar amounts based on onboarding.investmentCapital, broken down by asset class (stocks/crypto/ETFs) matching onboarding.assetInterests.
-Match complexity to user experience level: {onboarding_experience}.
-Suggestions must stay within ${onboarding_capital:,} and align with strategy: {onboarding_strategy_text}.
+If YOUR FIRST PRIORITY above specifies an exact format structure, follow that structure precisely using ## and **bold** markdown.
+Otherwise: answer "{user_question if user_question else ''}" directly using portfolio data, MARKET ANALYSIS, MARKET PREDICTIONS, and NEWS CONTEXT.
+Start with a direct conclusion grounded in data, then expand with specific numbers (%, prices, ratios).
+Match complexity to experience level: {onboarding_experience}. Suggestions must stay within ${onboarding_capital:,} and align with strategy: {onboarding_strategy_text}.
 If no question was provided write: No question provided.
 
 [SECTION: SOURCES]
@@ -655,6 +807,12 @@ def parse_output(text):
         "question_response": sections.get("question_response", ""),
         "sources": clean_bullets(sections.get("sources", ""))
     }
+
+    # Fallback: when the LLM ignores section headers entirely (outputs raw markdown),
+    # capture the full output as question_response so nothing is silently discarded.
+    if not any([structured["summary"], structured["question_response"],
+                structured["pros"], structured["cons"]]) and text.strip():
+        structured["question_response"] = text.strip()
 
     return structured
 
@@ -766,11 +924,12 @@ def store_sectioned_memories(user_question, parsed):
             "section": "next_steps"
         })
 
-    # 5. RESPONSE (single memory)
+    # 5. RESPONSE (single memory — truncated to keep within Ollama embedding limit)
     if parsed.get("question_response"):
+        truncated = parsed["question_response"][:1200]
         memories.append({
             "user": base + " response",
-            "assistant": parsed["question_response"],
+            "assistant": truncated,
             "section": "response"
         })
 
@@ -935,7 +1094,10 @@ def run_analysis(data: dict, memories=None) -> dict:
 
     parsed = parse_output(raw_output)
     save_output(parsed)
-    store_sectioned_memories(user_question, parsed)
+    try:
+        store_sectioned_memories(user_question, parsed)
+    except Exception as e:
+        print(f"[memory] store_sectioned_memories failed (non-fatal): {e}")
     return parsed
 
 
