@@ -228,7 +228,47 @@ class InvestmentOnboardingProfile(Base):
     investment_strategies = Column(String,  nullable=True)    # JSON list[str]
     time_horizon          = Column(String,  nullable=False)   # daily | weekly | monthly | annually | indefinitely
     asset_interests       = Column(String,  nullable=True)    # JSON list[str]
+    country               = Column(String,  nullable=True)    # user's home country for domestic stock suggestions
     completed_at          = Column(DateTime, default=func.now(), onupdate=func.now())
+
+
+# ─────────────────────────────────────────────
+# Feature 5 — Knowledge & Learning Models
+# ─────────────────────────────────────────────
+
+class EllyConversation(Base):
+    """Cross-feature ELLY chat history. One row per question/answer pair."""
+
+    __tablename__ = "elly_conversations"
+
+    id             = Column(String,  primary_key=True)
+    user_id        = Column(String,  nullable=False, index=True)
+    question       = Column(String,  nullable=False)
+    answer         = Column(String,  nullable=False)
+    topics         = Column(String,  nullable=True)   # JSON list[str]
+    feature_source = Column(String,  nullable=True)   # f1 | f2 | f3 | general
+    created_at     = Column(DateTime, default=func.now())
+
+
+class UserGoal(Base):
+    """
+    Cross-feature goal tracker (Feature 5).
+    Goals can be auto-generated from F1/F2/F3 signals or created manually.
+    stage: identified → in_progress → done
+    source_feature: f1 | f2 | f3 | manual
+    """
+
+    __tablename__ = "user_goals"
+
+    id             = Column(String,  primary_key=True)
+    user_id        = Column(String,  nullable=False, index=True)
+    title          = Column(String,  nullable=False)
+    description    = Column(String,  nullable=True)
+    source_feature = Column(String,  nullable=False, default="manual")
+    stage          = Column(String,  nullable=False, default="identified")
+    next_step      = Column(String,  nullable=True)
+    created_at     = Column(DateTime, default=func.now())
+    updated_at     = Column(DateTime, default=func.now(), onupdate=func.now())
 
 
 class ForecastConfig(Base):

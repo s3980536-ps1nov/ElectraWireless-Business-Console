@@ -36,7 +36,8 @@ def _years_held(purchase_date: str | date) -> float:
 
 
 def _current_value(holding: dict) -> float:
-    price = holding.get("current_price") or holding.get("buy_price", 0.0)
+    cp = holding.get("current_price")
+    price = cp if cp is not None else holding.get("buy_price", 0.0)
     return price * holding.get("quantity", 0.0)
 
 
@@ -75,11 +76,16 @@ def calculate_volatility(symbol: str, asset_type: str) -> float | None:
         return None
     try:
         hist = yf.Ticker(symbol).history(period="1y")
-        if hist.empty or len(hist) < 5:
+        if hist.empty:
             return None
-        closes = hist["Close"].values.astype(float)
+        closes = hist["Close"].dropna().values.astype(float)
+        if len(closes) < 5:
+            return None
         daily_returns = np.diff(closes) / closes[:-1]
-        return round(float(np.std(daily_returns, ddof=1) * math.sqrt(252)), 6)
+        vol = float(np.std(daily_returns, ddof=1) * math.sqrt(252))
+        if math.isnan(vol) or math.isinf(vol):
+            return None
+        return round(vol, 6)
     except Exception:
         return None
 
@@ -94,7 +100,8 @@ def calculate_asset_performance(holding: dict, include_volatility: bool = False)
     pl    = value - cost
     pct   = (pl / cost * 100.0) if cost > 0 else 0.0
 
-    effective_price = holding.get("current_price") or holding["buy_price"]
+    cp = holding.get("current_price")
+    effective_price = cp if cp is not None else holding["buy_price"]
     cagr = calculate_cagr(holding["buy_price"], effective_price, holding["purchase_date"])
     vol  = calculate_volatility(holding["symbol"], holding.get("asset_type", "")) if include_volatility else None
 

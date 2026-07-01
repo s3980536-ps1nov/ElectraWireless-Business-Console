@@ -1,18 +1,18 @@
 {
-  "summary": "The user's portfolio has a total value of $12,500, with a return percentage of 25% over the last 6 months. The portfolio is heavily concentrated in crypto, with 69.6% of the total value in BTC.",
+  "summary": "The user's portfolio has a total value of $12,500, with a profit/loss of $2,500 and a return percentage of 25%. The portfolio is heavily concentrated in crypto, with 69.6% of the total value in BTC.",
   "pros": [
-    "The portfolio has a high return percentage of 25% over the last 6 months",
-    "The top gainer is BTC, with a return percentage of 38.1%",
+    "The portfolio has a high return percentage of 25%",
     "The user has a high savings rate of 22%",
-    "The portfolio has a cash balance of $1,500",
-    "The user has a buy-and-hold investment strategy"
+    "The portfolio has a low cash balance of $1,500, indicating a high investment allocation",
+    "The user has a long-term investment strategy with a time horizon of monthly",
+    "The portfolio has a high net cash flow of $2,800"
   ],
   "cons": [
     "The portfolio has a high concentration in crypto, with 69.6% of the total value in BTC",
-    "The diversification score is 62, indicating a low level of diversification",
-    "The portfolio dipped in April, with a 4.1% decrease in value",
+    "The portfolio has a low diversification score of 62",
     "The user has a high risk grade of B",
-    "The portfolio has a high volatility of 18.4%"
+    "The portfolio has a high volatility of 18.4",
+    "The user has a limited investment experience level of beginner"
   ],
   "next_steps": [
     "Reduce crypto concentration to below 25%",
@@ -21,10 +21,8 @@
     "Rebalance the portfolio regularly",
     "Consider adding a stop-loss order to limit potential losses"
   ],
-  "question_response": "Based on the available data, if the user invests in BHP Group today, the predicted value in 1 year could be around $150.49, with a gain of 69.27%. In 3 years, the predicted value could be around $279.67, with a gain of 214.56%. In 5 years, the predicted value could be around $408.23, with a gain of 359.15%.",
+  "question_response": "Based on the available data, if the user invests in NVIDIA today, the AI predicts its value could be $392.35 in 1 year, $758.37 in 3 years, and $1,112.95 in 5 years. This is based on the forward-looking signals from the prophet model, which predicts a gain of 85.82% in 1 year, 259.18% in 3 years, and 427.12% in 5 years.",
   "sources": [
-    "BHP market analysis data",
-    "Prophet model predictions for BHP",
-    "User portfolio data"
+    "The available data sources used include the primary numerical truth, forward-looking signals, and news context. Specifically, the NVDA data source was used to determine the predicted values."
   ]
 }

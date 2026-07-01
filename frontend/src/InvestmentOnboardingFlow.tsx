@@ -112,6 +112,61 @@ function MultiChoiceGroup<T extends string>({ label, hint, values, options, onCh
 
 interface StepProps { state: OBState; patch: (p: Partial<OBState>) => void; }
 
+const COUNTRIES = [
+  "Australia", "Austria", "Belgium", "Brazil", "Canada", "Chile", "China",
+  "Colombia", "Czech Republic", "Denmark", "Egypt", "Finland", "France",
+  "Germany", "Greece", "Hong Kong", "Hungary", "India", "Indonesia", "Ireland",
+  "Israel", "Italy", "Japan", "Malaysia", "Mexico", "Netherlands", "New Zealand",
+  "Nigeria", "Norway", "Pakistan", "Philippines", "Poland", "Portugal",
+  "Romania", "Saudi Arabia", "Singapore", "South Africa", "South Korea",
+  "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Turkey",
+  "United Arab Emirates", "United Kingdom", "United States", "Vietnam",
+];
+
+function CountryAutocomplete({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [query, setQuery]       = useState(value);
+  const [open, setOpen]         = useState(false);
+
+  const filtered = query.length > 0
+    ? COUNTRIES.filter((c) => c.toLowerCase().includes(query.toLowerCase())).slice(0, 6)
+    : [];
+
+  function select(c: string) {
+    onChange(c);
+    setQuery(c);
+    setOpen(false);
+  }
+
+  return (
+    <div className="relative mb-6">
+      <label className="text-muted-foreground text-sm font-semibold block mb-2">Country</label>
+      <p className="text-muted-foreground text-xs mb-2">Used to suggest domestic investment opportunities.</p>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => { setQuery(e.target.value); onChange(e.target.value); setOpen(true); }}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        placeholder="Type your country…"
+        className="w-full px-3 py-2 rounded-lg text-sm font-sans bg-transparent border border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none transition-colors duration-150"
+      />
+      {open && filtered.length > 0 && (
+        <ul className="absolute z-50 w-full mt-1 rounded-lg border border-border bg-white/90 backdrop-blur-sm shadow-lg overflow-hidden">
+          {filtered.map((c) => (
+            <li
+              key={c}
+              onMouseDown={() => select(c)}
+              className="px-3 py-2 text-sm cursor-pointer hover:bg-primary/10 hover:text-primary text-foreground font-sans transition-colors duration-100"
+            >
+              {c}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function PersonalContextStep({ state, patch }: StepProps) {
   return (
     <div>
@@ -121,6 +176,7 @@ function PersonalContextStep({ state, patch }: StepProps) {
         title="Personal Context"
         sub="Helps Elly tailor explanations to your situation."
       />
+      <CountryAutocomplete value={state.country} onChange={(v) => patch({ country: v })} />
       <Slider
         label="Age"
         value={state.age}

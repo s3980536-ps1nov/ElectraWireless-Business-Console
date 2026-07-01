@@ -1,5 +1,5 @@
 {
-  "question": "If I invest in bhp group today, what does the AI predict its value could realistically become in 1 year, 3 years, and 5 years based on market trends, financials, and industry growth?",
+  "question": "If I invest in NVIDIA today, what does the AI predict its value could be in 1 year, 3 years, and 5 years?",
   "Goals": "Reach $20,000 portfolio value within 12 months\nKeep crypto exposure below 25%",
   "period": "Last 6 months",
   "summary": {
@@ -188,13 +188,14 @@
   },
   "onboarding": {
     "available": true,
-    "age": 30,
-    "experienceLevel": "beginner",
-    "investmentCapital": 50000,
-    "emergencyCash": 10000,
-    "communicationStyle": "simple",
+    "age": 25,
+    "experienceLevel": "intermediate",
+    "investmentCapital": 102000,
+    "emergencyCash": 18000,
+    "communicationStyle": "technical",
     "investmentStrategies": [
-      "buy_and_hold"
+      "buy_and_hold",
+      "growth"
     ],
     "timeHorizon": "monthly",
     "assetInterests": [
@@ -202,6 +203,7 @@
       "crypto",
       "etf"
     ],
-    "completedAt": "2026-05-30T04:18:07.420469+00:00"
+    "completedAt": "2026-06-13T05:19:26.883806+00:00",
+    "country": "Australia"
   }
 }

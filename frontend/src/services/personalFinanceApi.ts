@@ -103,8 +103,15 @@ export function parseBankStatement(data: ParsedData): Transaction[] {
       const d = new Date((v - 25569) * 86400 * 1000);
       return d.toISOString().slice(0, 10);
     }
-    const d = new Date(String(v));
-    return isNaN(d.getTime()) ? String(v) : d.toISOString().slice(0, 10);
+    const str = String(v).trim();
+    // DD/MM/YYYY or DD-MM-YYYY or DD.MM.YYYY (Australian bank format)
+    const ddmmyyyy = str.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})$/);
+    if (ddmmyyyy) {
+      const [, dd, mm, yyyy] = ddmmyyyy;
+      return `${yyyy}-${mm.padStart(2, "0")}-${dd.padStart(2, "0")}`;
+    }
+    const d = new Date(str);
+    return isNaN(d.getTime()) ? str : d.toISOString().slice(0, 10);
   };
 
   return data.rows

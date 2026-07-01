@@ -385,6 +385,20 @@ export function EllyChat({
   async function send(question: string) {
     const q = question.trim();
     if (!q || sending || !holdings.length) return;
+
+    // Snapshot history BEFORE pushing the new user message
+    const history = messages
+      .filter((m): m is typeof m & { role: "user" | "elly" } => m.role === "user" || m.role === "elly")
+      .slice(-8)
+      .flatMap((m) => {
+        if (m.role === "user") return [{ role: "user" as const, content: m.text }];
+        if (m.role === "elly" && m.state === "done") {
+          const content = m.response.question_response || m.response.summary || "";
+          return content ? [{ role: "assistant" as const, content }] : [];
+        }
+        return [];
+      });
+
     setSending(true);
     setInput("");
     pushUser(q);
@@ -402,8 +416,9 @@ export function EllyChat({
         investmentStrategies: onboarding.investmentStrategies,
         timeHorizon:          onboarding.timeHorizon,
         assetInterests:       onboarding.assetInterests,
+        country:              onboarding.country,
         completedAt:          onboarding.completedAt,
-      }, goalsSummary, "Current portfolio", summary, pfContext);
+      }, goalsSummary, "Current portfolio", summary, pfContext, history);
       const result = await fetchInvestmentAIInsights(payload);
       resolveLoading(loadingId, result);
     } catch {

@@ -3,7 +3,6 @@ import { useProjectionStore } from "@/store/projectionStore";
 import type { ProfilePreset } from "@/lib/profilePresets";
 import { saveForecastConfig } from "@/services/investmentApi";
 import ImportFinancialDataStep from "@/components/ImportFinancialDataStep";
-import type { ExtractedValues } from "@/lib/importUtils";
 import {
   ProgressBar,
   StepHeader,
@@ -192,7 +191,6 @@ interface OnboardingFlowProps { onComplete: () => void; onBack: () => void; init
 export default function OnboardingFlow({ onComplete, onBack, initialValues }: OnboardingFlowProps) {
   const [step, setStep] = useState(1);
   const [state, setState] = useState<OBState>(initialValues ?? DEFAULT);
-  const [importedValues, setImportedValues] = useState<ExtractedValues | undefined>(undefined);
 
   const patch = (p: Partial<OBState>) => setState((prev) => ({ ...prev, ...p }));
 
@@ -215,25 +213,16 @@ export default function OnboardingFlow({ onComplete, onBack, initialValues }: On
     setPayroll(state.usePayroll ? state.payroll : 0);
     setForecastMonths(state.months);
 
-    // Imported values take precedence over slider values for any detected fields
-    if (importedValues) {
-      if (importedValues.startingMRR    !== undefined) setStartingMRR(importedValues.startingMRR);
-      if (importedValues.growthRate     !== undefined) setGrowthRate(importedValues.growthRate);
-      if (importedValues.cogsPercent    !== undefined) setCogsPercent(importedValues.cogsPercent);
-      if (importedValues.marketingSpend !== undefined) setMarketingSpend(importedValues.marketingSpend);
-      if (importedValues.payroll        !== undefined) setPayroll(importedValues.payroll);
-    }
-
     saveCustomSnapshot();
     fetchProphetForecast();
 
     saveForecastConfig({
-      starting_mrr:    importedValues?.startingMRR    ?? state.revenue,
-      growth_rate:     (importedValues?.growthRate    ?? state.growthRate) * 100,
+      starting_mrr:    state.revenue,
+      growth_rate:     state.growthRate * 100,
       churn_rate:      state.churnRate,
-      cogs_percent:    state.useCOGS    ? (importedValues?.cogsPercent    ?? state.cogsPercent)    * 100 : 0,
-      marketing_spend: state.useMarketing ? (importedValues?.marketingSpend ?? state.marketingSpend) : 0,
-      payroll:         state.usePayroll   ? (importedValues?.payroll        ?? state.payroll)        : 0,
+      cogs_percent:    state.useCOGS    ? state.cogsPercent    * 100 : 0,
+      marketing_spend: state.useMarketing ? state.marketingSpend : 0,
+      payroll:         state.usePayroll   ? state.payroll        : 0,
       months:          state.months,
     }).catch(() => {});
 
@@ -249,17 +238,7 @@ export default function OnboardingFlow({ onComplete, onBack, initialValues }: On
           <ImportFinancialDataStep
             onBack={onBack}
             onSkip={() => setStep(2)}
-            onApply={(vals) => {
-              setImportedValues(vals);
-              patch({
-                ...(vals.startingMRR    !== undefined && { revenue:       vals.startingMRR }),
-                ...(vals.growthRate     !== undefined && { growthRate:    vals.growthRate / 100 }),
-                ...(vals.cogsPercent    !== undefined && { cogsPercent:   vals.cogsPercent / 100, useCOGS: true }),
-                ...(vals.marketingSpend !== undefined && { marketingSpend: vals.marketingSpend, useMarketing: true }),
-                ...(vals.payroll        !== undefined && { payroll:        vals.payroll, usePayroll: true }),
-              });
-              setStep(2);
-            }}
+            onApply={() => setStep(2)}
           />
         )}
         {step === 2 && <RevenueStep state={state} patch={patch} />}

@@ -77,6 +77,7 @@ export interface InvestmentOnboardingPayload {
   investmentStrategies: Array<"day_trading" | "index" | "growth" | "income" | "buy_and_hold" | "dollar_cost_average">;
   timeHorizon:          "daily" | "weekly" | "monthly" | "annually" | "indefinitely";
   assetInterests:       Array<"stock" | "crypto" | "etf">;
+  country?:             string;
 }
 
 export interface InvestmentOnboardingRecord extends InvestmentOnboardingPayload {
@@ -343,7 +344,9 @@ export interface InvestmentAIRequest {
     assetInterests:       string[];
     // Cross-feature: average monthly expenses from PF (triggers emergency reserve calc)
     monthlyExpenses?:     number;
+    country?:             string;
   };
+  history?: Array<{ role: "user" | "assistant"; content: string }>;
 }
 
 export interface InvestmentAIOnboardingInput extends InvestmentOnboardingPayload {
@@ -358,6 +361,7 @@ export function buildInvestmentAIPayload(
   period:     string = "Current portfolio",
   summary:    PortfolioSummary | null = null,
   pfContext:  PFContextInput | null = null,
+  history:    Array<{ role: "user" | "assistant"; content: string }> = [],
 ): InvestmentAIRequest {
   const cashBalance = holdings
     .filter((h) => h.asset_type === ("cash" as AssetType))
@@ -420,7 +424,9 @@ export function buildInvestmentAIPayload(
       assetInterests:       onboarding.assetInterests,
       // monthlyExpenses triggers the emergency cash reserve block in the backend prompt
       ...(pfContext ? { monthlyExpenses: pfContext.monthlyExpenses } : {}),
+      ...(onboarding.country ? { country: onboarding.country } : {}),
     },
+    ...(history.length ? { history } : {}),
   };
 }
 

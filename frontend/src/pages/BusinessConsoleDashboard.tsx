@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ConsoleTopBar } from "@/components/ConsoleTopBar";
 import { ConsoleSidebar, type ConsoleTool } from "@/components/ConsoleSidebar";
 import { ConsoleAISidebar } from "@/components/ConsoleAISidebar";
 import { ProjectionPage } from "@/pages/ProjectionPage";
 import { PersonalFinancePage } from "@/pages/PersonalFinancePage";
 import { InvestmentPage } from "@/pages/InvestmentPage";
+import { KnowledgePage } from "@/pages/KnowledgePage";
 import { ConsoleHome } from "@/pages/ConsoleHome";
 import ProfileSelector from "@/ProfileSelector";
 import OnboardingFlow from "@/OnboardingFlow";
@@ -19,11 +20,22 @@ import type { ProfilePreset } from "@/lib/profilePresets";
 type OnboardStage = "idle" | "profile-selector" | "onboarding-flow" | "investment-onboarding";
 
 export function BusinessConsoleDashboard() {
-  const [activeTool, setActiveTool]           = useState<ConsoleTool>("home");
+  const [activeTool, setActiveTool] = useState<ConsoleTool>(() => {
+    try { return (JSON.parse(localStorage.getItem("ew-dashboard") ?? "{}").activeTool ?? "home") as ConsoleTool; }
+    catch { return "home"; }
+  });
+  const [projectionOnboarded, setProjectionOnboarded] = useState<boolean>(() => {
+    try { return JSON.parse(localStorage.getItem("ew-dashboard") ?? "{}").projectionOnboarded ?? false; }
+    catch { return false; }
+  });
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [onboardStage, setOnboardStage]       = useState<OnboardStage>("idle");
   const [profilePreset, setProfilePreset]     = useState<ProfilePreset | null>(null);
-  const [projectionOnboarded, setProjectionOnboarded] = useState(false);
+
+  useEffect(() => {
+    try { localStorage.setItem("ew-dashboard", JSON.stringify({ activeTool, projectionOnboarded })); }
+    catch {}
+  }, [activeTool, projectionOnboarded]);
 
   const accountType         = useProjectionStore((s) => s.accountType);
   const resetPF             = usePersonalFinanceStore((s) => s.reset);
@@ -106,7 +118,11 @@ export function BusinessConsoleDashboard() {
         );
       }
 
-      return <ProjectionPage />;
+      return <ProjectionPage onReset={() => {
+        setProjectionOnboarded(false);
+        setProfilePreset(DEFAULT_PRESET);
+        setOnboardStage("onboarding-flow");
+      }} />;
     }
 
     if (activeTool === "personal") {
@@ -126,6 +142,10 @@ export function BusinessConsoleDashboard() {
         );
       }
       return <InvestmentPage />;
+    }
+
+    if (activeTool === "knowledge") {
+      return <KnowledgePage />;
     }
 
     return null;
@@ -156,7 +176,7 @@ export function BusinessConsoleDashboard() {
           {renderMainContent()}
         </div>
 
-        {activeTool !== "investment" && <ConsoleAISidebar activeTool={activeTool} />}
+        {activeTool !== "investment" && activeTool !== "knowledge" && <ConsoleAISidebar activeTool={activeTool} />}
       </div>
     </div>
   );

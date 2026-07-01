@@ -1,10 +1,10 @@
 import type { Transaction } from "@/store/personalFinanceStore";
 
-export type Period = "Last 30 days" | "Last 3 months" | "Last 6 months" | "This year";
+export type Period = "All" | "Last 30 days" | "Last 3 months" | "Last 6 months" | "This year";
 
-export const PERIODS = ["Last 30 days", "Last 3 months", "Last 6 months", "This year"] as const;
+export const PERIODS = ["All", "Last 30 days", "Last 3 months", "Last 6 months", "This year"] as const;
 
-function getCutoff(period: Period, ref: Date): Date {
+function getCutoff(period: Exclude<Period, "All">, ref: Date): Date {
   const d = new Date(ref);
   switch (period) {
     case "Last 30 days":  d.setDate(d.getDate() - 30); break;
@@ -17,16 +17,18 @@ function getCutoff(period: Period, ref: Date): Date {
 
 export function filterByPeriod(transactions: Transaction[], period: Period): Transaction[] {
   if (transactions.length === 0) return [];
+  if (period === "All") return transactions;
 
   const now = Date.now();
-  const latestMs = Math.max(
-    ...transactions.map((tx) => new Date(tx.date + "T00:00:00").getTime())
-  );
+  const timestamps = transactions
+    .map((tx) => new Date(tx.date + "T00:00:00").getTime())
+    .filter((t) => !isNaN(t));
+  const latestMs = timestamps.length > 0 ? Math.max(...timestamps) : NaN;
 
   // If the newest transaction is more than 90 days old, anchor the period
   // window to that transaction date so historical/imported data still shows.
   const NINETY_DAYS = 90 * 24 * 60 * 60 * 1000;
-  const anchor = now - latestMs > NINETY_DAYS ? new Date(latestMs) : new Date();
+  const anchor = !isNaN(latestMs) && now - latestMs > NINETY_DAYS ? new Date(latestMs) : new Date();
 
   const cutoff = getCutoff(period, anchor);
   return transactions.filter((tx) => new Date(tx.date + "T00:00:00") >= cutoff);
@@ -35,6 +37,7 @@ export function filterByPeriod(transactions: Transaction[], period: Period): Tra
 /** Number of months covered by the period — used to scale monthly budgets. */
 export function getPeriodMonths(period: Period): number {
   switch (period) {
+    case "All":           return 1;
     case "Last 30 days":  return 1;
     case "Last 3 months": return 3;
     case "Last 6 months": return 6;
@@ -45,6 +48,7 @@ export function getPeriodMonths(period: Period): number {
 /** Short human label for the period — used in budget display. */
 export function getPeriodLabel(period: Period): string {
   switch (period) {
+    case "All":           return "all time";
     case "Last 30 days":  return "30-day";
     case "Last 3 months": return "3-month";
     case "Last 6 months": return "6-month";

@@ -5,8 +5,11 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from groq import Groq
 
+
 try:
-    from F3Insight_memory import retrieve_memories_by_intent, store_memories_batch
+    from F3Insight_memory import (retrieve_memories_by_intent, store_memories_batch, 
+    build_memory_fact, store_sectioned_memories, detect_intent)
+    
     from csv_analyzer import (
         run as analyze_ticker,
         project_investment_prophet,
@@ -23,8 +26,12 @@ try:
         calculate_historical_performance,
         fetch_geographic_exposure,
     )
+    from domestic import (
+    get_top5_by_country
+    )
 except ImportError:
-    from Feature3.F3Insight_memory import retrieve_memories_by_intent, store_memories_batch
+    from Feature3.F3Insight_memory import (retrieve_memories_by_intent, store_memories_batch,
+    build_memory_fact, store_sectioned_memories, detect_intent)
     from Feature3.csv_analyzer import (
         run as analyze_ticker,
         project_investment_prophet,
@@ -38,6 +45,9 @@ except ImportError:
         detect_historical_year,
         calculate_historical_performance,
         fetch_geographic_exposure,
+    )
+    from Feature3.domestic import (
+    get_top5_by_country
     )
 
 DATA_DIR = "ydata"
@@ -53,7 +63,9 @@ PROPHET_SNAPSHOT = os.path.join(DATA_DIR, "csv_prediction_output_analysis.json")
 
 DEFAULT_INVESTMENT = 1000
 
-
+with open("Feature3/ydata/sp500_ranked.json", "r", encoding="utf-8") as f:
+    SP500_DATA = json.load(f)
+    
 def parse_predictions(text: str):
     # Only parse inside [SECTION: PREDICTIONS] — otherwise tickers from the
     # STOCKS / STOCKS_PORFOLIO sections leak in as phantom predictions.
@@ -101,7 +113,7 @@ def run_prophet_predictions(predictions, default_amount=DEFAULT_INVESTMENT):
             amount=default_amount,
             years=p["years"]
         )
-# 
+
 def extract_intent(data, portfolio_holdings, user_question=None):
     prompt = f"""
 You are a STRICT stock ticker extraction system.
@@ -113,9 +125,9 @@ Output Yahoo Finance tickers ONLY for companies EXPLICITLY NAMED in the user que
 
 RULES:
 - Output ONLY tickers for companies the user literally typed
-- If the question is vague (e.g. "this stock", "the market", "my portfolio"), output NONE
+- If the question is vague (e.g. "this stock", "the market"), output NONE
 - DO NOT add industry peers, competitors, or "related" stocks
-- DO NOT list every tech / energy / index stock you know
+- If uncertain output NONE
 - Maximum 5 tickers — if the question lists more, pick the first 5
 - One ticker per line
 - No prose, no explanations, no notes
@@ -159,6 +171,13 @@ OUTPUT FORMAT (exactly 3 lines per ticker — ticker, flag, timeframe):
 <TICKER>
 <YES | NO>
 <TIMEFRAME>
+
+TASK 4:
+If the user mentions a country list out the countries mentioned in this exact format
+IF the user asks for not a specific country list out 5 countries that aren't that specific country
+OUTPUT FORMAT
+[SECTION: COUNTRIES]
+<COUNTRY>
 
 FORMAT RULES:
 - No Notes
@@ -208,37 +227,58 @@ MAX_PORTFOLIO_TICKERS = 5
 def extract_stock_lines(text):
     stocks = []
     portfolio = []
-    seen_q, seen_p = set(), set()
+    countries = []
 
-    capture = None  # None | "stocks" | "portfolio"
+    seen_q, seen_p, seen_c = set(), set(), set()
+
+    capture = None  # None | "stocks" | "portfolio" | "countries"
+
+    section_pattern = re.compile(r"^\[SECTION:\s*(.*?)\s*\]$", re.IGNORECASE)
 
     for line in text.split("\n"):
         line = line.strip()
 
-        if line.upper().startswith("[SECTION: STOCKS_PORFOLIO]"):
-            capture = "portfolio"
+        # Detect section headers
+        match = section_pattern.match(line)
+        if match:
+            section = match.group(1).upper()
+
+            if section == "STOCKS":
+                capture = "stocks"
+            elif section == "STOCKS_PORFOLIO":
+                capture = "portfolio"
+            elif section == "COUNTRIES":
+                capture = "countries"
+            else:
+                capture = None
+
             continue
 
-        if line.upper().startswith("[SECTION: STOCKS]"):
-            capture = "stocks"
+        if not capture:
             continue
 
-        if line.startswith("[SECTION:"):
-            capture = None
-            continue
+        value = line.strip()
 
-        if not (capture and _is_ticker_like(line)):
-            continue
+        if capture == "stocks":
+            if _is_ticker_like(value):
+                sym = value.upper()
+                if sym not in seen_q and len(stocks) < MAX_QUESTION_TICKERS:
+                    seen_q.add(sym)
+                    stocks.append(sym)
 
-        sym = line.upper()
-        if capture == "stocks" and sym not in seen_q and len(stocks) < MAX_QUESTION_TICKERS:
-            seen_q.add(sym)
-            stocks.append(sym)
-        elif capture == "portfolio" and sym not in seen_p and len(portfolio) < MAX_PORTFOLIO_TICKERS:
-            seen_p.add(sym)
-            portfolio.append(sym)
+        elif capture == "portfolio":
+            if _is_ticker_like(value):
+                sym = value.upper()
+                if sym not in seen_p and len(portfolio) < MAX_PORTFOLIO_TICKERS:
+                    seen_p.add(sym)
+                    portfolio.append(sym)
 
-    return stocks, portfolio
+        elif capture == "countries":
+            if value and value.upper() not in seen_c:
+                seen_c.add(value.upper())
+                countries.append(value)
+
+    return stocks, portfolio, countries
 # 
 
 
@@ -401,9 +441,9 @@ STRATEGY_WEIGHTS = {
 }
 
 _ALLOCATION_TRIGGERS = (
-    "allocat", "invest in", "what should", "split", "distribute",
-    "put my", "divide", "recommend", "suggest", "where should",
-    "how should i", "how do i invest",
+    "allocat", "what should i invest", "split", "distribute",
+    "put my money", "divide my", "where should i put",
+    "how should i invest", "how do i invest", "how to invest my",
 )
 
 _PREDICTION_TRIGGERS = (
@@ -418,10 +458,13 @@ _OPPORTUNITY_TRIGGERS = (
     "what to buy", "best stock", "where to invest",
     "which stock", "what are the best", "buy right now", "buy now",
     "right now", "current market",
+    "domestic stock", "domestic shares", "recommend stock", "recommend share",
+    "suggest stock", "suggest share", "stocks to invest", "shares to invest",
+    "stock to buy", "stocks to buy", "good stock", "which stock",
 )
 
 
-def _build_priority_block(user_question: str, onboarding: dict) -> str:
+def _build_priority_block(user_question: str, onboarding: dict, domestic_suggestions: dict = None, user_country: str = "") -> str:
     if not user_question:
         return ""
 
@@ -501,15 +544,57 @@ CRITICAL — output ALL six sections in this exact order. The full prediction an
         _raw_cap_opp    = onboarding.get("investmentCapital") or onboarding.get("investment_capital") or 0
         capital         = float(_raw_cap_opp) if _raw_cap_opp not in (None, "") else 0
 
+        _SP500_COVERED = {"United States", "US", "Canada", "Ireland", "Netherlands",
+                          "Singapore", "Switzerland", "Bermuda", "United Kingdom"}
+        domestic_block = ""
+        if user_country and user_country not in _SP500_COVERED:
+            # User is in a country not covered by sp500_ranked.json (e.g. Australia, India).
+            # domestic_suggestions only has SP500-country picks from portfolio holdings — those are
+            # NOT domestic for the user. Use LLM knowledge for the user's actual exchange instead.
+            domestic_block = (
+                f"\n\nUSER COUNTRY: {user_country}\n"
+                f"The user is based in {user_country}. When suggesting domestic stocks, recommend stocks listed "
+                f"on {user_country}'s primary stock exchange (e.g. ASX for Australia, TSX for Canada, LSE for UK, "
+                f"NSE/BSE for India, SGX for Singapore). "
+                f"Use your knowledge of {user_country}'s market to suggest underrated, high-potential domestic stocks — "
+                f"NOT just mega-caps. Include specific tickers from that exchange. "
+                f"Label them with '⭐ Domestic Pick' in the heading. Include at least 2–3 domestic picks in the top 5."
+            )
+        elif domestic_suggestions:
+            lines = []
+            for country, tickers in domestic_suggestions.items():
+                if tickers:
+                    lines.append(f"- {country}: {', '.join(tickers)}")
+            if lines:
+                domestic_block = (
+                    "\n\nDOMESTIC UNDERRATED PICKS (ranked by 6-month return from sp500_ranked.json — "
+                    "these are high-momentum, lesser-known stocks, NOT mega-caps):\n"
+                    + "\n".join(lines)
+                    + "\nYou MUST include at least 1–2 of these domestic picks in your top 5 where they "
+                    "fit the user's strategy and asset interests. Label them with '⭐ Domestic Pick' in the heading."
+                )
+        elif user_country or any(w in q_lower for w in ("domestic", "local stock", "local share")):
+            country_label = user_country or "the user's home country"
+            domestic_block = (
+                f"\n\nUSER COUNTRY: {country_label}\n"
+                f"The user is based in {country_label}. When suggesting domestic stocks, recommend stocks listed "
+                f"on {country_label}'s primary stock exchange (e.g. ASX for Australia, TSX for Canada, LSE for UK, "
+                f"NSE/BSE for India, SGX for Singapore). "
+                f"Use your knowledge of {country_label}'s market to suggest underrated, high-potential domestic stocks — "
+                f"NOT just mega-caps. Include specific tickers from that exchange. "
+                f"Label them with '⭐ Domestic Pick' in the heading. Include at least 2–3 domestic picks in the top 5."
+            )
+
         block += f"""
 TOP OPPORTUNITIES FORMAT — produce your QUESTION_RESPONSE using EXACTLY this structure.
 Use ## and **bold** markdown formatting inside QUESTION_RESPONSE only.
 Limit to asset classes in: {', '.join(asset_interests)}.
 Align picks with strategy: {', '.join(strategies) if strategies else 'buy and hold'}.
+{domestic_block}
 
 ## Top 5 Investment Opportunities — {now.strftime('%B %Y')}
 
-**Selection Criteria**: Ranked by a combination of valuation attractiveness, earnings momentum, sector tailwinds, news sentiment, and risk-adjusted upside potential.
+**Selection Criteria**: Ranked by a combination of valuation attractiveness, earnings momentum, sector tailwinds, news sentiment, and risk-adjusted upside potential. Mix of well-known and underrated domestic picks.
 
 **#1 [TICKER] — [Company Name]** | Confidence: [X]/10
 - Current price: $[X] | P/E: [X]x | Forward P/E: [X]x | Market cap: $[X]B
@@ -522,7 +607,7 @@ Align picks with strategy: {', '.join(strategies) if strategies else 'buy and ho
 [Repeat #2, #3, #4, #5 in identical format]
 
 **Portfolio fit for your profile**: [1 sentence on which picks best match the {', '.join(strategies) if strategies else 'buy and hold'} strategy and {experience} experience level{f', and fit within ${capital:,} capital' if capital else ''}]
-**Methodology**: Selections based on live market data, news sentiment analysis, earnings signals, sector rotation, and valuation vs. historical averages.
+**Methodology**: Selections based on live market data, news sentiment analysis, earnings signals, sector rotation, valuation vs. historical averages, and domestic momentum rankings.
 
 Use MARKET ANALYSIS data for current prices. For any tickers not in the provided data, use your knowledge and mark figures as (est.).
 
@@ -532,7 +617,7 @@ CRITICAL — output ALL six sections in this exact order. The full opportunities
 [SECTION: CONS] → 2-4 bullets (market risks or headwinds to watch)
 [SECTION: NEXT_STEPS] → 2-3 actionable bullets (how to act on these opportunities)
 [SECTION: QUESTION_RESPONSE] → paste the FULL formatted top-5 list here
-[SECTION: SOURCES] → list data sources (market data, news, earnings, sector analysis)
+[SECTION: SOURCES] → list data sources (market data, news, earnings, sector analysis, sp500_ranked.json)
 """
         return block
 
@@ -622,15 +707,33 @@ CRITICAL — output ALL six sections in this exact order. The full allocation pl
 # ================= BUILD PROMPT =================
 def build_prompt(
     data, memories=None, user_question=None, onboarding=None,
-    market_analysis_block="", market_prediction_block="", news_block=""
+    market_analysis_block="", market_prediction_block="", news_block="",
+    domestic_suggestions=None, chat_history=None, user_country=""
 ):
 
-    memory_block = "\n\n".join(memories) if memories else ""
+    memory_block = "\n\n".join(m[:500] for m in memories) if memories else ""
+
+    history_block = ""
+    if chat_history:
+        turns = []
+        for msg in chat_history[-6:]:
+            role    = msg.get("role", "")
+            content = (msg.get("content") or "").strip()
+            if not content:
+                continue
+            # Truncate long assistant responses to keep prompt under token limit
+            if role == "user":
+                turns.append(f"User: {content[:400]}")
+            elif role == "assistant":
+                turns.append(f"Elly: {content[:600]}")
+        if turns:
+            history_block = "CONVERSATION HISTORY (most recent exchanges — use this to answer follow-up questions):\n" + "\n".join(turns)
 
     onboarding = onboarding if onboarding is not None else (data.get("onboarding") or {})
 
     onboarding_experience    = onboarding.get("experienceLevel", "unknown")
-    onboarding_capital       = onboarding.get("investmentCapital", 0)
+    _raw_cap                 = onboarding.get("investmentCapital") or 0
+    onboarding_capital       = int(float(_raw_cap)) if _raw_cap else 0
     onboarding_strategies    = onboarding.get("investmentStrategies", [])
     onboarding_strategy_text = (
         ", ".join(str(s).replace("_", " ").title() for s in onboarding_strategies)
@@ -644,13 +747,14 @@ def build_prompt(
     market_context_block = _build_market_context_block(market_context)
     geo_block            = _build_geographic_exposure_block(geo_exposure)
     reserve_block        = _build_reserve_block(onboarding, data.get("summary") or {})
-    priority_block       = _build_priority_block(user_question, onboarding)
+    priority_block       = _build_priority_block(user_question, onboarding, domestic_suggestions, user_country)
 
     portfolio_json = {k: v for k, v in data.items() if k != "market_context"}
 
     return f"""
 You are a financial portfolio assistant with access to live market data and recent news.
 {priority_block}
+{history_block}
 RELEVANT PAST CONVERSATIONS:
 {memory_block}
 
@@ -732,27 +836,43 @@ If no question was provided write: No question provided.
 
 # ================= GROQ ANALYSIS =================
 def get_analysis(prompt):
-    try:
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a financial portfolio assistant."
-                },
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            temperature=0.2
-        )
-
-        return response.choices[0].message.content
-
-    except Exception as e:
-        print(f"❌ Groq request error: {e}")
-        return ""
+    import time
+    for attempt in range(3):
+        try:
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are a financial portfolio assistant."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.2
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            err = str(e)
+            print(f"❌ Groq request error: {e}")
+            # 413 = prompt too large — retrying won't help
+            if "413" in err or ("rate_limit_exceeded" in err and "reduce your message" in err):
+                print("[groq] Prompt too large — no retry.")
+                return ""
+            # TPD = daily limit exhausted — retrying won't help until tomorrow
+            if "rate_limit_exceeded" in err and "tokens per day" in err.lower():
+                print("[groq] Daily token limit reached — no retry.")
+                return ""
+            # TPM = per-minute limit — short wait may help
+            if "rate_limit_exceeded" in err and attempt < 2:
+                wait = 5 * (attempt + 1)
+                print(f"[groq] Rate limited — retrying in {wait}s...")
+                time.sleep(wait)
+            else:
+                return ""
+    return ""
 
 
 # ================= GENERIC SECTION PARSER =================
@@ -857,101 +977,6 @@ def extract_portfolio_holdings(data):
     return cleaned
 
 
-def build_memory_fact(parsed):
-
-    summary = parsed.get("summary", "").strip()
-
-    pros = parsed.get("pros", [])
-    cons = parsed.get("cons", [])
-    next_steps = parsed.get("next_steps", [])
-    question_response = parsed.get("question_response", "").strip()
-    sources = parsed.get("sources", [])
-
-    key_strengths = ", ".join(pros[:2]) if pros else "none identified"
-    key_risks = ", ".join(cons[:2]) if cons else "none identified"
-    key_actions = ", ".join(next_steps[:2]) if next_steps else "none identified"
-    key_sources = ", ".join(sources[:2]) if sources else "none identified"
-
-    memory_text = f"""
-Portfolio insight: {summary}
-Key strengths: {key_strengths}
-Key risks: {key_risks}
-Recommended actions: {key_actions}
-User question response: {question_response}
-Data sources used: {key_sources}
-""".strip()
-
-    return memory_text
-
-def store_sectioned_memories(user_question, parsed):
-
-    base = user_question or "portfolio analysis"
-
-    memories = []
-
-    # 1. SUMMARY (single memory)
-    if parsed.get("summary"):
-        memories.append({
-            "user": base + " summary",
-            "assistant": parsed["summary"],
-            "section": "summary"
-        })
-
-    # 2. PROS (single block memory)
-    if parsed.get("pros"):
-        pros_block = "\n".join(parsed["pros"])
-        memories.append({
-            "user": base + " pros",
-            "assistant": pros_block,
-            "section": "pros"
-        })
-
-    # 3. CONS (single block memory)
-    if parsed.get("cons"):
-        cons_block = "\n".join(parsed["cons"])
-        memories.append({
-            "user": base + " cons",
-            "assistant": cons_block,
-            "section": "cons"
-        })
-
-    # 4. NEXT STEPS (single block memory)
-    if parsed.get("next_steps"):
-        next_block = "\n".join(parsed["next_steps"])
-        memories.append({
-            "user": base + " next_steps",
-            "assistant": next_block,
-            "section": "next_steps"
-        })
-
-    # 5. RESPONSE (single memory — truncated to keep within Ollama embedding limit)
-    if parsed.get("question_response"):
-        truncated = parsed["question_response"][:1200]
-        memories.append({
-            "user": base + " response",
-            "assistant": truncated,
-            "section": "response"
-        })
-
-    if memories:
-        store_memories_batch(memories)
-
-def detect_intent(question):
-
-    q = question.lower()
-
-    if any(x in q for x in ["risk", "reduce", "safe", "loss"]):
-        return "cons"
-
-    if any(x in q for x in ["next", "what should", "do", "improve"]):
-        return "next_steps"
-
-    if any(x in q for x in ["performance", "how is", "portfolio"]):
-        return "summary"
-
-    return "general"
-
-
 def _enrich_market_context(data: dict) -> None:
     """Populate data['market_context'] and data['geographic_exposure'] using
     csv_analyzer. Runs in parallel where the underlying yfinance calls can fan
@@ -1022,6 +1047,19 @@ def _reset_prophet_snapshot():
     except Exception as e:
         print(f"[prophet] Could not reset snapshot: {e}")
 
+def get_country_list(tickers):
+    lookup = {item["symbol"].upper(): item.get("country") for item in SP500_DATA}
+
+    countries = set()
+
+    for t in tickers:
+        t = t.strip().upper()
+        country = lookup.get(t)
+
+        if country and country != "Unknown":
+            countries.add(country)
+
+    return list(countries)
 
 def run_analysis(data: dict, memories=None) -> dict:
     """End-to-end analysis pipeline used by main.py /pf/portfolio-analysis.
@@ -1037,6 +1075,7 @@ def run_analysis(data: dict, memories=None) -> dict:
 
     onboarding         = data.get("onboarding") or {}
     user_question      = data.get("question")
+    chat_history       = data.get("history") or []
     portfolio_holdings = extract_portfolio_holdings(data)
 
     # ---- intent extraction: question tickers, portfolio tickers, predictions ----
@@ -1044,15 +1083,32 @@ def run_analysis(data: dict, memories=None) -> dict:
     print("\n=== STOCK EXTRACTION ===")
     print(stock_section)
 
-    stocks, portfolio_stocks = extract_stock_lines(stock_section)
+    stocks, portfolio_stocks, countriesMention = extract_stock_lines(stock_section)
     all_tickers = list({t.strip().upper() for t in (stocks + portfolio_stocks) if t})
+    ticker_country_map = get_country_list(all_tickers)
+    ticker_country_map.extend(c for c in countriesMention if c not in ticker_country_map)
+    # Add user's declared country to the country list for domestic suggestions.
+    user_country = (onboarding.get("country") or "").strip()
+    print(f"[domestic] user_country={user_country!r}")
+    SP500_COUNTRIES = {"United States", "US", "Canada", "Ireland", "Netherlands", "Singapore", "Switzerland", "Bermuda", "United Kingdom"}
+    
+    if user_country and user_country not in ticker_country_map:
+        ticker_country_map.append(user_country)
+    if not ticker_country_map:
+        ticker_country_map = [user_country or "United States"]
+
+    # Only query sp500_ranked.json for countries it actually covers.
+    sp500_query_countries = [c for c in ticker_country_map if c in SP500_COUNTRIES]
+    suggestions = get_top5_by_country("Feature3/ydata/sp500_ranked.json", sp500_query_countries) if sp500_query_countries else {}
+
+
 
     # ---- news (Finnhub via csv_analyzer — adds country + heuristic context) ----
     news_block = build_news_block(fetch_market_news(all_tickers, []))
 
     # ---- yfinance snapshot for the question tickers ----
     print("\n🔧 YFINANCE LIVE MODE:")
-    analyze_ticker(stocks)
+    analyze_ticker(stocks, portfolio_stocks)
 
     # ---- Prophet projections only for tickers the LLM flagged YES ----
     # Cap at 2 — each Prophet training takes ~1-3s and the 8b model tends to
@@ -1064,11 +1120,20 @@ def run_analysis(data: dict, memories=None) -> dict:
         run_prophet_predictions(active_predictions)
 
     # ---- memories ----
+    print("\n=== CONTEXT MEMORIES ===")
+    if memories:
+        for i, m in enumerate(memories):
+            print(f"\n--- MEMORY {i+1} ---")
+            print(m)
+    else:
+        print("No memories retrieved")
+
     if memories is None:
         memories = retrieve_memories_by_intent(
             query=user_question or "portfolio analysis",
             intent=detect_intent(user_question or ""),
         )
+
 
     # ---- load on-disk snapshots written by analyze_ticker / Prophet ----
     csv_analysis_data   = _load_json(os.path.join(DATA_DIR, "csv_analysis_output.json"))
@@ -1086,6 +1151,9 @@ def run_analysis(data: dict, memories=None) -> dict:
         market_analysis_block=market_analysis_block,
         market_prediction_block=market_prediction_block,
         news_block=news_block,
+        domestic_suggestions=suggestions,
+        chat_history=chat_history,
+        user_country=user_country,
     )
 
     raw_output = get_analysis(prompt)

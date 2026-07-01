@@ -1,7 +1,7 @@
-import { Home, BarChart2, Wallet, TrendingUp, ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
+import { Home, BarChart2, Wallet, TrendingUp, BookOpen, ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type ConsoleTool = "home" | "projection" | "personal" | "investment";
+export type ConsoleTool = "home" | "projection" | "personal" | "investment" | "knowledge";
 
 interface NavItem {
   tool: ConsoleTool;
@@ -35,6 +35,12 @@ const TOOL_ITEMS: NavItem[] = [
     label: "Investment",
     sublabel: "Intelligence",
     icon: <TrendingUp size={18} />,
+  },
+  {
+    tool: "knowledge",
+    label: "Knowledge",
+    sublabel: "& Learning",
+    icon: <BookOpen size={18} />,
   },
 ];
 

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { API_BASE } from "@/lib/api";
 
 export type ScenarioPreset = "bear" | "base" | "bull" | "custom";
@@ -92,6 +93,7 @@ export interface ProjectionState {
   deleteCustomScenario: (id: string) => void;
   loadCustomScenario: (id: string) => void;
   saveCustomSnapshot: () => void;
+  reset: () => void;
   fetchProphetForecast: () => Promise<void>;
 }
 
@@ -101,12 +103,10 @@ const SCENARIO_PRESETS = {
   bull: { growthRate: 18, startingMRR: 18000, churnRate: 1.5, cogsPercent: 18, marketingSpend: 8000, payroll: 35000 },
 };
 
-const _readNav = (): Record<string, unknown> => {
-  try { return JSON.parse(localStorage.getItem("ew-nav") ?? "{}"); } catch { return {}; }
-};
-
-export const useProjectionStore = create<ProjectionState>((set, get) => ({
-  accountType: (_readNav().accountType as AccountType | null) ?? null,
+export const useProjectionStore = create<ProjectionState>()(
+  persist(
+    (set, get) => ({
+  accountType: null,
   setAccountType: (type) => set({ accountType: type }),
 
   growthRate: 8,
@@ -196,6 +196,26 @@ export const useProjectionStore = create<ProjectionState>((set, get) => ({
     get().recordScenarioRun(sc.name);
   },
 
+  reset: () => set({
+    accountType:       null,
+    growthRate:        8,
+    startingMRR:       18000,
+    churnRate:         3,
+    cogsPercent:       22,
+    marketingSpend:    4000,
+    payroll:           35000,
+    forecastMonths:    12,
+    activeScenario:    "base",
+    activeTab:         "projection",
+    scenarioCounts:    {},
+    totalScenarioRuns: 0,
+    savedScenarios:    [],
+    customSnapshot:    null,
+    apiData:           null,
+    apiLoading:        false,
+    apiError:          null,
+  }),
+
   fetchProphetForecast: async () => {
     const s = get();
     set({ apiLoading: true, apiError: null });
@@ -220,4 +240,25 @@ export const useProjectionStore = create<ProjectionState>((set, get) => ({
       set({ apiLoading: false, apiError: (err as Error).message });
     }
   },
-}));
+    }),
+    {
+      name: "ew-projection-store-v1",
+      partialize: (s) => ({
+        accountType:       s.accountType,
+        growthRate:        s.growthRate,
+        startingMRR:       s.startingMRR,
+        churnRate:         s.churnRate,
+        cogsPercent:       s.cogsPercent,
+        marketingSpend:    s.marketingSpend,
+        payroll:           s.payroll,
+        forecastMonths:    s.forecastMonths,
+        activeScenario:    s.activeScenario,
+        activeTab:         s.activeTab,
+        scenarioCounts:    s.scenarioCounts,
+        totalScenarioRuns: s.totalScenarioRuns,
+        savedScenarios:    s.savedScenarios,
+        customSnapshot:    s.customSnapshot,
+      }),
+    }
+  )
+);

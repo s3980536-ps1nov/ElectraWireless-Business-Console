@@ -7,6 +7,7 @@ import { fetchSummary } from "@/services/personalFinanceApi";
 import type { FinancialSummary } from "@/services/personalFinanceApi";
 import { buildInvestmentAIPayload, fetchInvestmentAIInsights } from "@/services/investmentApi";
 import type { InvestmentHolding, InvestmentAIResponse, PortfolioSummary, PFContextInput } from "@/services/investmentApi";
+import { useInvestmentAIStore, holdingsFingerprint } from "@/store/investmentAIStore";
 import { summarizeInvestmentGoal } from "@/components/investment/InvestmentGoalsTab";
 import { C_PRIMARY, C_SUCCESS, C_ERROR, C_WARNING, C_BORDER } from "@/lib/colors";
 
@@ -72,11 +73,18 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
   const pfStore         = usePersonalFinanceStore();
   const { transactions, assets, liabilities } = pfStore;
 
-  const [loading,    setLoading]   = useState(false);
-  const [error,      setError]     = useState<string | null>(null);
-  const [result,     setResult]    = useState<InvestmentAIResponse | null>(null);
-  const [generatedAt, setGeneratedAt] = useState<Date | null>(null);
-  const [pfSummary,  setPfSummary] = useState<FinancialSummary | null>(null);
+  const { result, generatedAt, fingerprint: cachedFingerprint, setReport } = useInvestmentAIStore();
+
+  const [loading,   setLoading]  = useState(false);
+  const [error,     setError]    = useState<string | null>(null);
+  const [pfSummary, setPfSummary] = useState<FinancialSummary | null>(null);
+
+  const currentFingerprint = holdingsFingerprint(holdings);
+  // Discard cached report if holdings have changed since it was generated
+  const cachedResult = cachedFingerprint === currentFingerprint ? result : null;
+  const cachedAt     = cachedFingerprint === currentFingerprint && generatedAt
+    ? new Date(generatedAt)
+    : null;
 
   useEffect(() => {
     if (transactions.length === 0) { setPfSummary(null); return; }
@@ -114,10 +122,10 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
         investmentStrategies: onboarding.investmentStrategies,
         timeHorizon:          onboarding.timeHorizon,
         assetInterests:       onboarding.assetInterests,
+        country:              onboarding.country,
         completedAt:          onboarding.completedAt,
       }, goalsSummary, "Current portfolio", summary, pfContext);
-      setResult(await fetchInvestmentAIInsights(payload));
-      setGeneratedAt(new Date());
+      setReport(await fetchInvestmentAIInsights(payload), currentFingerprint);
     } catch {
       setError("Could not generate report — is the backend running on port 8000?");
     } finally {
@@ -125,11 +133,8 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
     }
   }
 
-  // Auto-run once on mount when holdings are available
-  useEffect(() => {
-    if (hasHoldings && !result) generate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasHoldings]);
+  // Removed auto-run — Groq free tier has a 100k token/day limit and
+  // firing on every page mount burns ~7k tokens with no user question.
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -157,9 +162,9 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
               <Activity size={9} /> Cashflow linked
             </span>
           )}
-          {generatedAt && (
+          {cachedAt && (
             <span style={{ fontSize: 10, color: "#aaa" }}>
-              Generated {generatedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              Generated {cachedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
             </span>
           )}
         </div>
@@ -182,7 +187,7 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
       </div>
 
       {/* Loading skeleton */}
-      {loading && !result && (
+      {loading && !cachedResult && (
         <div style={{
           padding: "32px 20px", borderRadius: 10, textAlign: "center",
           background: "rgba(255,255,255,0.4)", border: `1.5px dashed ${C_BORDER}`,
@@ -214,37 +219,37 @@ export function InvestmentAIPanel({ holdings, summary }: { holdings: InvestmentH
       )}
 
       {/* Report sections */}
-      {result && !loading && (
+      {cachedResult && !loading && (
         <>
-          {result.profile_context && (
+          {cachedResult.profile_context && (
             <SectionCard accent="primary" icon={<UserCircle size={13} />} title="Your Profile">
-              {result.profile_context}
+              {cachedResult.profile_context}
             </SectionCard>
           )}
 
-          {result.summary && (
+          {cachedResult.summary && (
             <SectionCard accent="primary" icon={<Sparkles size={13} />} title="Summary">
-              {result.summary}
+              {cachedResult.summary}
             </SectionCard>
           )}
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             <SectionCard accent="success" icon={<TrendingUp size={13} />} title="Strengths">
-              <BulletList items={result.pros} color={C_SUCCESS} />
+              <BulletList items={cachedResult.pros} color={C_SUCCESS} />
             </SectionCard>
             <SectionCard accent="error" icon={<TrendingDown size={13} />} title="Weaknesses">
-              <BulletList items={result.cons} color={C_ERROR} />
+              <BulletList items={cachedResult.cons} color={C_ERROR} />
             </SectionCard>
           </div>
 
           <SectionCard accent="warning" icon={<ListChecks size={13} />} title="Next Steps">
-            <BulletList items={result.next_steps} color={C_WARNING} />
+            <BulletList items={cachedResult.next_steps} color={C_WARNING} />
           </SectionCard>
 
-          {result.question_response &&
-            result.question_response.toLowerCase().trim() !== "no question provided." && (
+          {cachedResult.question_response &&
+            cachedResult.question_response.toLowerCase().trim() !== "no question provided." && (
             <SectionCard accent="primary" icon={<MessageCircle size={13} />} title="Additional Notes">
-              {result.question_response}
+              {cachedResult.question_response}
             </SectionCard>
           )}
         </>

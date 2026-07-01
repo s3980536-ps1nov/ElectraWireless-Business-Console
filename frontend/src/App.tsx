@@ -5,7 +5,7 @@ import LoginScreen from "./LoginScreen";
 import { useProjectionStore } from "@/store/projectionStore";
 import type { AccountType } from "@/store/projectionStore";
 import { useSpreadsheetStore } from "@/store/spreadsheetStore";
-import { loadForecastConfig, loadInvestmentOnboarding } from "@/services/investmentApi";
+import { loadInvestmentOnboarding } from "@/services/investmentApi";
 import { useInvestmentContextStore } from "@/store/investmentContextStore";
 
 const GradientBg = () => (
@@ -17,13 +17,6 @@ export default function App() {
   const accountType       = useProjectionStore((s) => s.accountType);
   const spreadsheetOpen   = useSpreadsheetStore((s) => s.isOpen);
   const activeTab         = useProjectionStore((s) => s.activeTab);
-  const setStartingMRR    = useProjectionStore((s) => s.setStartingMRR);
-  const setGrowthRate     = useProjectionStore((s) => s.setGrowthRate);
-  const setChurnRate      = useProjectionStore((s) => s.setChurnRate);
-  const setCogsPercent    = useProjectionStore((s) => s.setCogsPercent);
-  const setMarketingSpend = useProjectionStore((s) => s.setMarketingSpend);
-  const setPayroll        = useProjectionStore((s) => s.setPayroll);
-  const setForecastMonths = useProjectionStore((s) => s.setForecastMonths);
   const setAllInvestment  = useInvestmentContextStore((s) => s.setAll);
 
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
@@ -40,16 +33,6 @@ export default function App() {
 
   useEffect(() => {
     if (!loggedIn) return;
-    loadForecastConfig().then((config) => {
-      if (!config) return;
-      setStartingMRR(config.starting_mrr);
-      setGrowthRate(config.growth_rate);
-      setChurnRate(config.churn_rate);
-      setCogsPercent(config.cogs_percent);
-      setMarketingSpend(config.marketing_spend);
-      setPayroll(config.payroll);
-      setForecastMonths(config.months);
-    });
     loadInvestmentOnboarding().then((profile) => {
       if (profile) setAllInvestment(profile);
     });

@@ -199,7 +199,11 @@ def _build_price_map(holdings, db: Session) -> dict:
     rows = db.query(models.MarketPrice).filter(
         models.MarketPrice.symbol.in_(symbols)
     ).all()
-    return {row.symbol: row.current_price for row in rows if row.current_price is not None}
+    return {
+        row.symbol: row.current_price
+        for row in rows
+        if row.current_price is not None and not math.isnan(row.current_price)
+    }
 
 
 def _build_daily_change_map(holdings, db: Session) -> dict:
@@ -289,7 +293,8 @@ def get_geographic_exposure(db: Session = Depends(get_db)):
     holding_dicts = [_holding_to_dict(h, price_map) for h in holdings]
 
     def _val(h: dict) -> float:
-        p = h.get("current_price") or h["buy_price"]
+        cp = h.get("current_price")
+        p = cp if cp is not None else h["buy_price"]
         return h["quantity"] * p
 
     total_value = sum(_val(h) for h in holding_dicts)

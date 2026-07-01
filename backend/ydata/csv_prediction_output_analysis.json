@@ -1,14 +1,1 @@
-[
-  {
-    "symbol": "TSLA",
-    "invested": 1000,
-    "units_bought": 2.2947,
-    "current_price": 435.79,
-    "projected_price": 1134.08,
-    "projected_years": 3.0,
-    "projected_value": 2602.36,
-    "projected_gain": 1602.36,
-    "projected_gain_pct": 160.24,
-    "model": "prophet"
-  }
-]
+[]

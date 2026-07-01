@@ -144,3 +144,97 @@ def retrieve_memories_by_intent(query, intent="general", n_results=5):
     docs = results.get("documents", [[]])
 
     return docs[0] if docs and docs[0] else []
+
+def build_memory_fact(parsed):
+
+    summary = parsed.get("summary", "").strip()
+
+    pros = parsed.get("pros", [])
+    cons = parsed.get("cons", [])
+    next_steps = parsed.get("next_steps", [])
+    question_response = parsed.get("question_response", "").strip()
+    sources = parsed.get("sources", [])
+
+    key_strengths = ", ".join(pros[:2]) if pros else "none identified"
+    key_risks = ", ".join(cons[:2]) if cons else "none identified"
+    key_actions = ", ".join(next_steps[:2]) if next_steps else "none identified"
+    key_sources = ", ".join(sources[:2]) if sources else "none identified"
+
+    memory_text = f"""
+Portfolio insight: {summary}
+Key strengths: {key_strengths}
+Key risks: {key_risks}
+Recommended actions: {key_actions}
+User question response: {question_response}
+Data sources used: {key_sources}
+""".strip()
+
+    return memory_text
+
+def store_sectioned_memories(user_question, parsed):
+
+    base = user_question or "portfolio analysis"
+
+    memories = []
+
+    # 1. SUMMARY (single memory)
+    if parsed.get("summary"):
+        memories.append({
+            "user": base + " summary",
+            "assistant": parsed["summary"],
+            "section": "summary"
+        })
+
+    # 2. PROS (single block memory)
+    if parsed.get("pros"):
+        pros_block = "\n".join(parsed["pros"])
+        memories.append({
+            "user": base + " pros",
+            "assistant": pros_block,
+            "section": "pros"
+        })
+
+    # 3. CONS (single block memory)
+    if parsed.get("cons"):
+        cons_block = "\n".join(parsed["cons"])
+        memories.append({
+            "user": base + " cons",
+            "assistant": cons_block,
+            "section": "cons"
+        })
+
+    # 4. NEXT STEPS (single block memory)
+    if parsed.get("next_steps"):
+        next_block = "\n".join(parsed["next_steps"])
+        memories.append({
+            "user": base + " next_steps",
+            "assistant": next_block,
+            "section": "next_steps"
+        })
+
+    # 5. RESPONSE (single memory — truncated to keep within Ollama embedding limit)
+    if parsed.get("question_response"):
+        truncated = parsed["question_response"][:1200]
+        memories.append({
+            "user": base + " response",
+            "assistant": truncated,
+            "section": "response"
+        })
+
+    if memories:
+        store_memories_batch(memories)
+
+def detect_intent(question):
+
+    q = question.lower()
+
+    if any(x in q for x in ["risk", "reduce", "safe", "loss"]):
+        return "cons"
+
+    if any(x in q for x in ["next", "what should", "do", "improve"]):
+        return "next_steps"
+
+    if any(x in q for x in ["performance", "how is", "portfolio"]):
+        return "summary"
+
+    return "general"

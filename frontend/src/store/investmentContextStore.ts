@@ -24,6 +24,7 @@ export interface InvestmentOnboardingValues {
   investmentStrategies: InvestmentStrategy[];
   timeHorizon: TimeHorizon;
   assetInterests: AssetInterest[];
+  country: string;
 }
 
 export interface InvestmentContextState extends InvestmentOnboardingValues {
@@ -39,6 +40,7 @@ export interface InvestmentContextState extends InvestmentOnboardingValues {
   setInvestmentStrategies: (v: InvestmentStrategy[]) => void;
   setTimeHorizon: (v: TimeHorizon) => void;
   setAssetInterests: (v: AssetInterest[]) => void;
+  setCountry: (v: string) => void;
   setCompletedAt: (v: string | null) => void;
 
   setAll: (partial: Partial<InvestmentOnboardingValues & { completedAt: string | null }>) => void;
@@ -54,6 +56,7 @@ export const INVESTMENT_ONBOARDING_DEFAULTS: InvestmentOnboardingValues = {
   investmentStrategies: ["buy_and_hold"],
   timeHorizon:          "monthly",
   assetInterests:       ["stock", "crypto", "etf"],
+  country:              "",
 };
 
 const INITIAL_STATE = { ...INVESTMENT_ONBOARDING_DEFAULTS, completedAt: null as string | null };
@@ -70,6 +73,7 @@ export const useInvestmentContextStore = create<InvestmentContextState>()(
       setInvestmentStrategies: (v) => set({ investmentStrategies: v }),
       setTimeHorizon:          (v) => set({ timeHorizon: v }),
       setAssetInterests:       (v) => set({ assetInterests: v }),
+      setCountry:              (v) => set({ country: v }),
       setCompletedAt:          (v) => set({ completedAt: v }),
       setAll:                  (partial) => set(partial),
       reset:                   () => set(INITIAL_STATE),
@@ -85,6 +89,7 @@ export const useInvestmentContextStore = create<InvestmentContextState>()(
         investmentStrategies: state.investmentStrategies,
         timeHorizon:          state.timeHorizon,
         assetInterests:       state.assetInterests,
+        country:              state.country,
         completedAt:          state.completedAt,
       }),
     },

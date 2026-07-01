@@ -692,8 +692,10 @@ def format_market_data(csv_analysis_data, csv_prediction_data):
 
 
 # ================= RUN FUNCTION =================
-def run(tickers):
-    if not tickers:
+def run(tickers, portfolioTickers):
+    tickersCombined = (tickers or []) + (portfolioTickers or [])
+
+    if not tickersCombined:
         print("❌ No tickers provided")
         return []
 
@@ -701,8 +703,8 @@ def run(tickers):
     # Sequentially that's 1-3s per symbol; threading gets 5-10x speedup well
     # under yfinance's per-IP rate limits.
     results = []
-    with ThreadPoolExecutor(max_workers=min(8, len(tickers))) as pool:
-        for data in pool.map(analyze_ticker, tickers):
+    with ThreadPoolExecutor(max_workers=min(8, len(tickersCombined))) as pool:
+        for data in pool.map(analyze_ticker, tickersCombined):
             if data:
                 results.append(data)
 

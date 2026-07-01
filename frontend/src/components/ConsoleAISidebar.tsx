@@ -122,6 +122,7 @@ export function ConsoleAISidebar({ activeTool }: ConsoleAISidebarProps) {
           investmentStrategies: onboarding.investmentStrategies,
           timeHorizon:          onboarding.timeHorizon,
           assetInterests:       onboarding.assetInterests,
+          country:              onboarding.country,
           completedAt:          onboarding.completedAt,
         });
         setInvestmentResult(await fetchInvestmentAIInsights(payload));

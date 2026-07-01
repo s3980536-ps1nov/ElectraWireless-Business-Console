@@ -8,6 +8,7 @@ Handles:
   - Upsert    → saves prices to DB       (Phase 3)
 """
 
+import math
 import time
 import yfinance as yf
 import requests
@@ -113,6 +114,8 @@ def fetch_stock_price(symbol: str) -> dict | None:
         prev_close    = info.previous_close
 
         if current_price is None or prev_close is None:
+            return None
+        if math.isnan(current_price) or math.isnan(prev_close):
             return None
 
         daily_change      = round(current_price - prev_close, 4)

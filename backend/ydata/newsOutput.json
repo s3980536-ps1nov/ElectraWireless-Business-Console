@@ -1,14 +1,260 @@
 {
-  "company": {},
-  "market": [],
+  "company": {
+    "SONY": {
+      "country": "Japan",
+      "articles": [
+        {
+          "headline": "Why Is AMD Stock Gaining Friday?",
+          "summary": "AMD stock continues to rally in premarket trading as Citi and BofA lift price targets on massive AI growth. Get the technical layout.",
+          "source": "Benzinga",
+          "url": "https://finnhub.io/api/news?id=d1460a03955bb95e3755d05e2952eea550775fad3f3d6e6e1d444cb37cf55441",
+          "datetime": 1781255241
+        },
+        {
+          "headline": "Sony: The Market Is Missing The Bigger Picture",
+          "summary": "Sony (SONY) remains a buy as valuation improves: EV/operating income 12.7x, JPY 500B buyback, and catalysts in Gaming/Pictures like GTA 6\u00e2\u0080\u0094read now.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=4084bb6d074b07c89354bce4a7dfcd7afc63ceab84b3f13281329d547fda8704",
+          "datetime": 1781169427
+        }
+      ]
+    },
+    "EWJ": {
+      "country": "US",
+      "articles": [
+        {
+          "headline": "Weekly Commentary: SpaceX And A Z.1 (Q1 2026)",
+          "summary": "SpaceX traded 522 million shares in its initial Friday trading session, gaining 19.2%, and inflating market capitalization to $2.105 TN. Read more here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=06b3b75eb184335a15e6197afff3d76dac055d97a4e60d5ea9f1078c95095c37",
+          "datetime": 1781324147
+        },
+        {
+          "headline": "Kevin Warsh Navigates A Hawkish Fed Shift",
+          "summary": "Improved economic momentum and elevated inflation suggest the Federal Reserve will acknowledge the possibility of a future rate hike via new forecasts.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=e620963af196ef20a6a22ee706902b36934d7ec697c9724a01a403b9bcdfe201",
+          "datetime": 1781266260
+        },
+        {
+          "headline": "Global Employment Slumps As Business Outlook Darkens And Costs Rise",
+          "summary": "Worldwide job cutting intensified in May, according to PMI surveys produced by S&P Global, with a broad-based deterioration in hiring trends among the major economies.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=0ebc8e0fc24c55acb60ff766c4c21723a1eabd24eaafde0ec26b9657c078576d",
+          "datetime": 1781232300
+        },
+        {
+          "headline": "'Starbucks Said To Weigh Japan Unit Options Including Stake Sale' - Bloomberg",
+          "summary": "https://www.bloomberg.com/news/articles/2026-06-10/starbucks-said-to-weigh-japan-unit-options-including-stake-sale\u00a0",
+          "source": "Benzinga",
+          "url": "https://finnhub.io/api/news?id=551ca0f5d9006ca984e9032da7a7903e823112dd5a08a2fc74f5b86132904849",
+          "datetime": 1781065767
+        },
+        {
+          "headline": "ORR: Downgrading One Of Our Holdings After A Year In The Market",
+          "summary": "Despite its long/short mandate, ORR's portfolio has remained stable, with persistent Japan equity overweight and selective US shorts. Read more on ORR here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=aabbf950fa83c3d60562e87900cccbe9abff2c837f7ee027934bfec3e313895d",
+          "datetime": 1780957041
+        }
+      ]
+    },
+    "ASML": {
+      "country": "Netherlands",
+      "articles": [
+        {
+          "headline": "ASML\u2019s Mistral AI Stake Adds New Angle To Hotly Valued Shares",
+          "summary": "ASML Holding (ENXTAM:ASML) has become the largest shareholder in French AI startup Mistral AI. The company is investing \u20ac1.3b for an 11% stake as Mistral AI seeks a new funding round at a higher valua",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=53152e682f36c0731abdb9fae4956be3536a14c8be03e6388cd4039627956bcf",
+          "datetime": 1781352692
+        },
+        {
+          "headline": "SpaceX stock gains, space companies fall, chips mixed on IPO news",
+          "summary": "Yahoo Finance Senior Reporter Brooke DiPalma joins Market Domination to tackle today's top trending tickers, including the momentum driving SpaceX (SPCX) shares in Friday's session after the company's",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=0e544d1fdb4814502215b7809219b96962413050d38d3d838d68e3159967e615",
+          "datetime": 1781294255
+        },
+        {
+          "headline": "ASML: The Rally May Be Overdone",
+          "summary": "ASML Holding is rated a Hold at current prices, as valuation concerns outweigh the positive AI and industry tailwinds. Read more on ASML stock here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=ea4f2e30fdffbd6322d6e3c1e7abf4ed5d0b8f97dd221e3ef054b1f1f1e9d8be",
+          "datetime": 1781288619
+        },
+        {
+          "headline": "Forget ASML: As Post-June 5 Volatility Shakes High-Beta Tech, This Dividend-Paying Chip Index Is a No-Brainer Buy",
+          "summary": "ASML (NASDAQ:ASML) is the name dominating every chip-equipment headline this month after its shares rose 78.18% year to date on AI-driven lithography demand. The setup deserves scrutiny. Tighter centr",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=b1ae3609543e5b5720ec87999b4a3cf187acffc5fd9e571dafb40485d291fe74",
+          "datetime": 1781284776
+        },
+        {
+          "headline": "Here's How Much You Would Have Made Owning ASML Holding Stock In The Last 15 Years",
+          "summary": " ",
+          "source": "Benzinga",
+          "url": "https://finnhub.io/api/news?id=52715657e25828fcc5ba6bef8106d2a434c3ccbf6f2977ce0617ceb4d99f3f97",
+          "datetime": 1781284552
+        }
+      ]
+    },
+    "NVDA": {
+      "country": "United States",
+      "articles": [
+        {
+          "headline": "Berkshire Hathaway's Greg Abel Just Made a Big Bet on Who Will Win the AI Races -- And He's Even Tipping the Scale in Its Favor",
+          "summary": "Berkshire just made this AI leader its fourth-largest position, and it could get even bigger.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=139702b5026cdc501a4b7314c6a3c9fdac439507e853d5c0b9c53b3526b42d1f",
+          "datetime": 1781430600
+        },
+        {
+          "headline": "Forget SpaceX: 3 Stocks That Are Brilliant Buys Right Now",
+          "summary": "There are several stocks that look like better ideas than SpaceX.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=7cb7b77bf1065acec24e7b62a998d13f7793f148d241b223dbaf07f7e58423a7",
+          "datetime": 1781430300
+        },
+        {
+          "headline": "Have S&P 500 Index Funds, Often Touted as the Best Stock Investments, Become Dangerous? There's a Worrisome Development -- and a Possibly Better Alternative.",
+          "summary": "The hard-earned dollars you park in a standard S&P 500 index fund may not be distributed the way you think they are.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=827bbf4887e7f6fd7f819e43d7377d19ba92b1f9d169cdc1967520d5778b3fbf",
+          "datetime": 1781428800
+        },
+        {
+          "headline": "A Bigger Social Security Raise Than the COLA? Congress Is Considering One Right Now",
+          "summary": "Legislation proposed by one Senator would even extend Social Security's solvency by 75 years.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=5e8708e7eb32416ee30f86dd9712b9cc7024f4ef8dc660df4051aa39346486d6",
+          "datetime": 1781427840
+        },
+        {
+          "headline": "Rate Cuts Are Dead. Inflation Is Sticky. Here's 1 Type of Stock Built to Thrive in Exactly This Environment.",
+          "summary": "These stocks were made for times like these.",
+          "source": "Yahoo",
+          "url": "https://finnhub.io/api/news?id=dd5927d884621b910088258a0419f9008d3e8ba3a7385f4879f28d177de9f108",
+          "datetime": 1781427300
+        }
+      ]
+    },
+    "TSM": {
+      "country": "Taiwan",
+      "articles": [
+        {
+          "headline": "Taiwan Semiconductor-SP ADR (NYSE:TSM) Displays Perfect Technical and Strong Growth Ratings",
+          "summary": "TSM scores 10/10 technically and 9/10 for growth/profitability, combining strong fundamentals with a bullish consolidation setup for a potential breakout.",
+          "source": "ChartMill",
+          "url": "https://finnhub.io/api/news?id=8d37d1a5d001553c79e779abed653d10c655f14e3af9bd0e8d0d52bca528f9eb",
+          "datetime": 1781343635
+        },
+        {
+          "headline": "The Unit Economics Of AI Infrastructure",
+          "summary": "More users, high usage frequency, vastly greater per-task complexity, and persistent time sensitivity are placing token consumption on a trajectory that outpaces any realistic supply growth.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=f8237074d58007743be855d7aa34870d4518d905ed5a5742d552fcf1385a3234",
+          "datetime": 1781311200
+        },
+        {
+          "headline": "Northland Power: Advanced-Stage Projects Remain Deeply Discounted",
+          "summary": "",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=a207a72e29c2547a57fa01f9891608fd522ae4608a38fcd0086ae668304678b1",
+          "datetime": 1781282742
+        },
+        {
+          "headline": "Taiwan Semiconductor's Hottest Chips Remain Scarce, Price Hike Looms",
+          "summary": "Taiwan Semiconductor (TSM) may hike 3nm chip prices by 15% in late 2026 as surging AI demand outstrips supply.",
+          "source": "Benzinga",
+          "url": "https://finnhub.io/api/news?id=08283e6feab22970848d717d92e075b6c35447c6c50ab5aeca10eee93c8529bf",
+          "datetime": 1781242631
+        },
+        {
+          "headline": "Intel's Make-Or-Break Moment Is Closer Than You Think",
+          "summary": "Intel Corporation has surged nearly 400% in 12 months, driven by a compelling turnaround and foundry validation. Read why INTC stock is a buy.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=6908eab56d68aadd21a365c87626a80f282aedb36440741dc97fee8397ce8a20",
+          "datetime": 1781169324
+        }
+      ]
+    },
+    "VEA": {
+      "country": "US",
+      "articles": [
+        {
+          "headline": "The Speed Of Transmission: Cost Pass-Through In Emerging Vs. Developed Markets",
+          "summary": "2026 Middle East energy shock shares some Ukraine features but differs importantly, with direct implications for whether the EM-DM pass-through gap is likely to repeat. Read more here.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=8c07585d1d6a8c1489485f60aceadff5362e12a509c662ef8665c8b2a1ecb803",
+          "datetime": 1780996800
+        }
+      ]
+    },
+    "ETH": {
+      "country": "US",
+      "articles": []
+    },
+    "BHP": {
+      "country": "Australia",
+      "articles": [
+        {
+          "headline": "BHP: Simandou Adds Pressure, But The Quality Case Still Holds",
+          "summary": "BHP Group (BHP) remains a quality miner, but recent share gains and iron ore supply risks temper near-term upside.",
+          "source": "SeekingAlpha",
+          "url": "https://finnhub.io/api/news?id=2f29d4d5b2b7257d0bb592ebf003df923a9bcf9dc129d203094be9c7b82ef854",
+          "datetime": 1781169244
+        }
+      ]
+    }
+  },
+  "market": [
+    {
+      "headline": "UK forces board sanctioned Russian shadow fleet oil tanker",
+      "summary": "The U.K.'s Ministry of Defence says the SMYRTOS was in the English Channel and will be held off the south coast during investigations.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/06/14/uk-forces-board-sanctioned-russian-shadow-fleet-oil-tanker.html",
+      "datetime": 1781426542
+    },
+    {
+      "headline": "Iran says limited cyberattack disrupts services at four banks, state media says - Reuters",
+      "summary": "Iran says limited cyberattack disrupts services at four banks, state media says\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPekNlcHljbzkyU2huU1VqQnB1SFRyVHF0bHJKWVR3RXZETDJvQTBrSVVDN3FVRzNDdjhVc2txU2cxeU5Id1dWQlVXU0l6LVJwNWZrOTlsWUMxaHFMNm16anRrMWVIWHQ5NW5vMWpLY0pUY2lDemo1c3NEVlRlSnpBTmM5dnFhSmNrRjRlTlVZbWI5RzBrdW1LQmZiVGNhNzkxeDBEb01oRUotdlA2dkdGR3Q3bWQ5bERQcHFKVDZrVlpRVUNGbXY0ZA?oc=5",
+      "datetime": 1781421125
+    },
+    {
+      "headline": "US, Iran inch closer to deal, Trump says Sunday but timing remains unclear - Reuters",
+      "summary": "US, Iran inch closer to deal, Trump says Sunday but timing remains unclear\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPSXA2RmM1Y0lOSlBJSHJpd285cFViUGlLNFRUa0FTZWxBbC1DdUdVM1hSbUY5Z1A4R3poZEI3QjNGbFFzSlZpalRkbnVGWVFMNzYzQXlJbXhMTjdaRjFLQlk0b3FXZVIzcVVDbm9YVmd4RmtRTWVGcndQN1VJaEZRUEppeGlUZWJGaUx6WEI1OUtoeDRpbGdNbF8xRVFRTlY3Tk9Fcg?oc=5",
+      "datetime": 1781401980
+    },
+    {
+      "headline": "Iran face New Zealand in politically charged Los Angeles opener - Reuters",
+      "summary": "Iran face New Zealand in politically charged Los Angeles opener\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOTHQxVWZfRDFBNTZvLTRXYjlqeWZnVDBWVTVlY2w5WXU1N09FQndtRHNaT1VPbGJzUXdsNnNQTlhDb3VGTS1kU0s3RDRJV05OOWFvX0VEaURTZUh1dHZOY3lqYjFSNzEyTW1DWWowSjNlalVRV3ktVmxWWnkwLTVmQjRxY0g4SEFFbUJBaW5KSVNxWWVqc3Q0aHlfUlZUMzIwdGRvMWstZzliVl9ST05Z?oc=5",
+      "datetime": 1781389304
+    },
+    {
+      "headline": "UK's Starmer, Trump discuss efforts to end Iran conflict - Reuters",
+      "summary": "UK's Starmer, Trump discuss efforts to end Iran conflict\u00a0\u00a0Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNQWk5VjRaVlZrNXBaVWF1TGpXZ04zQnhyLTNYNkhORTJkYjhMSVhRUS1ndW9sTmRJZ2VxR1phNjA2QS1ic0o3QnE5RHRNMXRTaUktYkctYzhWRkg3Zy02WTRxTFdjV3Axb185ZDdfeDlxZWhFU3Z5MUNQSE9XVERuVTZOazVtc0VIWjd3d2czM1pHREJ3Z1BtT3RoYXZZUXBaQ0NqQWxNVEM?oc=5",
+      "datetime": 1781370943
+    }
+  ],
   "meta": {
     "tickers_received": [
-      "TSLA",
-      "TESLA",
-      "AAPL",
+      "SONY",
+      "EWJ",
+      "ASML",
       "NVDA",
-      "VOO",
-      "META"
+      "TSM",
+      "VEA",
+      "ETH",
+      "BHP"
     ],
     "countries_received": [],
     "status": "active"

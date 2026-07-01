@@ -72,7 +72,7 @@ export default function ImportFinancialDataStep({ onBack, onSkip, onApply }: Imp
           {[
             { step: "Upload",  desc: "Select a .csv or .xlsx file — all sheets load automatically." },
             { step: "Review",  desc: "A full spreadsheet editor opens. Edit cells, view formulas." },
-            { step: "Apply",   desc: "Click \"Apply to Dashboard\" to extract your financial metrics." },
+            { step: "Apply",   desc: "Click \"Apply to Dashboard\" to proceed to the setup sliders." },
           ].map(({ step, desc }, i) => (
             <li key={i} className="flex items-start gap-2 text-xs">
               <span

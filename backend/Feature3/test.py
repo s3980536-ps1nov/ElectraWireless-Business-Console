@@ -45,35 +45,6 @@ def load_input():
 
     return None
 
-# 
-# def parse_predictions(text: str):
-#     lines = [l.strip() for l in text.split("\n") if l.strip()]
-
-#     predictions = []
-#     i = 0
-
-#     while i < len(lines):
-#         if lines[i].startswith("["):
-#             i += 1
-#             continue
-
-#         if i + 2 < len(lines):
-#             ticker = lines[i]
-#             flag = lines[i + 1].upper()
-#             timeframe = lines[i + 2]
-
-#             predictions.append({
-#                 "ticker": ticker,
-#                 "predict": flag == "YES",
-#                 "years": extract_years(timeframe)
-#             })
-
-#             i += 3
-#         else:
-#             break
-
-#     return predictions
-
 def parse_predictions(text: str):
     lines = [l.strip() for l in text.splitlines()]
 
@@ -335,6 +306,8 @@ RESPONSE STYLE:
 - Match complexity to user level: {onboarding_experience}
 - Suggestions must be within the constraints of ${onboarding_capital}
 - any investments should be recommended in line with this strategy {onboarding_strategy_text}
+- For any suggestions made give reasoning as to the reason that specific values were predicted or listed
+
 
 [SECTION: SOURCES]
 - List which datasets were used if any

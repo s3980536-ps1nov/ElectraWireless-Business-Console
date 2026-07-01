@@ -22,8 +22,8 @@ const ALL_TABS = [
 // Tabs hidden by default for user accounts
 const USER_RESTRICTED_TABS = new Set(["scenarios", "sensitivity", "valuation"]);
 
-export function ProjectionPage() {
-  const { activeTab, setActiveTab, accountType } = useProjectionStore();
+export function ProjectionPage({ onReset }: { onReset?: () => void } = {}) {
+  const { activeTab, setActiveTab, accountType, reset } = useProjectionStore();
   useProphetSync();
 
   const [activeSector, setActiveSector] = useState<SectorId | null>(null);
@@ -129,6 +129,18 @@ export function ProjectionPage() {
 
           {/* Spacer */}
           <div className="flex-1" />
+
+          {/* Clear all data */}
+          <button
+            onClick={() => {
+              if (!window.confirm("Clear all Financial Projections data? This resets your sliders, saved scenarios, and will restart onboarding.")) return;
+              reset();
+              onReset?.();
+            }}
+            className="flex items-center gap-1.5 ml-3 px-3 py-1.5 text-[11px] font-semibold text-destructive bg-destructive/[0.07] border border-destructive/[0.25] rounded-lg cursor-pointer transition-all duration-150 hover:bg-destructive/[0.14] hover:border-destructive/[0.50] whitespace-nowrap flex-shrink-0"
+          >
+            Clear Data
+          </button>
 
           {/* Dashboard button — shown when a sector screen is active */}
           {activeSector && (

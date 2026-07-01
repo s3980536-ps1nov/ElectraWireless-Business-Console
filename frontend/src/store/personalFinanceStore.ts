@@ -76,7 +76,7 @@ export const usePersonalFinanceStore = create<PersonalFinanceState>()(
     (set) => ({
   flowStep: "empty",
   activeTab: "overview",
-  activePeriod: "Last 3 months",
+  activePeriod: "All",
   transactions: [],
   pendingTransactions: [],
   budgets: {},
@@ -151,7 +151,7 @@ export const usePersonalFinanceStore = create<PersonalFinanceState>()(
     set({
       flowStep: "empty",
       activeTab: "overview",
-      activePeriod: "Last 3 months",
+      activePeriod: "All",
       transactions: [],
       pendingTransactions: [],
       budgets: {},

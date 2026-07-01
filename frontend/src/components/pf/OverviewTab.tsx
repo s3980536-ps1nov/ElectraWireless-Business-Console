@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
 } from "recharts";
-import { usePersonalFinanceStore, useFilteredTransactions } from "@/store/personalFinanceStore";
+import { usePersonalFinanceStore, useFilteredTransactions, type Period } from "@/store/personalFinanceStore";
 import { fetchSummary } from "@/services/personalFinanceApi";
 import { NetWorthPanel } from "@/components/pf/NetWorthPanel";
 import type { FinancialSummary } from "@/services/personalFinanceApi";
@@ -333,9 +333,12 @@ function BudgetNudge({ onGoToBudgets }: { onGoToBudgets: () => void }) {
 }
 
 export function OverviewTab() {
-  const transactions = useFilteredTransactions();
-  const budgets      = usePersonalFinanceStore((s) => s.budgets);
-  const setActiveTab = usePersonalFinanceStore((s) => s.setActiveTab);
+  const transactions    = useFilteredTransactions();
+  const allTransactions = usePersonalFinanceStore((s) => s.transactions);
+  const activePeriod    = usePersonalFinanceStore((s) => s.activePeriod);
+  const setActivePeriod = usePersonalFinanceStore((s) => s.setActivePeriod);
+  const budgets         = usePersonalFinanceStore((s) => s.budgets);
+  const setActiveTab    = usePersonalFinanceStore((s) => s.setActiveTab);
   const [summary, setSummary] = useState<FinancialSummary | null>(null);
 
   useEffect(() => {
@@ -344,6 +347,25 @@ export function OverviewTab() {
   }, [transactions]);
 
   if (!summary) {
+    // Transactions exist in the store but the period filter excludes them all
+    if (allTransactions.length > 0) {
+      return (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: 200, gap: 12, color: "hsl(245 16% 55%)", fontSize: 13 }}>
+          <div>No transactions in <strong style={{ color: "hsl(242 44% 30%)" }}>{activePeriod}</strong>.</div>
+          <div style={{ display: "flex", gap: 8 }}>
+            {(["All", "Last 6 months", "This year"] as const).filter((p) => p !== activePeriod).map((p) => (
+              <button
+                key={p}
+                onClick={() => setActivePeriod(p)}
+                style={{ fontSize: 12, padding: "5px 12px", borderRadius: 6, border: "1px solid hsl(244 25% 80%)", background: "rgba(255,255,255,0.6)", cursor: "pointer", color: C_PRIMARY, fontWeight: 600 }}
+              >
+                {p === "All" ? "Show all" : `Try ${p}`}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 200, color: "hsl(245 16% 55%)", fontSize: 13 }}>
         Loading summary…

@@ -141,8 +141,12 @@ export function parseFile(file: File): Promise<ParsedData> {
         complete: (results) => {
           const raw = results.data as (string | number | null)[][];
           if (raw.length < 2) { reject(new Error("File appears empty or has only one row.")); return; }
-          const headers = raw[0].map((h) => String(h ?? "").trim());
-          resolve({ headers, rows: raw.slice(1) });
+          // Skip preamble lines (e.g. CBA/ANZ bank metadata before the real header row)
+          // by finding the first row that has the widest column count.
+          const maxCols = Math.max(...raw.map((r) => r.length));
+          const headerIdx = maxCols > 1 ? raw.findIndex((r) => r.length === maxCols) : 0;
+          const headers = raw[headerIdx].map((h) => String(h ?? "").trim());
+          resolve({ headers, rows: raw.slice(headerIdx + 1) });
         },
         error: (err: Error) => reject(err),
       });

@@ -7,6 +7,7 @@ from datetime import date as date_today, datetime, timezone
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from investments import router as investments_router
+from knowledge import router as knowledge_router
 from database import engine, Base, get_db
 import models  # registers ORM models
 
@@ -48,6 +49,7 @@ def _backfill_onboarding_columns() -> None:
         ("investment_strategies", "TEXT"),
         ("asset_interests",       "TEXT"),
         ("emergency_cash",        "INTEGER"),
+        ("country",               "TEXT"),
     ]
     with engine.begin() as conn:
         for name, sqltype in to_add:
@@ -145,6 +147,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(investments_router)
+app.include_router(knowledge_router)
 
 class ForecastRequest(BaseModel):
     revenue: float = Field(..., description="Current monthly revenue ($)")
@@ -749,6 +752,9 @@ def _build_profile_context(onboarding: dict) -> str:
     style = onboarding.get("communicationStyle")
     if style:
         parts.append(f"prefers {style} explanations")
+    country = onboarding.get("country")
+    if country:
+        parts.append(f"based in {country}")
     return " · ".join(parts)
 
 
@@ -861,6 +867,11 @@ def portfolio_analysis(req: dict = Body(...), db: Session = Depends(get_db)):
     if user_question and "question" not in data:
         data["question"] = user_question
 
+    # Conversation history — passed from EllyChat so the LLM has prior context.
+    history = data.pop("history", None) or []
+    if history:
+        data["history"] = history
+
     # Retrieve relevant past memories before running the analysis pipeline.
     memories = []
     if user_question:
@@ -952,6 +963,7 @@ class InvestmentOnboardingRequest(BaseModel):
     timeHorizon:          str            # daily | weekly | monthly | annually | indefinitely
     assetInterests:       list[str]      # subset of: stock | crypto | etf
     investmentGoal:       Optional[str] = None   # legacy single-goal field; optional
+    country:              Optional[str] = None   # user's home country for domestic stock suggestions
     user_id:              str = "demo-user"
 
 
@@ -971,7 +983,7 @@ ONBOARDING_RESET_STATE = {
 
 def _onboarding_record(req: InvestmentOnboardingRequest, completed_at: str) -> dict:
     """Shape of the onboarding object persisted to Feature_3_input.json."""
-    return {
+    record = {
         "available":            True,
         "age":                  req.age,
         "experienceLevel":      req.experienceLevel,
@@ -983,6 +995,9 @@ def _onboarding_record(req: InvestmentOnboardingRequest, completed_at: str) -> d
         "assetInterests":       req.assetInterests,
         "completedAt":          completed_at,
     }
+    if req.country:
+        record["country"] = req.country
+    return record
 
 
 @app.post("/investments/onboarding")
@@ -1004,6 +1019,8 @@ def submit_investment_onboarding(req: InvestmentOnboardingRequest, db: Session =
         existing.investment_strategies = strategies_json
         existing.time_horizon          = req.timeHorizon
         existing.asset_interests       = interests_json
+        if req.country is not None:
+            existing.country           = req.country
         # Only overwrite investment_goal when the client explicitly sent one;
         # the column is NOT NULL on legacy DBs, so writing None here would fail.
         if req.investmentGoal is not None:
@@ -1024,6 +1041,7 @@ def submit_investment_onboarding(req: InvestmentOnboardingRequest, db: Session =
             investment_strategies = strategies_json,
             time_horizon          = req.timeHorizon,
             asset_interests       = interests_json,
+            country               = req.country,
         )
         db.add(profile)
 
